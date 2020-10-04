@@ -37,3 +37,7 @@ if (documentUploadedFrom == "ACA" && partialCap && documentModelArray) {
 		}
 	}
 }
+
+// Begin script to notify back office of documents added to submitted applications
+include("DOC_UPLOAD_NOTIFY");
+// end script on notify documents 
