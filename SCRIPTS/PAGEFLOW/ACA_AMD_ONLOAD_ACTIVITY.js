@@ -160,7 +160,7 @@ try {
 	//cancel = true;
 
 	// indicate the current page
-	var thisPage = "ActivityNew";  // Business, Document, Contact, Location, ActivityType, or Activity
+	var thisPage = "Activity";  // Business, Document, Contact, Location, ActivityType, or Activity
 	var showPage = false;
 	var isFicticiousName = isASITrue(AInfo["Fictitious Business Name"]); 
 	var isLegalEntityNameChange = isASITrue(AInfo["Legal Entity Name Change"]); 
