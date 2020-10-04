@@ -11,6 +11,13 @@ if (publicUser && !partialCap) {
 		emailList.push(getUserEmail(au));
 	}
 	
+	// grab document
+	var docList = "";
+	for (var i = 0; i < documentModelArray.size(); i++) {
+		var documentObject = documentModelArray.get(i);
+		docList += String(documentObject.getDocCategory()) + String.fromCharCode(13);
+	}
+
 	// send email
 	if (emailList.length > 0) {
 		var list = emailList.filter(function (x, i, a) {return a.indexOf(x) == i; });
