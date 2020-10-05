@@ -247,8 +247,7 @@ if (parentCapId){
 	var bizName = getShortNotes(parentId);
 	updateShortNotes(bizName, capId);
 
-	var refAddress = parentCap.getAddressModel();
-	cap.setAddressModel(refAddress);
+	copyAddressFromParent4ACA(cap, parentCapId);
 		    	
 	aa.env.setValue("CapModel", cap);
 }
@@ -301,4 +300,30 @@ function describe(obj) {
 		else
 			ret += "property:" + i + " = " + obj[i] + "\n";
 	return ret;
+}
+
+function copyAddressFromParent4ACA(currentRecordCapModel, parentCapId) {
+
+	var capAddressResult = aa.address.getAddressWithAttributeByCapId(parentCapId).getOutput();
+	if (capAddressResult == null || capAddressResult.length == 0) {
+		return;
+	}
+
+	var adrr = getPrimaryOrAddressByType(capAddressResult);
+	if (adrr != null) {
+		currentRecordCapModel.setAddressModel(adrr);
+	}
+}
+function getPrimaryOrAddressByType(addresses) {
+	var ourTypeAddress = null;
+
+	for (a in addresses) {
+		if (addresses[a].getPrimaryFlag() == "Y") {
+			return addresses[a];
+		} else if (ourTypeAddress == null) {
+			ourTypeAddress = addresses[a];
+		}
+	} //for
+
+	return ourTypeAddress;
 }
