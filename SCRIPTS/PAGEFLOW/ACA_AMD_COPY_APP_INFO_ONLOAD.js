@@ -247,10 +247,9 @@ if (parentCapId){
 	var bizName = getShortNotes(parentId);
 	updateShortNotes(bizName, capId);
 
-
-	//copy address
-	copyAddress(parentCapId, capId);
-	
+	var refAddress = parentCap.getAddressModel();
+	cap.setAddressModel(refAddress);
+		    	
 	aa.env.setValue("CapModel", cap);
 }
 
