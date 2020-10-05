@@ -71,3 +71,8 @@ if(publicUser){
 if(publicUser){
 	include("POPULATE_ZIMAS_DATA");
 }
+
+//Modification Request Notification to Staff
+if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+	include ("MOD_NOTIFY_STAFF");
+}
