@@ -85,8 +85,7 @@ if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application"
 if (parentId) {
         
         var au = getAssigned(parentId);
-        logDebug("UNABLE TO SEND NOTICE!  ERROR: " + parentId);
-         
+                 
 	if (au) {
         
 		emailList.push(getUserEmail(au));
