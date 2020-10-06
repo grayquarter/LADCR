@@ -241,11 +241,13 @@ if (parentCapId){
 	var appName = parentCap.getSpecialText();
 	logDebug("appName = " + appName);
 	cap.setSpecialText(appName);
-		
+	
+/*	
 	// Get Business/Professional Name (DBA)
 	logDebug("Parent Short Notes = " + getShortNotes(parentId));
-	var bizName = getShortNotes(parentId);
+	var bizName = getShortNotes(parentCapId);
 	updateShortNotes(bizName, capId);
+*/
 
 	copyAddressFromParent4ACA(cap, parentCapId);
 		    	
