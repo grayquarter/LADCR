@@ -93,6 +93,13 @@ if (parentId) {
         var sendResult = sendNotification("dcrlicensing@lacity.org",emailList.join(","),"","LADCR_MOD_NOTIFY",params,null);
          }
     }
+}
+
+
+//assign MOD record same as Parent
+var parentId = getParent();
+
+if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
         			
 if (parentId != null && parentId != "") {
     
