@@ -71,3 +71,36 @@ if(publicUser){
 if(publicUser){
 	include("POPULATE_ZIMAS_DATA");
 }
+
+//Modification Request Notification to Staff
+if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+
+         
+    var parentId = getParent();
+    var params = aa.util.newHashtable();
+    addParameter(params, "$$altID$$", capId.getCustomID());
+    var emailList = [];
+
+      
+if (parentId) {
+        
+        var au = getAssigned(parentId);
+        logDebug("UNABLE TO SEND NOTICE!  ERROR: " + parentId);
+         
+	if (au) {
+        
+		emailList.push(getUserEmail(au));
+        var sendResult = sendNotification("dcrlicensing@lacity.org",emailList.join(","),"","LADCR_MOD_NOTIFY",params,null);
+         }
+    }
+        			
+if (parentId != null && parentId != "") {
+    
+        vAppAssigned = getAssigned(parentId);
+         
+
+        if (vAppAssigned != false && vAppAssigned != "" && vAppAssigned != null) {
+            assignCap(vAppAssigned);
+         }
+    }
+}
