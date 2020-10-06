@@ -169,13 +169,14 @@ try {
 	var isOtherContactChange = isASITrue(AInfo["Other Contact Changes"]); 
 	var isRemoveActivity = isASITrue(AInfo["Remove Cannabis Activity"]); 
 	var isNewActivity = isASITrue(AInfo["New Cannabis Activity"]); 
+	var isOther = isASITrue(AInfo["Other"]); 
 	
 	switch (thisPage) {
 		case "Business":
 			showPage = isFicticiousName || isLegalEntityNameChange;
 		break;
 		case "Document":
-			showPage = isFicticiousName || isLegalEntityNameChange || isPremisesRelocation || isPremisesDiagram || isOwnershipPrimaryChange || isOtherContactChange || isNewActivity || isRemoveActivity;
+			showPage = isFicticiousName || isLegalEntityNameChange || isPremisesRelocation || isPremisesDiagram || isOwnershipPrimaryChange || isOtherContactChange || isNewActivity || isRemoveActivity || isOther;
 		break; 
 		case "Contact":
 			showPage = isOwnershipPrimaryChange || isOtherContactChange;
