@@ -94,4 +94,13 @@ if (parentId) {
          }
     }
         			
-} 
+if (parentId != null && parentId != "") {
+    
+        vAppAssigned = getAssigned(parentId);
+         
+
+        if (vAppAssigned != false && vAppAssigned != "" && vAppAssigned != null) {
+            assignCap(vAppAssigned);
+         }
+    }
+}
