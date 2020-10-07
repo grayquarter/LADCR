@@ -5,6 +5,7 @@ function getRequiredDocuments(isPageFlow) {
 // 09/09/20: Added Modification Request Form
 // 09/11/20: app renewal logic
 // 10/01/20: added PCN Request Form
+// 10/06/20: added more stuff
 	
 	logDebug("start getRequiredDocuments(" + [].slice.call(arguments) + ")");
 
@@ -140,6 +141,10 @@ function getRequiredDocuments(isPageFlow) {
 	var ModificationRequestForm = {condition: "Modification Request Form",document: "Modification Request Form"};
 	// added requirements 10/1/2020 GH
 	var PCNRequestForm = {condition: "PCN Request Form",document: "PCN Request Form"};
+	// added requirements 10/6/2020 GH
+	var ProofDepositPropertyDeed = {condition: "Proof of Deposit or Property Deed",document: "Proof of Deposit or Property Deed"};
+	var StakeholderInputRequest = {condition: "Stakeholder Input Request (PCN)",document: "Stakeholder Input Request (PCN)"};
+	var PCNRequestForm = {condition: "PCN Request Form",document: "PCN Request Form"};
 
 
 
@@ -156,10 +161,10 @@ function getRequiredDocuments(isPageFlow) {
 	if (AInfo["Are you requesting a temporary license?"] == null || AInfo["Are you requesting a temporary license?"] == "") {
 		isTemporaryRequest = true;
 	}
-	//var isModRequest =  AInfo["Are you submitting a Modification Request"] == "YES" || AInfo["Are you submitting a Modification Request"] == "Yes"; 
 	var isModRequest = AInfo["Are you submitting a Modification Request?"] == "YES" || AInfo["Are you submitting a Modification Request?"] == "Yes" || AInfo["Are you submitting a Modification Request?"] == "Y"; 
 	var isAppRenewal = AInfo["Is this a Renewal?"] == "YES" || AInfo["Is this a Renewal?"] == "Yes" || AInfo["Is this a Renewal?"] == "Y"; 
 	var isPCNRequest = AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "YES" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Yes" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Y"; 
+	var isLeaseOrOwnership = AInfo["Executed lease or ownership of the premises?"] == "YES" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Yes" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Y"; 
 
 	//check to see if a temporary license has already been issued
 	var vWFTaskHistory = aa.workflow.getWorkflowHistory(capId, 'Issuance', null).getOutput();
@@ -234,8 +239,16 @@ function getRequiredDocuments(isPageFlow) {
 				requirementArray.push(DatedRadiusMap); 					
 				requirementArray.push(ownDisclosure);  
 				requirementArray.push(SitePlan); 
+				
 				if (isPCNRequest) {
 					requirementArray.push(PCNRequestForm);
+					requirementArray.push(StakeholderInputRequest); 		
+				}
+				
+				if(isLeaseOrOwnership) {
+					requirementArray.push(ExecutedLeaseOrPropertyDeed); 		
+					requirementArray.push(ProofDepositPropertyDeed); 		
+
 				}
 			}
 			
