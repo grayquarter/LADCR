@@ -73,40 +73,40 @@ if(publicUser){
 }
 
 //Modification Request Notification to Staff
-//if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
 
          
- //   var parentId = getParent();
-//    var params = aa.util.newHashtable();
- //   addParameter(params, "$$altID$$", capId.getCustomID());
-//    var emailList = [];
+  var parentId = getParent();
+  var params = aa.util.newHashtable();
+  addParameter(params, "$$altID$$", capId.getCustomID());
+  var emailList = [];
 
       
-//if (parentId) {
+if (parentId) {
         
-     //   var au = getAssigned(parentId);
+        var au = getAssigned(parentId);
                  
-//	if (au) {
+	if (au) {
         
-	//	emailList.push(getUserEmail(au));
-     //   var sendResult = sendNotification("dcrlicensing@lacity.org",emailList.join(","),"","LADCR_MOD_NOTIFY",params,null);
-      //   }
-  //  }
-//}
+		emailList.push(getUserEmail(au));
+        var sendResult = sendNotification("dcrlicensing@lacity.org",emailList.join(","),"","LADCR_MOD_NOTIFY",params,null);
+         }
+    }
+}
 
 
 //assign MOD record same as Parent
-//var parentId = getParent();
+var parentId = getParent();
 
-//if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+if (publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
         			
-//if (parentId != null && parentId != "") {
+if (parentId != null && parentId != "") {
     
-    //    vAppAssigned = getAssigned(parentId);
+        vAppAssigned = getAssigned(parentId);
          
 
-     //   if (vAppAssigned != false && vAppAssigned != "" && vAppAssigned != null) {
-     //       assignCap(vAppAssigned);
-     //    }
- //   }
-//}
+       if (vAppAssigned != false && vAppAssigned != "" && vAppAssigned != null) {
+           assignCap(vAppAssigned);
+         }
+   }
+}
