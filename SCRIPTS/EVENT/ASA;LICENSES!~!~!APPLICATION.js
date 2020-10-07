@@ -15,14 +15,16 @@
 // end check for fein/ssn
 
 // Assess fees
-if (AInfo["Is this a Renewal?"] && AInfo["Is this a Renewal?"].substr(0, 1).toUpperCase().equals("Y")) {
-	//include("ASSESS_BUS_REN_FEES"); //use the ame for now 1/30/2020
-	//include("ASSESS_BUS_APP_FEES");
-} else {
-	//include("ASSESS_BUS_APP_FEES2");
-	//include("ASSESS_BUS_APP_FEES");
-	//include("ASSESS_BUS_APP_FEES_2020.06");
-	include("ASSESS_BUS_APP_FEES_2020.10");
+if (appMatch("Licenses/Cannabis/Business/Application")) {
+	if (AInfo["Is this a Renewal?"] && AInfo["Is this a Renewal?"].substr(0, 1).toUpperCase().equals("Y")) {
+		//include("ASSESS_BUS_REN_FEES"); //use the ame for now 1/30/2020
+		//include("ASSESS_BUS_APP_FEES");
+	} else {
+		//include("ASSESS_BUS_APP_FEES2");
+		//include("ASSESS_BUS_APP_FEES");
+		//include("ASSESS_BUS_APP_FEES_2020.06");
+		include("ASSESS_BUS_APP_FEES_2020.10");
+	}
 }
 // end assess fees
 
