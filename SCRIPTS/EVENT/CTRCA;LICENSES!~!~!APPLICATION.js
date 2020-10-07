@@ -76,7 +76,7 @@ if(publicUser){
 if (parentCapId && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
   var params = aa.util.newHashtable();
   addParameter(params, "$$altID$$", capId.getCustomID());
-  var au = getAssigned(parentId);
+  var au = getAssigned(parentCapId);
   if (au) {
   	emailList.push(getUserEmail(au));
         var sendResult = sendNotification("dcrlicensing@lacity.org",emailList.join(","),"","LADCR_MOD_NOTIFY",params,null);
