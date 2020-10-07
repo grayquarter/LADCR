@@ -75,6 +75,7 @@ if(publicUser){
 //Modification Request Notification to Staff
 if (parentCapId && appMatch("Licenses/Cannabis/Application Amendment/Application")) {
   var params = aa.util.newHashtable();
+  var emailList = [];
   addParameter(params, "$$altID$$", capId.getCustomID());
   var au = getAssigned(parentCapId);
   if (au) {
