@@ -149,100 +149,82 @@ logDebug("balanceDue = " + balanceDue);
 
 try {
 
-	var parentCapId;
-	var parentCap;
-	
-	parentCapIdString = "" + cap.getParentCapID();
-	if (parentCapIdString) {
-		pca = parentCapIdString.split("-");
-		parentCapId = aa.cap.getCapID(pca[0], pca[1], pca[2]).getOutput();
-		parentCap = aa.cap.getCapViewBySingle4ACA(parentCapId);
-	}
+    var parentCapId;
+    var parentCap;
 
-	//showDebug = true;
-	//showMessage = true;
-	//cancel = true;
+    parentCapIdString = "" + cap.getParentCapID();
+    if (parentCapIdString) {
+        pca = parentCapIdString.split("-");
+        parentCapId = aa.cap.getCapID(pca[0], pca[1], pca[2]).getOutput();
+        parentCap = aa.cap.getCapViewBySingle4ACA(parentCapId);
+    }
 
-	// indicate the current page
-	var thisPage = "Contact";  // Business, Document, Contact, Location, ActivityType, or Activity
-	var showPage = false;
-	var isFicticiousName = isASITrue(AInfo["Fictitious Business Name"]); 
-	var isLegalEntityNameChange = isASITrue(AInfo["Legal Entity Name Change"]); 
-	var isPremisesDiagram = isASITrue(AInfo["Business Premises Diagram"]); 
-	var isPremisesRelocation = isASITrue(AInfo["Business Premises Relocation"]); 
-	var isOwnershipPrimaryChange = isASITrue(AInfo["Ownership or Primary Changes"]); 
-	var isOtherContactChange = isASITrue(AInfo["Other Contact Changes"]); 
-	var isRemoveActivity = isASITrue(AInfo["Remove Cannabis Activity"]); 
-	var isNewActivity = isASITrue(AInfo["New Cannabis Activity"]);
+    //showDebug = true;
+    //showMessage = true;
+    //cancel = true;
+
+    // indicate the current page
+    var thisPage = "Contact"; // Business, Document, Contact, Location, ActivityType, or Activity
+    var showPage = false;
+    var isFicticiousName = isASITrue(AInfo["Fictitious Business Name"]);
+    var isLegalEntityNameChange = isASITrue(AInfo["Legal Entity Name Change"]);
+    var isPremisesDiagram = isASITrue(AInfo["Business Premises Diagram"]);
+    var isPremisesRelocation = isASITrue(AInfo["Business Premises Relocation"]);
+    var isOwnershipPrimaryChange = isASITrue(AInfo["Ownership or Primary Changes"]);
+    var isOtherContactChange = isASITrue(AInfo["Other Contact Changes"]);
+    var isRemoveActivity = isASITrue(AInfo["Remove Cannabis Activity"]);
+    var isNewActivity = isASITrue(AInfo["New Cannabis Activity"]);
 
     var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
     var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
-	
-	switch (thisPage) {
-		case "Business":
-			showPage = isFicticiousName || isLegalEntityNameChange;
-		break;
-		case "Document":
-			showPage = isFicticiousName || isLegalEntityNameChange || isPremisesRelocation || isOwnershipPrimaryChange || isOtherContactChange || isNewActivity;
-		break; 
-		case "Contact":
-			showPage = isOwnershipPrimaryChange || isOtherContactChange;
-		break;
-		case "Location":
-			showPage = isPremisesRelocation;
-		break;
-		case "ActivityType":
-			showPage = isNewActivity;
-		break;
-		case "Activity":
-			showPage = isNewActivity || isRemoveActivity;
-		break;
-	}
-	
-	if (!showPage) {
-		aa.env.setValue("ReturnData", "{'PageFlow': {'HidePage' : 'Y'}}");
-	} else if (parentCap) {
-			//populate custom list
-		
-		var contactList = parentCap.getContactsGroup();
 
-		var capID = cap.getCapID();
-		
-		stepIndex = 2;
-		pageIndex = 1;
-		
-		var pageComponents = getPageComponents(capID, stepIndex, pageIndex);
-			
-		if(pageComponents != null && pageComponents.length > 0)
-		{
-			for(var i= 0; i< pageComponents.length; i++)
-			{			
-				compName = pageComponents[i].getComponentName();
-				compSeqNum = pageComponents[i].getComponentSeqNbr();
-				logDebug("ComponentName = " + compName);
-				logDebug("ComponentSeqNbr = " + compSeqNum);
+    switch (thisPage) {
+    case "Business":
+        showPage = isFicticiousName || isLegalEntityNameChange;
+        break;
+    case "Document":
+        showPage = isFicticiousName || isLegalEntityNameChange || isPremisesRelocation || isOwnershipPrimaryChange || isOtherContactChange || isNewActivity;
+        break;
+    case "Contact":
+        showPage = isOwnershipPrimaryChange || isOtherContactChange;
+        break;
+    case "Location":
+        showPage = isPremisesRelocation;
+        break;
+    case "ActivityType":
+        showPage = isNewActivity;
+        break;
+    case "Activity":
+        showPage = isNewActivity || isRemoveActivity;
+        break;
+    }
 
-				if (compName == "Contact List") {
-					for (var j = 0; j < contactList.size(); j++) {
-						if (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes)) {
-							contactList.delete(j);
-							continue;
-						} else if (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes)) {
-							contactList.delete(j);
-							continue;
-						}
-						contactList.get(j).getPeople().setContactSeqNumber(null);
-						contactList.get(j).setComponentName("Contact List");
-					}
-					cap.setContactsGroup(contactList);
-					logDebug("Setting component for " + contactModel.contactType);
-				}
-			}
-		}
-	}
-	aa.env.setValue("CapModel", cap);
-	
-} catch (err) {
+    if (!showPage) {
+        aa.env.setValue("ReturnData", "{'PageFlow': {'HidePage' : 'Y'}}");
+    } else if (parentCap) {
+        //populate custom list
+
+        var contactList = parentCap.getContactsGroup();
+
+        for (var j = 0; j < contactList.size(); j++) {
+            if (true && !exists(contactList.get(j).getContactType(), ownerTypes)) {
+                contactList.remove(j);
+                logDebug("removing : " + contactList.get(j).getContactType());
+                continue;
+            } else if (false && !exists(contactList.get(j).getContactType(), otherTypes)) {
+                logDebug("removing : " + contactList.get(j).getContactType());
+                contactList.remove(j);
+                continue;
+            }
+            logDebug("adding : " + contactList.get(j).getContactType());
+            contactList.get(j).getPeople().setContactSeqNumber(null);
+            contactList.get(j).setComponentName("Contact List");
+        }
+        cap.setContactsGroup(contactList);
+
+    }
+}
+catch (err) {
 
 	logDebug(err);
 
