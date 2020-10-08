@@ -245,9 +245,13 @@ function getRequiredDocuments(isPageFlow) {
 					requirementArray.push(Attestation); 		
 					requirementArray.push(BusinessPremisesDiagram); 		
 					requirementArray.push(DatedRadiusMap); 					
-					requirementArray.push(ownDisclosure);  
+					requirementArray.push(EvidenceOfLegalRightToOccupy); 
+					requirementArray.push(ListofPrimaryPersonnelOwner);
+					requirementArray.push(ownDisclosure);
+					requirementArray.push(RadiusMapATT);
+					requirementArray.push(PrimaryPersonnelOwner);
 					requirementArray.push(SitePlan); 
-					
+				
 					if (isPCNRequest) {
 						requirementArray.push(PCNRequestForm);
 						requirementArray.push(StakeholderInputRequest); 		
