@@ -149,10 +149,14 @@ logDebug("balanceDue = " + balanceDue);
 
 try {
 
+	var parentCapId;
+	var parentCap;
+	
 	parentCapIdString = "" + cap.getParentCapID();
 	if (parentCapIdString) {
 		pca = parentCapIdString.split("-");
 		parentCapId = aa.cap.getCapID(pca[0], pca[1], pca[2]).getOutput();
+		parentCap = aa.cap.getCapViewBySingle4ACA(parentCapId);
 	}
 
 	//showDebug = true;
@@ -169,7 +173,10 @@ try {
 	var isOwnershipPrimaryChange = isASITrue(AInfo["Ownership or Primary Changes"]); 
 	var isOtherContactChange = isASITrue(AInfo["Other Contact Changes"]); 
 	var isRemoveActivity = isASITrue(AInfo["Remove Cannabis Activity"]); 
-	var isNewActivity = isASITrue(AInfo["New Cannabis Activity"]); 
+	var isNewActivity = isASITrue(AInfo["New Cannabis Activity"]);
+
+    var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
+    var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
 	
 	switch (thisPage) {
 		case "Business":
@@ -194,7 +201,71 @@ try {
 	
 	if (!showPage) {
 		aa.env.setValue("ReturnData", "{'PageFlow': {'HidePage' : 'Y'}}");
-	} 
+	} else if (parentCap) {
+			//populate custom list
+		var contactList = cap.getContactsGroup();
+		if(contactList != null && contactList.size() > 0) {
+			var contactModel = contactList.get(0);
+			logDebug(describe(contactModel));
+		} else {
+			logDebug("No contacts in ContactsGroup");
+		}
+
+		var parContactList = parentCap.getContactsGroup();
+			if(parContactList != null && parContactList.size() > 0) {
+			var parContactModel = parContactList.get(0);
+			//logDebug(describe(parContactModel));
+		} else {
+			logDebug("No contacts in Parent ContactsGroup");
+		}
+		var componentName = parContactList.get(0).getComponentName();
+		logDebug("Source Component Name: " + componentName);
+
+		//cap.setContactsGroup(parContactList);
+		cap.setContactsGroup(parContactList);
+		var contactList = cap.getContactsGroup();
+		if(contactList != null && contactList.size() > 0) {
+			var contactModel = contactList.get(0);
+			//logDebug(describe(contactModel));
+			logDebug("Found contact!");
+		} else {
+			logDebug("No contacts in ContactsGroup");
+		}
+
+		var capID = cap.getCapID();
+		
+		stepIndex = 2;
+		pageIndex = 1;
+		
+		var pageComponents = getPageComponents(capID, stepIndex, pageIndex);
+			
+		if(pageComponents != null && pageComponents.length > 0)
+		{
+			for(var i= 0; i< pageComponents.length; i++)
+			{			
+				compName = pageComponents[i].getComponentName();
+				compSeqNum = pageComponents[i].getComponentSeqNbr();
+				logDebug("ComponentName = " + compName);
+				logDebug("ComponentSeqNbr = " + compSeqNum);
+
+				if (compName == "Contact List") {
+					for (var j = 0; j < contactList.size(); j++) {
+						if (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes)) {
+							contactList.delete(j);
+							continue;
+						} else if (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes)) {
+							contactList.delete(j);
+							continue;
+						}
+						contactList.get(j).getPeople().setContactSeqNumber(null);
+						contactList.get(j).setComponentName("Contact List");
+					}
+					cap.setContactsGroup(contactList);
+					logDebug("Setting component for " + contactModel.contactType);
+				}
+			}
+		}
+	}
 
 } catch (err) {
 

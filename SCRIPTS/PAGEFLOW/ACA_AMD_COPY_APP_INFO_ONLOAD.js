@@ -166,74 +166,8 @@ if (parentCapId){
 	parentCap = aa.cap.getCapViewBySingle4ACA(parentCapId);
 
 	//Copy Contacts
- 	 copyContacts(parentCapId, capId);
+ 	// copyContacts(parentCapId, capId);
 	 
-	//populate custom list
-	var cap = aa.env.getValue("CapModel");
-	var contactList = cap.getContactsGroup();
-	if(contactList != null && contactList.size() > 0) {
-		var contactModel = contactList.get(0);
-		logDebug(describe(contactModel));
-	} else {
-		logDebug("No contacts in ContactsGroup");
-	}
-
-	var parContactList = parentCap.getContactsGroup();
-		if(parContactList != null && parContactList.size() > 0) {
-		var parContactModel = parContactList.get(0);
-		//logDebug(describe(parContactModel));
-	} else {
-		logDebug("No contacts in Parent ContactsGroup");
-	}
-    var componentName = parContactList.get(0).getComponentName();
-    logDebug("Source Component Name: " + componentName);
-
-	//cap.setContactsGroup(parContactList);
-	cap.setContactsGroup(parContactList);
-	var contactList = cap.getContactsGroup();
-	if(contactList != null && contactList.size() > 0) {
-		var contactModel = contactList.get(0);
-		//logDebug(describe(contactModel));
-		logDebug("Found contact!");
-	} else {
-		logDebug("No contacts in ContactsGroup");
-	}
-
-	//test...
-	var capID = cap.getCapID();
-	
-	stepIndex = 2;
-	pageIndex = 1;
-	
-	var pageComponents = getPageComponents(capID, stepIndex, pageIndex);
-		
-	if(pageComponents != null && pageComponents.length > 0)
-	{
-		for(var i= 0; i< pageComponents.length; i++)
-		{			
-			compName = pageComponents[i].getComponentName();
-			compSeqNum = pageComponents[i].getComponentSeqNbr();
-			logDebug("ComponentName = " + compName);
-			logDebug("ComponentSeqNbr = " + compSeqNum);
-
-			if (compName == "Contact List") {
-				//assign all contacts the componentName
-				logDebug("Contact List size: " + contactList.size());
-				var contactModel = contactList.get(0);
-				contactModel.setComponentName("Contact List");
-				cap.setContactsGroup(contactList);
-				logDebug("Setting component for " + contactModel.contactType);
-				//for(var i=contactList.size(); i > 0; i--)
-				//{
-				//	var contactModel = contactList.get(i-1);
-				//	//contactModel.setComponentName("Contact List");
-				//	logDebug("Setting component for " + contactModel.contactType);
-				//}
-			}
-		}
-	}
-	//end test
-
 
 	//Copy ASI
 	copyAppSpecific4ACA(parentCap);	
