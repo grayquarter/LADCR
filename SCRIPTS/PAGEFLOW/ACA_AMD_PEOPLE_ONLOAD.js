@@ -221,17 +221,6 @@ try {
 		var componentName = parContactList.get(0).getComponentName();
 		logDebug("Source Component Name: " + componentName);
 
-		//cap.setContactsGroup(parContactList);
-		cap.setContactsGroup(parContactList);
-		var contactList = cap.getContactsGroup();
-		if(contactList != null && contactList.size() > 0) {
-			var contactModel = contactList.get(0);
-			//logDebug(describe(contactModel));
-			logDebug("Found contact!");
-		} else {
-			logDebug("No contacts in ContactsGroup");
-		}
-
 		var capID = cap.getCapID();
 		
 		stepIndex = 2;
