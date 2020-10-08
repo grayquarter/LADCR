@@ -203,23 +203,8 @@ try {
 		aa.env.setValue("ReturnData", "{'PageFlow': {'HidePage' : 'Y'}}");
 	} else if (parentCap) {
 			//populate custom list
-		var contactList = cap.getContactsGroup();
-		if(contactList != null && contactList.size() > 0) {
-			var contactModel = contactList.get(0);
-			logDebug(describe(contactModel));
-		} else {
-			logDebug("No contacts in ContactsGroup");
-		}
-
-		var parContactList = parentCap.getContactsGroup();
-			if(parContactList != null && parContactList.size() > 0) {
-			var parContactModel = parContactList.get(0);
-			//logDebug(describe(parContactModel));
-		} else {
-			logDebug("No contacts in Parent ContactsGroup");
-		}
-		var componentName = parContactList.get(0).getComponentName();
-		logDebug("Source Component Name: " + componentName);
+		
+		var contactList = parentCap.getContactsGroup();
 
 		var capID = cap.getCapID();
 		
