@@ -255,7 +255,8 @@ try {
 			}
 		}
 	}
-
+	aa.env.setValue("CapModel", cap);
+	
 } catch (err) {
 
 	logDebug(err);
