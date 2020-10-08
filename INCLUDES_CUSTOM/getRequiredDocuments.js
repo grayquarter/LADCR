@@ -172,7 +172,7 @@ function getRequiredDocuments(isPageFlow) {
 		var isModRequest = AInfo["Are you submitting a Modification Request?"] == "YES" || AInfo["Are you submitting a Modification Request?"] == "Yes" || AInfo["Are you submitting a Modification Request?"] == "Y"; 
 		var isAppRenewal = AInfo["Is this a Renewal?"] == "YES" || AInfo["Is this a Renewal?"] == "Yes" || AInfo["Is this a Renewal?"] == "Y"; 
 		var isPCNRequest = AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "YES" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Yes" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Y"; 
-		var isLeaseOrOwnership = AInfo["Executed lease or ownership of the premises?"] == "YES" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Yes" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Y"; 
+		var isLeaseOrOwnership = AInfo["Executed lease or ownership of the premises?"] == "YES" || AInfo["Executed lease or ownership of the premises?"] == "Yes" || AInfo["Executed lease or ownership of the premises?"] == "Y"; 
 	
 		//check to see if a temporary license has already been issued
 		var vWFTaskHistory = aa.workflow.getWorkflowHistory(capId, 'Issuance', null).getOutput();
