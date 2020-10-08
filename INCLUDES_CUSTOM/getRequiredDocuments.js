@@ -261,18 +261,99 @@ function getRequiredDocuments(isPageFlow) {
 				}
 				
 				if (isModRequestAmd) {
-					if (isChecked("Fictitious Business Name")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation); requirementArray.push(ModificationRequestForm);requirementArray.push(Other);
-					if (isChecked("Legal Entity Name Change")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation); requirementArray.push(ModificationRequestForm);requirementArray.push(Other);
-					if (isChecked("Business Premises Diagram")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation); requirementArray.push(ModificationRequestForm);requirementArray.push(Other);requirementArray.push(BusinessPremisesDiagram);requirementArray.push(SitePlan);
-					if (isChecked("Business Premises Relocation")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation);requirementArray.push(ModificationRequestForm);requirementArray.push(BusinessPremisesDiagram);requirementArray.push(SitePlan);requirementArray.push(CertificateOfOccupancy);requirementArray.push(DatedRadiusMap);requirementArray.push(EvidenceOfLegalRightToOccupy);requirementArray.push(ExecutedLeaseOrPropertyDeed);requirementArray.push(RadiusMapATT);requirementArray.push(PrimaryPersonnelOwner);
-					if (isChecked("Ownership or Primary Changes")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation);requirementArray.push(ModificationRequestForm);requirementArray.push(PrimaryPersonnelOwner);
-					requirementArray.push(bizFormOrg);requirementArray.push(EquityShareDocuments);requirementArray.push(FinancialInformation);requirementArray.push(ListofPrimaryPersonnelOwner);requirementArray.push(ownDisclosure);requirementArray.push(OrganizationalChart);
-					if (isChecked("New Cannabis Activity")) requirementArray.push(ModificationRequestForm);requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation);requirementArray.push(CommercialCannabisActivityPlan);requirementArray.push(IndemnificationAgreement);requirementArray.push(LAFDNotification);requirementArray.push(StandardOperatingProcedures);
-					if (isChecked("Other Contact Changes")) requirementArray.push(ModificationCoverPage);requirementArray.push(ModificationRequestForm);requirementArray.push(Attestation);requirementArray.push(bizFormOrg);requirementArray.push(OrganizationalChart);
-					if (isChecked("Remove Cannabis Activity")) requirementArray.push(ModificationRequestForm);requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation);
-					if (isChecked("Other")) requirementArray.push(ModificationCoverPage);requirementArray.push(Attestation); requirementArray.push(ModificationRequestForm); 
+					
+                    
+if (isChecked(AInfo["Fictitious Business Name"])) {
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(Other);
+}
+
+
+		
+if (isChecked(AInfo["Legal Entity Name Change"])) {
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation); 
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(Other);
+}
+
+if (isChecked(AInfo["Business Premises Diagram"])) {
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(Other);
+    requirementArray.push(BusinessPremisesDiagram);
+    requirementArray.push(SitePlan);
+
+}
+
+
+if (isChecked(AInfo["Business Premises Relocation"])) {
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(BusinessPremisesDiagram);
+    requirementArray.push(SitePlan);
+    requirementArray.push(CertificateOfOccupancy);
+    requirementArray.push(DatedRadiusMap);
+    requirementArray.push(EvidenceOfLegalRightToOccupy);
+    requirementArray.push(ExecutedLeaseOrPropertyDeed);
+    requirementArray.push(RadiusMapATT);
+    requirementArray.push(PrimaryPersonnelOwner);
+
+}
+
+if (isChecked(AInfo["Ownership or Primary Changes"])) {
+
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(PrimaryPersonnelOwner);
+    requirementArray.push(bizFormOrg);
+    requirementArray.push(EquityShareDocuments);
+    requirementArray.push(FinancialInformation);
+    requirementArray.push(ListofPrimaryPersonnelOwner);
+    requirementArray.push(ownDisclosure);
+    requirementArray.push(OrganizationalChart);
+
+}
+
+
+if (isChecked(AInfo["New Cannabis Activity"])) {
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+    requirementArray.push(CommercialCannabisActivityPlan);
+    requirementArray.push(IndemnificationAgreement);
+    requirementArray.push(LAFDNotification);
+    requirementArray.push(StandardOperatingProcedures);
+}
+
+
+if (isChecked(AInfo["Other Contact Changes"])) {
+    
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(Attestation);
+    requirementArray.push(bizFormOrg);
+    requirementArray.push(OrganizationalChart);
+}
+
+if (isChecked(AInfo["Remove Cannabis Activity"])) {
+    requirementArray.push(ModificationRequestForm);
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation);
+}
+
+if (isChecked(AInfo["Other"])) {
+    requirementArray.push(ModificationCoverPage);
+    requirementArray.push(Attestation); 
+    requirementArray.push(ModificationRequestForm); 
 								
-				}
+    }
+}
 				
 	
 				/*************************************************
