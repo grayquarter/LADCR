@@ -207,7 +207,7 @@ try {
         var contactList = parentCap.getContactsGroup();
 
         for (var j = 0; j < contactList.size(); j++) {
-			var compCorrect = contactList.get(j).getComponentName().equals("Contact List") || String(contactList.get(j).getComponentName()).indexOf("Multi") >= 0;
+			var compCorrect = contactList.get(j).getComponentName().equals("Contact List") || String(contactList.get(j).getComponentName()).indexOf("MultiContacts_35754") >= 0;
 
 			if (!compCorrect || (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes))) {
 				contactList.remove(j);

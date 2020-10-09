@@ -171,7 +171,7 @@ try {
 
     var badContactArray = [];
     for (var x in vContactTypesArray) {
-		var compCorrect = vContactTypesArray[x].getComponentName().equals("Contact List") || String(vContactTypesArray[x].getComponentName()).indexOf("Multi") >= 0;
+		var compCorrect = vContactTypesArray[x].getComponentName().equals("Contact List") || String(vContactTypesArray[x].getComponentName()).indexOf("MultiContacts_35754") >= 0;
 
         if (compCorrect && isOwnershipPrimaryChange && !exists(vContactTypesArray[x], ownerTypes)) {
             badContactArray.push(vContactTypesArray[x]);
