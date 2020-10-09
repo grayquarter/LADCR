@@ -207,11 +207,11 @@ try {
         var contactList = parentCap.getContactsGroup();
 
         for (var j = 0; j < contactList.size(); j++) {
-            if (true && !exists(contactList.get(j).getContactType(), ownerTypes)) {
+            if (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes)) {
                 contactList.remove(j);
                 logDebug("removing : " + contactList.get(j).getContactType());
                 continue;
-            } else if (false && !exists(contactList.get(j).getContactType(), otherTypes)) {
+            } else if (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes)) {
                 logDebug("removing : " + contactList.get(j).getContactType());
                 contactList.remove(j);
                 continue;
