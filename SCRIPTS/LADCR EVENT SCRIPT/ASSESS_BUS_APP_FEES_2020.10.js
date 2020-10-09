@@ -2,7 +2,7 @@
 // Last Update 09/29/20
 // This relies on AInfo[] being populated with custom fields.
 
-if (!isTrue(AInfo["Is this a Renewal?"])) {
+if (!isTrue(AInfo["Is this a Renewal?"]) || (!appMatch("Licenses/Cannabis/Application Amendment/Application"))) {
     logDebug("Not a Renewal");
     updateFee("J300", "CAN_BUS_APP", "FINAL", 1, "Y"); //Cannabis Pre-Application Review Fee
 } 
