@@ -171,10 +171,12 @@ try {
 
     var badContactArray = [];
     for (var x in vContactTypesArray) {
-        if (isOwnershipPrimaryChange && !exists(vContactTypesArray[x], ownerTypes)) {
+		var compCorrect = vContactTypesArray[x].getComponentName().equals("Contact List") || String(vContactTypesArray[x].getComponentName()).indexOf("Multi") >= 0;
+
+        if (compCorrect && isOwnershipPrimaryChange && !exists(vContactTypesArray[x], ownerTypes)) {
             badContactArray.push(vContactTypesArray[x]);
         }
-        if (isOtherContactChange && !exists(vContactTypesArray[x], otherTypes)) {
+        if (compCorrect && isOtherContactChange && !exists(vContactTypesArray[x], otherTypes)) {
             badContactArray.push(vContactTypesArray[x]);
         }
     }
