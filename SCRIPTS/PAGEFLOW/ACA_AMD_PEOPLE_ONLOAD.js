@@ -221,7 +221,7 @@ try {
             contactList.get(j).setComponentName("Contact List");
         }
         cap.setContactsGroup(contactList);
-
+aa.env.setValue("CapModel", cap);
     }
 }
 catch (err) {
