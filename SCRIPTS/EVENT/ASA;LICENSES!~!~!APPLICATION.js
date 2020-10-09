@@ -15,7 +15,7 @@
 // end check for fein/ssn
 
 // Assess fees
-if (appMatch("Licenses/Cannabis/Business/Application") || appMatch("Licenses/Cannabis/Application Amendment/Application") ) {
+if (appMatch("Licenses/Cannabis/Business/Application")) {
 	if (AInfo["Is this a Renewal?"] && AInfo["Is this a Renewal?"].substr(0, 1).toUpperCase().equals("Y")) {
 		//include("ASSESS_BUS_REN_FEES"); //use the ame for now 1/30/2020
 		//include("ASSESS_BUS_APP_FEES");
@@ -43,3 +43,8 @@ if(!publicUser){
 if(!publicUser){
 	include("POPULATE_ZIMAS_DATA");
 }
+
+if (appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+	include("ASSESS_BUS_APP_FEES_2020.10");
+}
+	
