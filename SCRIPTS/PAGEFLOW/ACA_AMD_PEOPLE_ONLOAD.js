@@ -207,18 +207,20 @@ try {
         var contactList = parentCap.getContactsGroup();
 
         for (var j = 0; j < contactList.size(); j++) {
-            if (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes)) {
-                contactList.remove(j);
-                logDebug("removing : " + contactList.get(j).getContactType());
-                continue;
-            } else if (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes)) {
-                logDebug("removing : " + contactList.get(j).getContactType());
-                contactList.remove(j);
-                continue;
-            }
-            logDebug("adding : " + contactList.get(j).getContactType());
+            if ("Contact List".equals(contactList.get(j).getComponentName())) {
+				if (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes)) {
+					contactList.remove(j);
+					logDebug("removing : " + contactList.get(j).getContactType());
+					continue;
+				} else if (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes)) {
+					logDebug("removing : " + contactList.get(j).getContactType());
+					contactList.remove(j);
+					continue;
+				}
+				logDebug("adding : " + contactList.get(j).getContactType());
             contactList.get(j).getPeople().setContactSeqNumber(null);
             contactList.get(j).setComponentName("Contact List");
+			}
         }
         cap.setContactsGroup(contactList);
 aa.env.setValue("CapModel", cap);

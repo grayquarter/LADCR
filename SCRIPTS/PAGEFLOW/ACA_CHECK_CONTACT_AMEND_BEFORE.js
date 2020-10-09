@@ -152,7 +152,9 @@ try {
     var vConObj;
     var vContactTypesArray = [];
     for (var x in vCapContactsGroup) {
-        vContactTypesArray.push(vCapContactsGroup[x].getContactType())
+		if ("Contact List".equals(vCapContactsGroup[x].getComponentName())) {
+			vContactTypesArray.push(vCapContactsGroup[x].getContactType());
+		}
     }
 
     var isFicticiousName = isASITrue(AInfo["Fictitious Business Name"]);
