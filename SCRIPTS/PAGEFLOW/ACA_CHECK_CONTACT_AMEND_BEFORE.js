@@ -152,7 +152,8 @@ try {
     var vConObj;
     var vContactTypesArray = [];
     for (var x in vCapContactsGroup) {
-		if ("Contact List".equals(vCapContactsGroup[x].getComponentName())) {
+		var compCorrect = vCapContactsGroup[x].getComponentName().equals("Contact List") || String(vCapContactsGroup[x].getComponentName()).indexOf("MultiContacts_35754") >= 0;
+		if (compCorrect) {
 			vContactTypesArray.push(vCapContactsGroup[x].getContactType());
 		}
     }
@@ -171,12 +172,10 @@ try {
 
     var badContactArray = [];
     for (var x in vContactTypesArray) {
-		var compCorrect = vContactTypesArray[x].getComponentName().equals("Contact List") || String(vContactTypesArray[x].getComponentName()).indexOf("MultiContacts_35754") >= 0;
-
-        if (compCorrect && isOwnershipPrimaryChange && !exists(vContactTypesArray[x], ownerTypes)) {
+        if (isOwnershipPrimaryChange && !exists(vContactTypesArray[x], ownerTypes)) {
             badContactArray.push(vContactTypesArray[x]);
         }
-        if (compCorrect && isOtherContactChange && !exists(vContactTypesArray[x], otherTypes)) {
+        if (isOtherContactChange && !exists(vContactTypesArray[x], otherTypes)) {
             badContactArray.push(vContactTypesArray[x]);
         }
     }
