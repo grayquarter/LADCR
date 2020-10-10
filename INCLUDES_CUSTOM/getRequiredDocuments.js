@@ -6,7 +6,7 @@ function getRequiredDocuments(isPageFlow) {
 // 09/11/20: app renewal logic
 // 10/01/20: added PCN Request Form
 // 10/06/20: added more stuff
-// 10/09/20: commenting out wide swaths
+// 10/09/20: commenting out wide swaths, renamed GenAttestation and OtherRequest
 	
 	logDebug("start getRequiredDocuments(" + [].slice.call(arguments) + ")");
 
@@ -155,7 +155,8 @@ function getRequiredDocuments(isPageFlow) {
 	var RadiusMapATT = {condition: "Radius Map Attestation",document: "Radius Map Attestation"};
 	var PrimaryPersonnelOwner = {condition: "Primary Personnel and Owner Attestation",document: "Primary Personnel and Owner Attestation"};
 	var ListofPrimaryPersonnelOwner = {condition: "List of Primary Personnel and Owner(s)",document: "List of Primary Personnel and Owner(s)"};
-	
+	var GenAttestation = {condition: "General Attestation",document: "General Attestation"};
+
 
 
 
@@ -402,7 +403,7 @@ if (isModRequestAmd) {
 if (isChecked("Fictitious Business Name")) {
  ;
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(OtherRequest);
 }
@@ -412,7 +413,7 @@ if (isChecked("Fictitious Business Name")) {
 if (isChecked("Legal Entity Name Change")) {
     
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation); 
+    requirementArray.push(GenAttestation); 
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(OtherRequest);
 }
@@ -420,7 +421,7 @@ if (isChecked("Legal Entity Name Change")) {
 if (isChecked("Business Premises Diagram")) {
     
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(OtherRequest);
     requirementArray.push(BusinessPremisesDiagram);
@@ -432,7 +433,7 @@ if (isChecked("Business Premises Diagram")) {
 if (isChecked("Business Premises Relocation")) {
    
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(BusinessPremisesDiagram);
     requirementArray.push(SitePlan);
@@ -448,7 +449,7 @@ if (isChecked("Business Premises Relocation")) {
 if (isChecked("Ownership or Primary Changes")) {
   
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(PrimaryPersonnelOwner);
     requirementArray.push(bizFormOrg);
@@ -465,7 +466,7 @@ if (isChecked("New Cannabis Activity")) {
     
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(CommercialCannabisActivityPlan);
     requirementArray.push(IndemnificationAgreement);
     requirementArray.push(LAFDNotification);
@@ -478,7 +479,7 @@ if (isChecked("Other Contact Changes")) {
     
     requirementArray.push(ModificationCoverPage);
     requirementArray.push(ModificationRequestForm);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
     requirementArray.push(bizFormOrg);
     requirementArray.push(OrganizationalChart);
 }
@@ -487,13 +488,13 @@ if (isChecked("Remove Cannabis Activity")) {
  
     requirementArray.push(ModificationRequestForm);
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation);
+    requirementArray.push(GenAttestation);
 }
 
 if (isChecked("Other")) {
     
     requirementArray.push(ModificationCoverPage);
-    requirementArray.push(Attestation); 
+    requirementArray.push(GenAttestation); 
     requirementArray.push(ModificationRequestForm); 
 								
     }
