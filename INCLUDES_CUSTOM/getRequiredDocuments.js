@@ -151,7 +151,7 @@ function getRequiredDocuments(isPageFlow) {
     
     //add requirements 10/8/2020 TT
 	var ModificationCoverPage = {condition: "Application Modification Request - Cover Page",document: "Application Modification Request - Cover Page"};
-	var Other = {condition: "Other",document: "Other"};
+	var OtherRequest = {condition: "Other Request",document: "Other Request"};
 	var RadiusMapATT = {condition: "Radius Map Attestation",document: "Radius Map Attestation"};
 	var PrimaryPersonnelOwner = {condition: "Primary Personnel and Owner Attestation",document: "Primary Personnel and Owner Attestation"};
 	var ListofPrimaryPersonnelOwner = {condition: "List of Primary Personnel and Owner(s)",document: "List of Primary Personnel and Owner(s)"};
@@ -404,7 +404,7 @@ if (isChecked("Fictitious Business Name")) {
     requirementArray.push(ModificationCoverPage);
     requirementArray.push(Attestation);
     requirementArray.push(ModificationRequestForm);
-    requirementArray.push(Other);
+    requirementArray.push(OtherRequest);
 }
 
 
@@ -414,7 +414,7 @@ if (isChecked("Legal Entity Name Change")) {
     requirementArray.push(ModificationCoverPage);
     requirementArray.push(Attestation); 
     requirementArray.push(ModificationRequestForm);
-    requirementArray.push(Other);
+    requirementArray.push(OtherRequest);
 }
 
 if (isChecked("Business Premises Diagram")) {
@@ -422,7 +422,7 @@ if (isChecked("Business Premises Diagram")) {
     requirementArray.push(ModificationCoverPage);
     requirementArray.push(Attestation);
     requirementArray.push(ModificationRequestForm);
-    requirementArray.push(Other);
+    requirementArray.push(OtherRequest);
     requirementArray.push(BusinessPremisesDiagram);
     requirementArray.push(SitePlan);
 
