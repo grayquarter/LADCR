@@ -6,6 +6,7 @@ function getRequiredDocuments(isPageFlow) {
 // 09/11/20: app renewal logic
 // 10/01/20: added PCN Request Form
 // 10/06/20: added more stuff
+// 10/09/20: commenting out wide swaths
 	
 	logDebug("start getRequiredDocuments(" + [].slice.call(arguments) + ")");
 
@@ -196,17 +197,18 @@ function getRequiredDocuments(isPageFlow) {
 
 	logDebug("isTemporaryRequest: " + isTemporaryRequest);
 		
-	/*
+	/*********************************************
 	var business = getContactObj(capToUse, "Business");
 	if (business && business.asi) {
 		isSoleOwner = business.asi["What is your business's organizational structure?"] == "Sole Proprietorship";
 	}
-	*/
+	**********************************************/
 	
 	/*------------------------------------------------------------------------------------------------------/
 	| Business Rules : map variables to standard condition
 	/------------------------------------------------------------------------------------------------------*/
 
+	/*********************************************************************************
 	if (isOwner || isOwnerAttestation) {
 		requirementArray.push(GovernmentIssuedIdentification);
 		requirementArray.push(DeclarationPhase2Eligibility);
@@ -232,12 +234,13 @@ function getRequiredDocuments(isPageFlow) {
 		if (isChecked("Executed Tier 2 Contract")) requirementArray.push(ExecutedTier2);
 		if (isChecked("Tier 2 Attestation")) requirementArray.push(Tier2Attest);
 	}
+	**********************************************************************************/
 
 
 
 
-
-	if ((isApplication || isAttestationAmendment) && !isOwnerAttestation) {
+	//if ((isApplication || isAttestationAmendment) && !isOwnerAttestation) // 10.09.2020
+	if ((isApplication) {
 		// add for temp and annual
 		// add always...
 		if (true) { // for testing purposes - set to false to bypass
@@ -304,8 +307,7 @@ function getRequiredDocuments(isPageFlow) {
 			*****************************************************/
 		
 		
-		/*
-		
+		/**********************************************************
 		// disabled 09-17-2020 JSCHOMP not required for this release.
 		
 		if (!isTesting) {
@@ -392,7 +394,7 @@ function getRequiredDocuments(isPageFlow) {
 		//	requirementArray.push(managementCompanies);
 		//} 
 		
-		*/
+		***********************************************************************/
 // adding Modification Request Required Documents
 if (isModRequestAmd) {
 					
