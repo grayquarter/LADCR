@@ -240,7 +240,7 @@ function getRequiredDocuments(isPageFlow) {
 
 
 	//if ((isApplication || isAttestationAmendment) && !isOwnerAttestation) // 10.09.2020
-	if ((isApplication) {
+	if (isApplication) {
 		// add for temp and annual
 		// add always...
 		if (true) { // for testing purposes - set to false to bypass
