@@ -13,7 +13,7 @@ var amendFee = isTrue(AInfo["Legal Entity Name Change"]) || isTrue(AInfo["Busine
 
 if (appMatch("Licenses/Cannabis/Application Amendment/Application") && amendFee) {
 	logDebug("adding amendment fee");
-    updateFee("J098B21", "CAN_BUS_APP", "FINAL", 1, "Y", capId); //Cannabis License Mod Fee
+    updateFee("J098B21", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Cannabis License Mod Fee
 } 
 
 function isTrue(o) {
