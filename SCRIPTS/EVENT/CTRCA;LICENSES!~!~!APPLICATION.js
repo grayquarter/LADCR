@@ -28,6 +28,12 @@ if (publicUser) {
 }
 // End functionality to set inital workflow status.
 
+//Begin script to link amendment to application when user Defers Payment in ACA
+if (appMatch("Licenses/Cannabis/Application Amendment/Application")) {
+	include("LINK_ATT_TO_APP");
+}
+//End script to link amendment to application when user Defers Payment in ACA
+
 // Begin script to update the Business Activities selected in ACA
 if(publicUser && appMatch("Licenses/Cannabis/Business/Application")){
 	include("UPDATE_ACTIVITIES_FROM_ACA");
