@@ -2,12 +2,12 @@
 // Last Update 09/29/20
 // This relies on AInfo[] being populated with custom fields.
 
-/*
+
 if (!isASITrue(AInfo["Is this a Renewal?"]) && (!appMatch("Licenses/Cannabis/Application Amendment/Application"))) {
     logDebug("Not a Renewal");
     updateFee("J300", "CAN_BUS_APP", "FINAL", 1, "Y"); //Cannabis Pre-Application Review Fee
 } 
-*/
+
 
 var amendFee = isASITrue(AInfo["Legal Entity Name Change"]) || isASITrue(AInfo["Business Premises Diagram"]) || isASITrue(AInfo["Business Premises Relocation"]) || isASITrue(AInfo["Ownership or Primary Changes"]) || isASITrue(AInfo["Other"]);
 
