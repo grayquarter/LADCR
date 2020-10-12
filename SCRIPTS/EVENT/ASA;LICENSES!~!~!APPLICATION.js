@@ -48,7 +48,7 @@ if (appMatch("Licenses/Cannabis/Application Amendment/Application")) {
 	include("ASSESS_BUS_APP_FEES_2020.10");
 }
 
-//checking Amendment and copying parent 
-if (publicUser && isAmendment()) {
-    editAppSpecific("Application ID","AMENDMENT" + AInfo["Application ID"]);
+//checking Amendment and copying parent to ASI field.   Bypass fees bug.
+if (publicUser && parentCapId) {
+    editAppSpecific("Application ID",parentCapId.getCustomID());
 }
