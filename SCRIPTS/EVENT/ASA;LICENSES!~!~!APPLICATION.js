@@ -47,4 +47,8 @@ if(!publicUser){
 if (appMatch("Licenses/Cannabis/Application Amendment/Application")) {
 	include("ASSESS_BUS_APP_FEES_2020.10");
 }
-	
+
+//checking Amendment and copying parent 
+if (publicUser && isAmendment()) {
+    editAppSpecific("Application ID","AMENDMENT" + AInfo["Application ID"]);
+}
