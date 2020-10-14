@@ -252,7 +252,7 @@ function getRequiredDocuments(isPageFlow) {
 					requirementArray.push(ModificationRequestForm);
 				}
 			} else {		
-				requirementArray.push(Attestation); 		
+				//requirementArray.push(Attestation); 		
 				requirementArray.push(BusinessPremisesDiagram); 		
 				requirementArray.push(DatedRadiusMap); 					
 				requirementArray.push(EvidenceOfLegalRightToOccupy);  
