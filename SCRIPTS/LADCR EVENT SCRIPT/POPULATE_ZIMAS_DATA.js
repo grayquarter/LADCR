@@ -18,6 +18,7 @@ function populateZimasData(theData) {
 }
 function getZimasDataFromAddress() {
 
+	try {
 	var addressURL = "http://zimas.lacity.org/zmaWS-DCR/zmaService.svc/GetZIMASAddress?";
 	var dataURL = "http://zimas.lacity.org/zmaWS-1.0/zmaService.svc/GetZIMASDataByPINAndAPN?";
 	var dataCount = 0;
@@ -144,4 +145,5 @@ function getZimasDataFromAddress() {
 		}
 	}
 	return response;
+	} catch (err) { logDebug("POPULATE_ZIMAS_DATA exception: " + err.message + " stack: " + err.stack); }
 }
