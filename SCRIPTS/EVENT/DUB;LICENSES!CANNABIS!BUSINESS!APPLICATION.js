@@ -1,5 +1,5 @@
 
-if (publicUser && cap.isCompleteCap()) {
+if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry")) {
 	cancel = true;
 	showDebug = false;
 	showMessage = true;
