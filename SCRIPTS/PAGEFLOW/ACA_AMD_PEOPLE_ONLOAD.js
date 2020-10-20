@@ -207,13 +207,13 @@ try {
         var contactList = parentCap.getContactsGroup();
 
         for (var j = 0; j < contactList.size(); j++) {
-			var compCorrect = String(contactList.get(j).getComponentName()).equals("Contact List") || String(contactList.get(j).getComponentName()).indexOf("MultiContacts") >= 0;
+			//var compCorrect = String(contactList.get(j).getComponentName()).equals("Contact List") || String(contactList.get(j).getComponentName()).indexOf("MultiContacts") >= 0;
 
-			if (!compCorrect || (isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes))) {
+			if (/*!compCorrect || */(isOwnershipPrimaryChange && !exists(contactList.get(j).getContactType(), ownerTypes))) {
 				contactList.remove(j);
 				logDebug("removing : " + contactList.get(j).getContactType());
 				continue;
-			} else if (!compCorrect || (isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes))) {
+			} else if (/*!compCorrect || */(isOtherContactChange && !exists(contactList.get(j).getContactType(), otherTypes))) {
 				logDebug("removing : " + contactList.get(j).getContactType());
 				contactList.remove(j);
 				continue;
