@@ -62,11 +62,14 @@ if(publicUser && appMatch("Licenses/Cannabis/Business/Application")){
 	include("ACA_SAVE_PUBLICUSER_REFCONTACT_REFNO_TO_APP");
 }
 
+/*
+// disabled 10/22/20 at request of LADCR 
 // script 60, 8/29/2019
 if(AInfo["Is this a Renewal?"] != "Yes" && AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] != "Yes"){
 	include("SEND_INVOICE");
 }
 // End script
+*/
 
 // Update contacts - set contact type flag
 if(publicUser){
