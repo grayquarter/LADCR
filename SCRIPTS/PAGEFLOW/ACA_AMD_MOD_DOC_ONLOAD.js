@@ -191,7 +191,7 @@ try {
 	} else {
         conditionType = "License Required Documents";
 		docsMissing = false;
-		showList = false;
+		showList = true;
 		addConditions = true;
 		addTableRows = false;
 		capIdString = capId.getID1() + "-" + capId.getID2() + "-" + capId.getID3();
