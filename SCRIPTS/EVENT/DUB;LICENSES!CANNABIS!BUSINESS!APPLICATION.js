@@ -1,5 +1,6 @@
 
-if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry")) {
+//if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry")) {
+if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed")) { //requested 11/23/20 by Aaron
 	cancel = true;
 	showDebug = false;
 	showMessage = true;
