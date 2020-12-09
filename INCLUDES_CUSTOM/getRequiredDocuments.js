@@ -9,6 +9,7 @@ function getRequiredDocuments(isPageFlow) {
 // 10/09/20: commenting out wide swaths, renamed GenAttestation and OtherRequest
 // 10/20/20: Commenting out some required docs for Modification Request
 // 11/03/20: Change to required docs for Modification Request
+// 12/08/20: BTRC check, also added function isYes()
 	
 	logDebug("start getRequiredDocuments(" + [].slice.call(arguments) + ")");
 
@@ -30,7 +31,7 @@ function getRequiredDocuments(isPageFlow) {
 	var isCEOAttestation = appMatch("Licenses/Cannabis/Event Organzier/Incomplete Attestation");
 	var isTemporaryEventAttestation = appMatch("Licenses/Cannabis/Temporary Event/Incomplete Attestation");
     var isModRequestAmd = appMatch("Licenses/Cannabis/Application Amendment/Application");
-        
+       
 	
 	/*------------------------------------------------------------------------------------------------------/
 	| Load up Standard Conditions :
@@ -159,6 +160,8 @@ function getRequiredDocuments(isPageFlow) {
 	var ListofPrimaryPersonnelOwner = {condition: "List of Primary Personnel and Owner(s)",document: "List of Primary Personnel and Owner(s)"};
 	var GenAttestation = {condition: "General Attestation",document: "General Attestation"};
 
+    //add requirements 12/08/2020 GH
+	var SecurityPlan = {condition: "Business Tax Registration Certificate",document: "Business Tax Registration Certificate"}; 
 
 
 
@@ -179,6 +182,7 @@ function getRequiredDocuments(isPageFlow) {
 	var isAppRenewal = AInfo["Is this a Renewal?"] == "YES" || AInfo["Is this a Renewal?"] == "Yes" || AInfo["Is this a Renewal?"] == "Y"; 
 	var isPCNRequest = AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "YES" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Yes" || AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"] == "Y"; 
 	var isLeaseOrOwnership = AInfo["Executed lease or ownership of the premises?"] == "YES" || AInfo["Executed lease or ownership of the premises?"] == "Yes" || AInfo["Executed lease or ownership of the premises?"] == "Y"; 
+    var isBTRCPossessed = isYes("Do you have a BTRC Number?");
 
 	//check to see if a temporary license has already been issued
 	var vWFTaskHistory = aa.workflow.getWorkflowHistory(capId, 'Issuance', null).getOutput();
@@ -270,6 +274,10 @@ function getRequiredDocuments(isPageFlow) {
 				if(isLeaseOrOwnership) {
 					requirementArray.push(ExecutedLeaseOrPropertyDeed); 		
 					requirementArray.push(ProofDepositPropertyDeed); 		
+
+				}//
+				if(!isBTRCPossessed) {
+					requirementArray.push(ExecutedLeaseOrPropertyDeed); 		
 
 				}
             }
@@ -511,7 +519,11 @@ function getRequiredDocuments(isPageFlow) {
 	return requirementArray;
 }
     
-
+function isYes(fld) {
+	var a = (AInfo[fld] && ("YES".equals(AInfo[fld].toUpperCase())|| "Y".equals(AInfo[fld].toUpperCase())));
+	logDebug("isYes " + fld + " = " + a);
+	return a;
+}
 function isChecked(fld) {
 	var a = (AInfo[fld] && "CHECKED".equals(AInfo[fld].toUpperCase()));
 	logDebug("isChecked " + fld + " = " + a);
