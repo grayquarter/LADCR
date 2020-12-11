@@ -161,7 +161,7 @@ function getRequiredDocuments(isPageFlow) {
 	var GenAttestation = {condition: "General Attestation",document: "General Attestation"};
 
     //add requirements 12/08/2020 GH
-	var BTRC = {condition: "Business Tax Registration Certificate",document: "Business Tax Registration Certificate"}; 
+	var BTRC = {condition: "BTRC Application",document: "BTRC Application"}; 
 
 
 
