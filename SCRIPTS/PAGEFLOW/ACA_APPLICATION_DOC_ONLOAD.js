@@ -161,7 +161,7 @@ try {
 		// initialize required docs types
 		conditionType = "License Required Documents";
 		docsMissing = false;
-		showList = false;
+		showList = true; //display Public Display Message 
 		addConditions = true;
 		addTableRows = false;
 		capIdString = capId.getID1() + "-" + capId.getID2() + "-" + capId.getID3();
