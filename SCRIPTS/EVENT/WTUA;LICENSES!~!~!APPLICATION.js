@@ -8,6 +8,15 @@ include("DO_APPLICATION_SUBMITTED_ACTIONS");
 include("ACTIVATE_INITIAL_REVIEW");
 // End script to actiave the Initial Review Task
 
+//Pre-App Branch 20.12.15
+if (wfTask.equals("Supervisor Temp Review") && wfStatus.equals("Eligible for Processing")) {
+	// branch to Initial Review
+	setTask(wfTask,"N","Y");
+	activateTask("Initial Review");
+	// if Pre-App, turn into a temp app
+	//include("CONVERT_PRE-APP_TO_APP");
+}	
+
 if (wfStatus.equals("Additional Info Requested")){
 	// Begin Story 293, 1370
 	include("SEND_INCOMPLETE_APPLICATION_NOTICE");
