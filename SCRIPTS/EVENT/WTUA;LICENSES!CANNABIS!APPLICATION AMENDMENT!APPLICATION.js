@@ -4,6 +4,7 @@
     
     if (isTaskActive('Review') && (wfStatus.equals('Changes Accepted'))) {
         closeTask('Close Out','Completed','Closed via script','');
+        logDebug("what is workflow status: " + wfStatus);
         }
     
     if (isTaskActive('Review') && (wfStatus.equals('Abandoned'))) {
