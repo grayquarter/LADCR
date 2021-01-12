@@ -1,4 +1,6 @@
 //Drop preapp extension
+var newId = lacdUpdateAltID(capId,"PREAPP",altId,"");
+logDebug("Updated record id to " + newId);
 
 //Create child activity record
 include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
