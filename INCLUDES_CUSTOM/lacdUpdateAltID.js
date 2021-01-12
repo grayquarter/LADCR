@@ -1,17 +1,10 @@
 function lacdUpdateAltID(capIdToUpdate, recType, altId, ActivityType) {
-// Last Update: 09/11/2020, ghess
+// Last Update: 01/12/2021, ghess
 	var returnAltID;
 
-	if (recType == "PCN") {
-		// like LA-C-YY-######-TYPE-APP
-		var initialAltId = altId;
-		var activityLetter = ActivityType;
-		// Split out parts of the number
-		var LA = initialAltId.slice(0, 2);
-		var remainder = initialAltId.slice(4, 14);
-		//var APP = initialAltId.slice(14, 18);
-		// Construct new Alt ID
-		returnAltID = LA + "-P" + remainder + "-APP-PREAPP";
+	if (recType == "PREAPP") {
+		// Remove PREAPP from LA-C-20-000411-APP-PREAPP 
+		returnAltID = altId.replace("-APP-PREAPP","-APP");
 	}
 	if (recType == "ACTIVITY") {
 		// like LA-C-YY-######-TYPE-APP
@@ -25,6 +18,19 @@ function lacdUpdateAltID(capIdToUpdate, recType, altId, ActivityType) {
 
 		// Construct new Alt ID
 		returnAltID = parentInitId + "-" + activityLetter + "-" + parentEndId;
+		//strip off APP exntension
+		returnAltID = altId.replace("-APP","");
+	}
+	if (recType == "PCN") {
+		// like LA-C-YY-######-TYPE-APP
+		var initialAltId = altId;
+		var activityLetter = ActivityType;
+		// Split out parts of the number
+		var LA = initialAltId.slice(0, 2);
+		var remainder = initialAltId.slice(4, 14);
+		//var APP = initialAltId.slice(14, 18);
+		// Construct new Alt ID
+		returnAltID = LA + "-P" + remainder + "-APP-PREAPP";
 	}
 	if (recType == "NONPCN") {
 		// like LA-C-YY-######-TYPE-APP
