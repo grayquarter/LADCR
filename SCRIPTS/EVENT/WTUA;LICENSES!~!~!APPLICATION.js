@@ -11,7 +11,7 @@ include("ACTIVATE_INITIAL_REVIEW");
 //Pre-App Branch 21.01.12
 if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Eligible for Processing")) {
 	// turn Pre-App into a temp app
-	//include("CONVERT_PRE-APP_TO_APP");
+	include("UPDATE_PRE-APP_TO_APP");
 }	
 
 if (wfStatus.equals("Additional Info Requested")){
