@@ -20,6 +20,12 @@ function lacdUpdateAltID(capIdToUpdate, recType, altId, ActivityType) {
 		returnAltID = parentInitId + "-" + activityLetter + "-" + parentEndId;
 		//strip off APP exntension
 		returnAltID = altId.replace("-APP","");
+		logDebug("altId is " + altId);
+		logDebug("parentInitId is " + parentInitId);
+		logDebug("activityLetter is " + activityLetter);
+		logDebug("parentEndId is " + parentEndId);
+		logDebug("returnAltID is " + returnAltID);
+
 	}
 	if (recType == "PCN") {
 		// like LA-C-YY-######-TYPE-APP
