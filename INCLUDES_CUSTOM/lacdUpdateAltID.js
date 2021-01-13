@@ -17,9 +17,10 @@ function lacdUpdateAltID(capIdToUpdate, recType, altId, ActivityType) {
 		var parentEndId = initialAltId.slice(-3,lenOfStr);
 
 		// Construct new Alt ID
-		returnAltID = parentInitId + "-" + activityLetter + "-" + parentEndId;
+		//returnAltID = parentInitId + "-" + activityLetter + "-" + parentEndId;
+		returnAltID = parentInitId + "-" + activityLetter;
 		//strip off APP exntension
-		returnAltID = altId.replace("-APP","");
+		//returnAltID = altId.replace("-APP","");
 		logDebug("altId is " + altId);
 		logDebug("parentInitId is " + parentInitId);
 		logDebug("activityLetter is " + activityLetter);
