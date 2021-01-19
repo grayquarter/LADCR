@@ -6,7 +6,7 @@
     
     if (wfStatus == 'Changes Accepted') {
         closeTask('Close Out','Completed','Closed via script','');
-        logDebug("what is workflow status: " + wfStatus);
+        include("COPY_MOD_TO_PARENT");
         }
     
     if (wfStatus == 'Abandoned') {
