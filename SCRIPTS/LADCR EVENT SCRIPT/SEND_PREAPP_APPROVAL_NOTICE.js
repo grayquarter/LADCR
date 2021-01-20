@@ -4,4 +4,4 @@
 	//addParameter(vEParams, "$$ExpirationDate$$", dateAdd(null, 60));
 	addParameter(vEParams, "$$ApplicationID$$", capIDString);
 	emailContacts_BCC("All", "DCA PREAPP LICENSE APPROVED NOTIFICATION", vEParams, "", "");
-}
+//}
