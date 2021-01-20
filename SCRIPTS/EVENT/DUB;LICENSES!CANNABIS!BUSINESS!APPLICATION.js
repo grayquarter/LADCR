@@ -1,5 +1,5 @@
 //if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry")) {
-if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry","Awaiting Owner Submittals")) { //requested 11/23/20 by Aaron
+if (publicUser && cap.isCompleteCap() && !matches(capStatus,"Additional Info Needed","Awaiting Data Entry","Awaiting Owner Submittals","Eligible for Processing")) { //updated 1/20/2021
 	cancel = true;
 	showDebug = false;
 	showMessage = true;
