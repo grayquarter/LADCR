@@ -12,6 +12,7 @@ include("ACTIVATE_INITIAL_REVIEW");
 if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Eligible for Processing")) {
 	// turn Pre-App into a temp app
 	include("UPDATE_PRE-APP_TO_APP");
+	include("SEND_PREAPP_APPROVAL_NOTICE");
 }	
 
 if (wfStatus.equals("Additional Info Requested")){
