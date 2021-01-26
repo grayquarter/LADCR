@@ -36,10 +36,9 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
     
         if (isASITrue(AInfo["Fictitious Business Name"]) || isASITrue(AInfo["Legal Entity Name Change"])) { 
     
-            editAppSpecific("Legal Business Name",AInfo["Legal Entity Name Change",parentCapId]);
-            editAppSpecific("DBA Name",AInfo["Fictitious Business Name",parentCapId]);
-    
-          }
+           editAppName(capId, parentCapId);
+           updateShortNotes(capId, parentCapId);
+
+              }
         }
     }
-// End script to copy mod request info back to parent
