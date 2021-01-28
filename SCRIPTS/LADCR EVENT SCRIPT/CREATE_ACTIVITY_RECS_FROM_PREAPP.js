@@ -126,7 +126,7 @@ for (var i in childSuffixArray) {
 	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
 
 	// set workflow task - added per Aaron 1/28/21
-	setTask("Application Acceptance"."N","Y");
+	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
 	
     //use the suffix to give it a unique ID
