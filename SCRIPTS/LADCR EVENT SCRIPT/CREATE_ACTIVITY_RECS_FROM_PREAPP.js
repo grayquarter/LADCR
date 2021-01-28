@@ -1,5 +1,5 @@
-//Start - License Creation/Update Script
-//Update: 01/28/2021:12:28 AM
+//Start - CREATE_ACTIVITY_RECS_FROM_PREAPP Script
+//Update: 01/28/2021:02:50 PM
 
 //if (wfTask == "Issuance" && (wfStatus == "Issued" || wfStatus == "Provisionally Issued" || wfStatus == "Temporarily Issued"))
 
@@ -126,8 +126,11 @@ for (var i in childSuffixArray) {
 	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
 
 	// set workflow task - added per Aaron 1/28/21
+	var capIdSave = capId;
+	capId = childId;
 	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
+	capId = capIdSave;
 	
     //use the suffix to give it a unique ID
     lacdUpdateAltID(childId, "ACTIVITY", itemCapId.getCustomID(), childSuffixArray[i]);
