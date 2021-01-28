@@ -1,5 +1,5 @@
 //Start - License Creation/Update Script
-//Update: 08/31/2020:12:53AM
+//Update: 01/28/2021:12:28 AM
 
 //if (wfTask == "Issuance" && (wfStatus == "Issued" || wfStatus == "Provisionally Issued" || wfStatus == "Temporarily Issued"))
 
@@ -123,8 +123,12 @@ for (var i in childSuffixArray) {
 	editPriority(getPriority(itemCapId),childId);
 
 	// set child record status
-	updateAppStatus("Temporarily Approved","",childId);
+	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
 
+	// set workflow task - added per Aaron 1/28/21
+	setTask("Application Acceptance"."N","Y");
+	activateTask("Temp App Review");
+	
     //use the suffix to give it a unique ID
     lacdUpdateAltID(childId, "ACTIVITY", itemCapId.getCustomID(), childSuffixArray[i]);
 
