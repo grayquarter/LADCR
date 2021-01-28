@@ -1,8 +1,6 @@
 //Start - CREATE_ACTIVITY_RECS_FROM_PREAPP Script
 //Update: 01/28/2021:02:50 PM
 
-//if (wfTask == "Issuance" && (wfStatus == "Issued" || wfStatus == "Provisionally Issued" || wfStatus == "Temporarily Issued"))
-
 var childSuffixArray = [];
 var clearASIArray = [];
 
