@@ -21,7 +21,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                     if (contacts[i].getPeople()) {
                         var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
 
-                        if (contacts[i].getPeople().getContactType().ownerTypes) {
+                        if (contacts[i].getPeople().getContactType(), ownerTypes) {
                             var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
                         aa.people.removeCapContact(parentCapId, capContactNumber);
                         logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
