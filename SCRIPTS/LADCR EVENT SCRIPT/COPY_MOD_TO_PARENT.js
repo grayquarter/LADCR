@@ -14,12 +14,14 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             capContactResult = aa.people.getCapContactByCapID(parentCapId);
             if (capContactResult.getSuccess()) {
                 var contacts = capContactResult.getOutput();
+                var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
+      
                 for (var i in contacts) {
 
                     if (contacts[i].getPeople()) {
                         var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
 
-                        if (contacts[i].getPeople().getContactType() == 'Chief Executive Officer') {
+                        if (contacts[i].getPeople().getContactType().ownerTypes) {
                             var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
                         aa.people.removeCapContact(parentCapId, capContactNumber);
                         logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
@@ -28,9 +30,8 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             }
         
         copyContacts3_0(capId, parentCapId);
-        //function copyContactsByType(pFromCapId, pToCapId, pContactType)
-       // var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
-      // var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
+       
+             // var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
 
     }
 }
