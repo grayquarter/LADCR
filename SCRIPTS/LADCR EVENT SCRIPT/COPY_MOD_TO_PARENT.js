@@ -31,9 +31,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
         
         copyContacts3_0(capId, parentCapId);
        
-             // var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
-
-    }
+      }
 }
 
 
@@ -44,9 +42,11 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             capContactResult = aa.people.getCapContactByCapID(parentCapId);
             if (capContactResult.getSuccess()) {
                 var contacts = capContactResult.getOutput();
+		var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
+
                 for (var i in contacts) {
 
-                    if (contacts[i].getPeople()) {
+                    if (contacts[i].getPeople(), otherTypes) {
                         var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
                         aa.people.removeCapContact(parentCapId, capContactNumber);
                         logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
