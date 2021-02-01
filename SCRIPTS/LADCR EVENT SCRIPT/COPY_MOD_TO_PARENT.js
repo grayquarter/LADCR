@@ -7,7 +7,36 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 		       
     }
 
-    if (isASITrue(AInfo["Ownership or Primary Changes"]) || isASITrue(AInfo["Other Contact Changes"])) {
+    if (isASITrue(AInfo["Ownership or Primary Changes"])) {
+    
+        // copy over contacts from child
+              //  remove all contacts from parent
+            capContactResult = aa.people.getCapContactByCapID(parentCapId);
+            if (capContactResult.getSuccess()) {
+                var contacts = capContactResult.getOutput();
+                for (var i in contacts) {
+
+                    if (contacts[i].getPeople()) {
+                        var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
+
+                        if (contacts[i].getPeople().getContactType() == 'Chief Executive Officer') {
+                            var capContactNumber = aa.util.parseInt(contacts[i].getCapContactModel().getPeople().getContactSeqNumber());
+                        aa.people.removeCapContact(parentCapId, capContactNumber);
+                        logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
+                    }
+                }
+            }
+        
+        copyContacts3_0(capId, parentCapId);
+        //function copyContactsByType(pFromCapId, pToCapId, pContactType)
+       // var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
+      // var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
+
+    }
+}
+
+
+    if (isASITrue(AInfo["Other Contact Changes"])) {
     
         // copy over contacts from child
               //  remove all contacts from parent
@@ -31,12 +60,8 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
         //copy DBA and legal name 
 
-    if (isASITrue(AInfo["Fictitious Business Name"]) || isASITrue(AInfo["Legal Entity Name Change"])) { 
+    if (isASITrue(AInfo["Fictitious Business Name"])) { 
         
-	//legal busin name
-	 var AppName = getAppName(capId);
-           editAppName(Appame, parentCapId);
-             logDebug("Name = " + editAppName(capId));
 
              //DBA
              var bizName = getShortNotes(capId);
@@ -44,5 +69,15 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
       logDebug("Short Notes = " + getShortNotes(capId));
 
       }
+
+      if (isASITrue(AInfo["Legal Entity Name Change"])) { 
+        
+        //legal busin name
+         var AppName = getAppName(capId);
+               editAppName(Appame, parentCapId);
+                 logDebug("Name = " + editAppName(capId));
+    
+                 
+          }
     }
 }
