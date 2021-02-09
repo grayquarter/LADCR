@@ -99,12 +99,14 @@ var childRecs = getChildren(rt.join("/"),itemCapId);
 
 for (var i in childSuffixArray) {
 	// GQ ticket 1387, check to see if child record already exists, as we are calling this from modification request
+	var alreadyExists = false;
 	for (var j in childRecs) {
-		if (String(childRecs[j].getCustomID()).endsWidth("-" + childSuffixArray[i])) {
+		if (String(childRecs[j].getCustomID()).endsWith("-" + childSuffixArray[i])) {
 			logDebug("Child for " + childSuffixArray[i] + " already exists: " + childRecs[j].getCustomID());
-			continue;
+			alreadyExists = true;
 		} 
 	}
+	if (alreadyExists) {continue;}
 
     var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
 
