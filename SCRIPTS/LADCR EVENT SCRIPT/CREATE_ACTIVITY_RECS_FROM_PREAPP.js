@@ -97,6 +97,17 @@ var itemCapId = aa.cap.getCapID(capId.getID1(),capId.getID2(),capId.getID3()).ge
 
 var childRecs = getChildren(rt.join("/"),itemCapId);
 
+// GQ ticket 1837, deprecate activity records that aren't selected
+for (var i in childRecs) {
+    var thisChildId = childRecs[i];
+    var thisChildIdStr = String(thisChildId.getCustomID());
+    if (thisChildIdStr.substr(thisChildIdStr.length - 2, 1) == "-" && childSuffixArray.indexOf(thisChildIdStr.substr(thisChildIdStr.length - 1, 1)) == -1) {
+        // deprecate old app
+		logDebug("Child Activity record exists for " + thisChildIdStr.substr(thisChildIdStr.length - 1, 1) + ": " + thisChildIdStr + ", deprecating");
+        updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), thisChildId);
+    }
+}
+
 for (var i in childSuffixArray) {
 	// GQ ticket 1387, check to see if child record already exists, as we are calling this from modification request
 	var alreadyExists = false;
