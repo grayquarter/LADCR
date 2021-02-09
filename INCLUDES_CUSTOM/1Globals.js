@@ -13,3 +13,20 @@ if (exists(currentUserID,vDebugUsers)) {
 	showDebug = 3;
 	showMessage = true;
 }
+
+String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, "");
+}
+
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(search, this_len) {
+    if (this_len === undefined || this_len > this.length) {
+      this_len = this.length;
+    }
+    return this.substring(this_len - search.length, this_len) === search;
+  };
+}
+
+String.prototype.formatToHTML = function () {
+    return this.replace("&\amp;", "&").replace("&\nbsp;", " ").replace("&\lt;", "<").replace("&\gt;", ">").replace("&\quot;", "\"").replace("<br />", "\r\n");
+}

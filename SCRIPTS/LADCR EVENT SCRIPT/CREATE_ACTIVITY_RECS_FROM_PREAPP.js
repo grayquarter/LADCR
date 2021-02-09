@@ -95,7 +95,17 @@ if (matches("Y", String(AInfo["Testing"]).substr(0,1).toUpperCase())) {
 // refresh as alt id has likely changed
 var itemCapId = aa.cap.getCapID(capId.getID1(),capId.getID2(),capId.getID3()).getOutput();
 
+var childRecs = getChildren(rt.join("/"),itemCapId);
+
 for (var i in childSuffixArray) {
+	// GQ ticket 1387, check to see if child record already exists, as we are calling this from modification request
+	for (var j in childRecs) {
+		if (childRecs[j].getCustomID().endsWidth("-" + childSuffixArray[i])) {
+			logDebug("Child for " + childSuffixArray[i] + " already exists: " + childRecs[j].getCustomID());
+			continue;
+		} 
+	}
+
     var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
 
     //Copy ASI from child to license
