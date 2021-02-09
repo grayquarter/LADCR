@@ -2,10 +2,8 @@
 include("DO_APPLICATION_SUBMITTED_ACTIONS");
 // End script to do application submittal actions. Runs the WTUA event for Application Acceptance - Awaiting Owner Submittals
 
-//include("CREATE_ACTIVITY_RECS_FROM_PREAPP"); // Testing!!!!!!
-
 // Begin script to actiave the Initial Review Task
-include("ACTIVATE_INITIAL_REVIEW");
+//include("ACTIVATE_INITIAL_REVIEW"); //no longer applicable 2/8/2021
 // End script to actiave the Initial Review Task
 
 //Pre-App Branch 21.01.12
