@@ -100,7 +100,7 @@ var childRecs = getChildren(rt.join("/"),itemCapId);
 for (var i in childSuffixArray) {
 	// GQ ticket 1387, check to see if child record already exists, as we are calling this from modification request
 	for (var j in childRecs) {
-		if (childRecs[j].getCustomID().endsWidth("-" + childSuffixArray[i])) {
+		if (String(childRecs[j].getCustomID()).endsWidth("-" + childSuffixArray[i])) {
 			logDebug("Child for " + childSuffixArray[i] + " already exists: " + childRecs[j].getCustomID());
 			continue;
 		} 
