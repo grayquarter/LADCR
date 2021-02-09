@@ -336,3 +336,9 @@ function getAppSpecificTableForLic(capId,tableName)
 	return appSpecificTable;
 }
 
+    if (isASITrue(AInfo["New Cannabis Activity"])) {
+	include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
+}
+
+ 
+
