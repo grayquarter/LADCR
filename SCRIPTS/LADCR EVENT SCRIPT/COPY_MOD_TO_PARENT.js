@@ -1,11 +1,13 @@
 if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
+	
 	if (parentCapId) {
             
         if (isASITrue(AInfo["Remove Cannabis Activity"]) || isASITrue(AInfo["New Cannabis Activity"])) {
        
         copyASIFields(capId, parentCapId)
+      logDebug("copy ASI first");
 		       
-    }
+    } 
 
     if (isASITrue(AInfo["Ownership or Primary Changes"])) {
     
@@ -58,6 +60,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
     }
         // copy conditions over from mod request
         copyConditions(capId, parentCapId);
+        logDebug("conditions added everytime");
 
         //copy DBA and legal name 
 
@@ -80,8 +83,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
     
                  
           }
-    }
-}
+    
 
 if (isASITrue(AInfo["Business Premises Relocation"])) {
 	// create new parent record
@@ -97,9 +99,18 @@ if (isASITrue(AInfo["Business Premises Relocation"])) {
 
 }
 
-//functions for BPR
 
-function createCannabisApp(grp,typ,stype,cat,desc,itemCap,addressCap) {
+   if (isASITrue(AInfo["Remove Cannabis Activity"])) {
+    include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
+    logDebug("running Create Act");
+} 
+
+    }
+    
+}
+	
+//functions
+	function createCannabisApp(grp,typ,stype,cat,desc,itemCap,addressCap) {
 	//
 	// creates the new application and returns the capID object
 	// cloned from createChild but no hierarchy
@@ -335,10 +346,4 @@ function getAppSpecificTableForLic(capId,tableName)
 	}
 	return appSpecificTable;
 }
-
-   if (isASITrue(AInfo["Remove Cannabis Activity"]) || isASITrue(AInfo["New Cannabis Activity"])) {
-	include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
-}
-
- 
 
