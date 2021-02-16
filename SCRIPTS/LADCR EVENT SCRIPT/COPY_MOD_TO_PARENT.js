@@ -86,27 +86,25 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
     
 
 if (isASITrue(AInfo["Business Premises Relocation"])) {
-	// create new parent record
-	var newId = createCannabisApp("Licenses","Cannabis","Business","Application","",parentCapId,capId);
-	if (newId) {
-		logDebug("New Application Record created: " + newId.getCustomID());
-		newCap = aa.cap.getCap(newId).getOutput();
-		logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(),newId).getSuccess());
-		// deprecate old app - is this all we have to do?
-		updateAppStatus("Deprecated","Deprecated by mod request " + capId.getCustomID(),parentCapId);
-		
-	}
-      if (newCap) {
-
-           closeTask("Application Acceptance","NA","Closed by COPY TO MOD", "");
-             logDebug("Closing Workflow Task: " + newId);
-            activateTask("Temp App Review");
-            logDebug("Activating: " + newId);
-            updateAppStatus("Eligible for Processing","", newId);
-            logDebug("APP ID: " + newId);
-        
-                
-            }
+    // create new parent record
+    var newId = createCannabisApp("Licenses","Cannabis","Business","Application","",parentCapId,capId);
+    if (newId) {
+        logDebug("New Application Record created: " + newId.getCustomID());
+        newCap = aa.cap.getCap(newId).getOutput();
+        logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(),newId).getSuccess());
+        // deprecate old app - is this all we have to do?
+        updateAppStatus("Deprecated","Deprecated by mod request " + capId.getCustomID(),parentCapId);
+    
+        holdId = capId;
+        capId = newId;
+        closeTask("Application Acceptance","NA","Closed by COPY TO MOD", "");
+            logDebug("Closing Workflow Task: " + newId);
+        activateTask("Temp App Review");
+        logDebug("Activating: " + newId);
+        capId = holdId;
+        updateAppStatus("Eligible for Processing","", newId);
+        logDebug("APP ID: " + newId);          
+    }
 }
 
 
