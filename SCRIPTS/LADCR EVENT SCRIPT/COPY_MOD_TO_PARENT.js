@@ -97,9 +97,9 @@ if (isASITrue(AInfo["Business Premises Relocation"])) {
 		
 	}
       if (newCap) {
-        setTask("Application Acceptance","N","Y");
-        activateTask("Temp App Review");
-        logDebug("Workflow Task working?");
+        setTask("Application Acceptance","N","Y", newId);
+        activateTask("Temp App Review", newId);
+        logDebug("Workflow Task working?: " + newId.getSuccess());
         updateAppStatus("Eligible for Processing","", newId);
         logDebug("APP ID: " + newId);
     
