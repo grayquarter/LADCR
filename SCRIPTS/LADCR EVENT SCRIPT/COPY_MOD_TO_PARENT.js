@@ -91,10 +91,6 @@ if (isASITrue(AInfo["Business Premises Relocation"])) {
 	if (newId) {
 		logDebug("New Application Record created: " + newId.getCustomID());
 		newCap = aa.cap.getCap(newId).getOutput();
-		 updateTask("Temp App Review","Awaiting Review","Updated by COPY TO MOD",capId)
-            logDebug("Workflow ID: " + newId.getCustomID());
-            updateAppStatus("Eligible for Processing","", capId);
-             logDebug("APP ID: " + newId.getCustomID());
 		logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(),newId).getSuccess());
 		// deprecate old app - is this all we have to do?
 		updateAppStatus("Deprecated","Deprecated by mod request " + capId.getCustomID(),parentCapId);
@@ -107,6 +103,11 @@ if (isASITrue(AInfo["Business Premises Relocation"])) {
    if (isASITrue(AInfo["Remove Cannabis Activity"])) {
     include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
     logDebug("running Create Act");
+    setTask("Application Acceptance","N","Y");
+    activateTask("Temp App Review");
+	   logDebug("Workflow Task working?");
+    updateAppStatus("Eligible for Processing","", capId);
+    logDebug("APP ID: " + capId);
 } 
 
     }
