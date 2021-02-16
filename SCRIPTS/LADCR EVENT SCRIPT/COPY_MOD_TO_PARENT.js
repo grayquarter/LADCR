@@ -97,14 +97,15 @@ if (isASITrue(AInfo["Business Premises Relocation"])) {
 		
 	}
       if (newCap) {
-        setTask("Application Acceptance","N","Y", newId);
-        activateTask("Temp App Review", newId);
-        logDebug("Workflow Task working?: " + newId.getCustomID());
-        updateAppStatus("Eligible for Processing","", newId);
-        logDebug("APP ID: " + newId);
-    
-        }
 
+            closeTask("Application Acceptance","","Closed by COPY TO MOD", newId);
+             logDebug("Closing Workflow Task: " + newId.getCustomID());
+            activateTask("Temp App Review");
+            logDebug("Activating: " + newId.getCustomID());
+            updateAppStatus("Eligible for Processing","", newId);
+            logDebug("APP ID: " + newId);
+        
+            }
 }
 
 
