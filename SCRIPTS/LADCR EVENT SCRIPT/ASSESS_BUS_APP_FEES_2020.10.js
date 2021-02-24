@@ -1,6 +1,6 @@
 //ASSESS_BUS_APP_FEES_2020.10.js
-// Last Update 11/03/20
-// Changed fee code from J300 to J102
+// Last Update 02/24/21
+// Changed fee code for Mod to match new fee schedule
 // This relies on AInfo[] being populated with custom fields.
 
 
@@ -14,5 +14,5 @@ var amendFee = isASITrue(AInfo["Legal Entity Name Change"]) || isASITrue(AInfo["
 
 if (appMatch("Licenses/Cannabis/Application Amendment/Application") && amendFee) {
 	logDebug("adding amendment fee");
-    updateFee("J098B21", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Cannabis License Mod Fee
+    updateFee("J098", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Cannabis License Mod Fee
 } 
