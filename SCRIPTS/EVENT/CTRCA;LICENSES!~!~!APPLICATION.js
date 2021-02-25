@@ -1,5 +1,5 @@
 //CTRCA;LICENSES!~!~!APPLICATION.js
-// Last Update: 08/31/2020
+// Last Update: 02/24/2021
 // Insert the public user reference contact as the owner applicant
 //include("COPY_PUBLIC_USER_TO_OWNER_APPLICANT");
 // Insert the public user reference contact as the owner applicant or agent of service (ghess, 3/20/18)
@@ -94,3 +94,34 @@ if (parentCapId && appMatch("Licenses/Cannabis/Application Amendment/Application
          }
  }
 
+//Send PCN Notifiction to Contacts
+if (publicUser && appMatch("Licenses/Cannabis/Business/Application")) {
+	if (isASITrue("Retailer Commercial Cannabis Activity license in an area of Undue Concentration?")) {
+		var vEParams = aa.util.newHashtable();
+		addParameter(vEParams, "$$LicenseType$$", appTypeAlias);
+		addParameter(vEParams, "$$ExpirationDate$$", dateAdd(null, 60));
+		addParameter(vEParams, "$$ApplicationID$$", capIDString);
+		
+		var vRParams = aa.util.newHashtable();
+		addParameter(vRParams, "p1Value", capIDString);
+		
+		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - PCN Request", vRParams);
+
+	 } else {
+	 // non PCN, jump ahead in workflow and send notice
+		setTask("PCN Acceptance","N","N");
+		activateTask("Application Acceptance");
+		
+		var vEParams = aa.util.newHashtable();
+		addParameter(vEParams, "$$LicenseType$$", appTypeAlias);
+		addParameter(vEParams, "$$ExpirationDate$$", dateAdd(null, 60));
+		addParameter(vEParams, "$$ApplicationID$$", capIDString);
+		
+		var vRParams = aa.util.newHashtable();
+		addParameter(vRParams, "p1Value", capIDString);
+		
+		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - Pre-Application", vRParams);
+	 }
+ }
+ 
+ 
