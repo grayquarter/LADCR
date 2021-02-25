@@ -105,7 +105,7 @@ if (publicUser && appMatch("Licenses/Cannabis/Business/Application")) {
 		var vRParams = aa.util.newHashtable();
 		addParameter(vRParams, "p1Value", capIDString);
 		
-		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - PCN Request", vRParams);
+		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - PCN Request as Doc", vRParams);
 
 	 } else {
 	 // non PCN, jump ahead in workflow and send notice
@@ -120,7 +120,7 @@ if (publicUser && appMatch("Licenses/Cannabis/Business/Application")) {
 		var vRParams = aa.util.newHashtable();
 		addParameter(vRParams, "p1Value", capIDString);
 		
-		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - Pre-Application", vRParams);
+		emailContacts_BCC('Owner,Social Equity Owner,Consultant,Authorized Agent,Law Firm,Accounting Firm,President,Chief Executive Officer', "DCR Generic Invoice", vEParams, "Invoice - Pre-Application as Doc", vRParams);
 	 }
  }
  
