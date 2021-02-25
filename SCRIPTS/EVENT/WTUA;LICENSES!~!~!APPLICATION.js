@@ -1,3 +1,4 @@
+//WTUA;LICENSES!~!~!APPLICATION.js
 // Begin script to do application submittal actions. Runs the WTUA event for Application Acceptance - Awaiting Owner Submittals
 include("DO_APPLICATION_SUBMITTED_ACTIONS");
 // End script to do application submittal actions. Runs the WTUA event for Application Acceptance - Awaiting Owner Submittals
@@ -5,6 +6,13 @@ include("DO_APPLICATION_SUBMITTED_ACTIONS");
 // Begin script to actiave the Initial Review Task
 //include("ACTIVATE_INITIAL_REVIEW"); //no longer applicable 2/8/2021
 // End script to actiave the Initial Review Task
+
+//PCN Branch 21.02.25
+if (wfTask.equals("PCN Waiting for Council") && wfStatus.equals("PCN Approved")) {
+	logDebug("adding Pre-App fee");
+	updateFee("J102", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Pre-Application Review Fee
+	include("SEND_ACCEPTANCE_INVOICE_PREAPP");
+}	
 
 //Pre-App Branch 21.01.12
 if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Eligible for Processing")) {
