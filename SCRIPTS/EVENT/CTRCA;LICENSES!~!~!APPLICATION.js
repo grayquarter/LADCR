@@ -96,7 +96,7 @@ if (parentCapId && appMatch("Licenses/Cannabis/Application Amendment/Application
 
 //Send PCN Notifiction to Contacts
 if (publicUser && appMatch("Licenses/Cannabis/Business/Application")) {
-	if (isASITrue("Retailer Commercial Cannabis Activity license in an area of Undue Concentration?")) {
+	if (isASITrue(AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"])) {
 
 		include("SEND_ACCEPTANCE_INVOICE_PCN");
 		
