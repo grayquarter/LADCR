@@ -7,7 +7,7 @@
 if (!isASITrue(AInfo["Is this a Renewal?"]) && (!appMatch("Licenses/Cannabis/Application Amendment/Application"))) {
     logDebug("Not a Renewal");
 
-	if (isASITrue("Retailer Commercial Cannabis Activity license in an area of Undue Concentration?")) {
+	if (isASITrue(AInfo["Retailer Commercial Cannabis Activity license in an area of Undue Concentration?"])) {
 		logDebug("adding PCN fee");
 		updateFee("J097", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); 
 	} else {
