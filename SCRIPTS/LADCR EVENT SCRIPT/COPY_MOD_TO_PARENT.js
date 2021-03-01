@@ -78,7 +78,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
         
         //legal busin name
          var AppName = getAppName(capId);
-               editAppName(Appame, parentCapId);
+               editAppName(AppName, parentCapId);
                  logDebug("Name = " + editAppName(capId));
     
                  
