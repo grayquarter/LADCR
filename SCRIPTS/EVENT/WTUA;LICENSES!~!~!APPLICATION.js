@@ -18,8 +18,8 @@ if (wfTask.equals("PCN Waiting for Council") && wfStatus.equals("PCN Approved"))
 if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Eligible for Processing")) {
 	// turn Pre-App into a temp app
 	include("UPDATE_PRE-APP_TO_APP");
+	include("ASSESS_BUS_APP_ACTIVITY_FEES");
 	//include("SEND_PREAPP_APPROVAL_NOTICE");
-	//updateFee("J102", "CAN_BUS_APP", "FINAL", 1, "Y"); //Pre-Application Review Fee
 }	
 
 if (wfStatus.equals("Additional Info Requested")){
