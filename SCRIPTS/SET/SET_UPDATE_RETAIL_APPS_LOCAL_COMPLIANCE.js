@@ -321,8 +321,9 @@ function createRetailChildRecord() {
         // set workflow task - added per Aaron 1/28/21
         var capIdSave = capId;
         capId = childId;
+        setTask("PCN Acceptance", "N", "Y");
         setTask("Application Acceptance", "N", "Y");
-        activateTask("Temp App Review");
+        activateTask("Pre-Inspection Review");
         capId = capIdSave;
 
         //use the suffix to give it a unique ID
