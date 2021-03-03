@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------------------------------------/
-| Program: SET_UPDATE_RETAIL_APPS_ELIGIBLE.js.js  Trigger: Batch
+| Program: SET_UPDATE_RETAIL_APPS_ELIGIBLE.js  Trigger: Batch
 | Client: LADCR
 |
-| REQUIRED: CORRESPONDENCE SCRIPT PARAMS std choice
+| REQUIRED: 
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
 | BEGIN Initialize Variables
