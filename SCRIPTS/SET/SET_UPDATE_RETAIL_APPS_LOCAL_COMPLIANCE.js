@@ -2,7 +2,7 @@
 | Program: SET_UPDATE_RETAIL_APPS_LOCAL_COMPLIANCE.js  Trigger: Batch
 | Client: LADCR
 |
-| REQUIRED: CORRESPONDENCE SCRIPT PARAMS std choice
+| REQUIRED: 
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
 | BEGIN Initialize Variables
