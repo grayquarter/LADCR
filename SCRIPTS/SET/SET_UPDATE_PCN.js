@@ -8,7 +8,7 @@
 | BEGIN Initialize Variables
 /------------------------------------------------------------------------------------------------------*/
 /* START SCRIPT TEST PARAMETERS */
-if (true) { //set to false to turn off test values
+if (false) { //set to false to turn off test values
 	var mySetID = "JHSTEST";
 	var setMemberArray = new Array();
 	var setMemberResult = aa.set.getCAPSetMembersByPK(mySetID);
