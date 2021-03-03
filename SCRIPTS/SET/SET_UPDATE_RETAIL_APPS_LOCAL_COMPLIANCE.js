@@ -8,7 +8,7 @@
 | BEGIN Initialize Variables
 /------------------------------------------------------------------------------------------------------*/
 /* START SCRIPT TEST PARAMETERS */
-if (true) { //set to false to turn off test values
+if (false) { //set to false to turn off test values
 	var mySetID = "JHSTEST";
 	var setMemberArray = new Array();
 	var setMemberResult = aa.set.getCAPSetMembersByPK(mySetID);
@@ -316,7 +316,7 @@ function createRetailChildRecord() {
         editPriority(getPriority(itemCapId), childId);
 
         // set child record status
-        updateAppStatus("Eligible for Processing", "", childId); //updated per Aaron 1/28/21
+        updateAppStatus("Local Compliance Underway", "", childId);
 
         // set workflow task - added per Aaron 1/28/21
         var capIdSave = capId;
