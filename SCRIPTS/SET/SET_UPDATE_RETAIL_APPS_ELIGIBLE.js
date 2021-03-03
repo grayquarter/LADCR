@@ -322,6 +322,7 @@ function createRetailChildRecord() {
         var capIdSave = capId;
         capId = childId;
         setTask("Application Acceptance", "N", "Y");
+        setTask("PCN Acceptance", "N", "Y");
         activateTask("Temp App Review");
         capId = capIdSave;
 
