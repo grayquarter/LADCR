@@ -51,11 +51,11 @@ if (wfStatus.equals("Additional Info Requested")){
 	// End Story 293, 1370
 }
 
-if (wfStatus.equals("Temporarily Approved")){
-	// Begin Story 1557
-	include("SEND_TEMP_LICENSE_INCOMPLETE_NOTICE");
-	//End Story 1557
-}
+//if (wfStatus.equals("Temporarily Approved")){
+//	// Begin Story 1557
+//	include("SEND_TEMP_LICENSE_INCOMPLETE_NOTICE");
+//	//End Story 1557
+//}
 
 // Begin script to send denial email
 if (wfStatus.equals("Denied")){
