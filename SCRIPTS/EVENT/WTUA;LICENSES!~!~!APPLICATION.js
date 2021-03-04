@@ -23,6 +23,23 @@ if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Elig
 	include("SEND_PREAPP_APPROVAL_NOTICE");
 }	
 
+//New Branch 21.03.03
+if (wfTask.equals("Supervisor Temp Review") && wfStatus.equals("Ready for Inspection")) {
+	include("SEND_ELIGIBLE_FOR_INSPECTION");
+}	
+
+//New Branch 21.03.03
+if (wfTask.equals("Supervisor Temp Review") && wfStatus.equals("Inspection Not Passed")) {
+	updateFee("F100", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //place holder for final fee
+	include("SEND_APPLICATION_INVOICE");
+}	
+
+//New Branch 21.03.03
+if (wfTask.equals("Temp License Issued") && wfStatus.equals("Issue Temp Renewal Invoice")) {
+	//include("ASSESS_BUS_APP_ACTIVITY_RENEWAL_FEES");
+	include("SEND_APPLICATION_RENEWAL");
+}	
+
 if (wfStatus.equals("Additional Info Requested")){
 	// Begin Story 293, 1370
 	include("SEND_INCOMPLETE_APPLICATION_NOTICE");
@@ -96,6 +113,9 @@ include("SEND_APP_FEE_ACKNOWLEDGEMENT");
 //End email to all contacts when application is submitted in back office. Email is to let them know the application number and fee amount due, User Story 1625
 
 //Begin conditional branch for denied denials
+if (wfTask.equals("Executive Review") && wfStatus.equals("Decision Appealable")){ // 3.3.2021
+	include("SEND_APPEAL_AND_NOTICE");
+}
 if (wfTask.equals("Executive Review") && wfStatus.equals("Return to Review")){
 	include("ACTIVATE_DENIED_TASK");
 }
