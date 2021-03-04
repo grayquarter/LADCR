@@ -41,7 +41,7 @@ if (wfTask.equals("Pre-Inspection Review") && (wfStatus.equals("Temp License Gra
 
 //New Branch 21.03.03
 if (wfTask.equals("Temp License Issued") && wfStatus.equals("Issue Temp Renewal Invoice")) {
-	//include("ASSESS_BUS_APP_ACTIVITY_RENEWAL_FEES");
+	include("ASSESS_BUS_APP_ACTIVITY_RENEWAL_FEES");
 	include("SEND_APPLICATION_RENEWAL");
 }	
 
