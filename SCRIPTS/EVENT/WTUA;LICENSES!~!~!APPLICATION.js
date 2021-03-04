@@ -34,6 +34,11 @@ if (wfTask.equals("Pre-Inspection Review") && wfStatus.equals("Inspection Not Pa
 	include("SEND_APPLICATION_INVOICE");
 }	
 
+//New Branch 21.03.04
+if (wfTask.equals("Pre-Inspection Review") && (wfStatus.equals("Temp License Granted") || wfStatus.equals("Temp License Granted with Issues"))) {
+	include("SEND_TEMP_APPROVAL_NOTICE");
+}
+
 //New Branch 21.03.03
 if (wfTask.equals("Temp License Issued") && wfStatus.equals("Issue Temp Renewal Invoice")) {
 	//include("ASSESS_BUS_APP_ACTIVITY_RENEWAL_FEES");
@@ -46,8 +51,7 @@ if (wfStatus.equals("Additional Info Requested")){
 	// End Story 293, 1370
 }
 
-//if (wfStatus.equals("Temporarily Approved")){
-if (wfStatus.equals("Temporarily Approved") || wfStatus.equals("Temp License Granted") || wfStatus.equals("Temp License Granted with Issues")) {
+if (wfStatus.equals("Temporarily Approved")){
 	// Begin Story 1557
 	include("SEND_TEMP_LICENSE_INCOMPLETE_NOTICE");
 	//End Story 1557
