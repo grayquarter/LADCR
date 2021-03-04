@@ -29,7 +29,7 @@ if (wfTask.equals("Supervisor Temp Review") && wfStatus.equals("Ready for Inspec
 }	
 
 //New Branch 21.03.03
-if (wfTask.equals("Supervisor Temp Review") && wfStatus.equals("Inspection Not Passed")) {
+if (wfTask.equals("Pre-Inspection Review") && wfStatus.equals("Inspection Not Passed")) {
 	updateFee("F100", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //place holder for final fee
 	include("SEND_APPLICATION_INVOICE");
 }	
