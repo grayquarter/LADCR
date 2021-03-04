@@ -4,7 +4,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             
         if (isASITrue(AInfo["Remove Cannabis Activity"]) || isASITrue(AInfo["New Cannabis Activity"])) {
        
-        copyASIFields(capId, parentCapId)
+        copyAppSpecific(parentCapId);
       logDebug("copy ASI first");
 		       
     } 
