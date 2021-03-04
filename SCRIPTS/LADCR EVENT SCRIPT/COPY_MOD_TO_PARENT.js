@@ -107,7 +107,17 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             // run the next script with parent record
             var capIdOrg = capId;
             capId = parentCapId;
-            logDebug("running Create Act");
+            logDebug("running Create Act for remove");
+            include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
+            // switch back to the mod record
+            capId = capIdOrg;
+        }
+        
+        if (isASITrue(AInfo["New Cannabis Activity"])) {
+            // run the next script with parent record
+            var capIdOrg = capId;
+            capId = parentCapId;
+            logDebug("running Create Act for new");
             include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
             // switch back to the mod record
             capId = capIdOrg;
