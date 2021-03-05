@@ -34,6 +34,12 @@ if (!parentCapId && appMatch("Licenses/Cannabis/Application Amendment/Applicatio
 }
 //End script to link amendment to application when user Defers Payment in ACA
 
+// Begin script to update the Business Activities selected in ACA for MOD
+if(publicUser && appMatch("Licenses/Cannabis/Application Amendment/Application"){
+	include("UPDATE_ACTIVITIES_FROM_ACA");
+}
+// End script to update the Business Activities selected in ACA for MOD
+
 // Begin script to update the Business Activities selected in ACA
 if(publicUser && appMatch("Licenses/Cannabis/Business/Application")){
 	include("UPDATE_ACTIVITIES_FROM_ACA");
