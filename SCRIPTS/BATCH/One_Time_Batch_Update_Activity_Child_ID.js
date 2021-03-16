@@ -222,53 +222,62 @@ try {
 					parentCapId = getParent();
 					if (parentCapId != null && parentCapId != "") {
 						parentAltId = parentCapId.getCustomID();
-						lenOfStr = parentAltId.length();
-						var endParentId = parentAltId.slice(-4,lenOfStr);
+						logDebug("Found parent record " + parentAltId);
+					
+						// check for "LA-C-"
+						startParentId = parentAltId.slice(0,5);
+						logDebug("Parent starts with: " + startParentId);
+						if (startParentId == "LA-C-") {
+							logDebug("Parent Record has correct id prefix");
 
-						var isParentApp = false;
-						if (endParentId == "-APP") {
-							logDebug("-- Parent App = " + parentAltId);
-							//logDebug("Has Parent App");
-							isParentApp = true;
+							lenOfStr = parentAltId.length();
+							var endParentId = parentAltId.slice(-4,lenOfStr);
+							logDebug("Parent id ends with: " + endParentId);
 
-							//logDebug("EOS = " + endParentId);
-							//remove -APP from child activity record ids
-							logDebug("-- Modifying activity record " + altId);
-							// find end of string from "-APP" on
-							//var lenOfStr = altId.length();
-							var startOfExt = altId.indexOf("-APP");
-							var newAltId = altId.slice(0,startOfExt);
-							//logDebug("-- New Alt Id = " + newAltId) ;
-							//break;
-							//strip off end
-							//check whether resulting alt id exists
-							//if not assign new alt id
-							if (newAltId) {
-								var updResult = aa.cap.updateCapAltID(capId, newAltId);
-								//in case of duplicates...
-								var capCount = 0;
-								var unDupAltID = "";
-								while(!updResult.getSuccess()){
-								//if (!updResult.getSuccess()){
-									logDebug(" **Duplicate Found! - or error: " + newAltId);
-									capCount = capCount + 1;
-									unDupAltID = newAltId + "-" + capCount;
-									updResult = aa.cap.updateCapAltID(capId, unDupAltID);
-									if (capCount>10) break;
-								//} else {
-								//	logDebug("--Update successful!");
+							var isParentApp = false;
+							if (endParentId == "-APP") {
+								//logDebug("-- Parent App = " + parentAltId);
+								//logDebug("Has Parent App");
+								isParentApp = true;
+
+								//remove -APP from child activity record ids
+								logDebug("-- Modifying activity record " + altId);
+								// find end of string from "-APP" on
+								//var lenOfStr = altId.length();
+								var startOfExt = altId.indexOf("-APP");
+								var newAltId = altId.slice(0,startOfExt);
+								//logDebug("-- New Alt Id = " + newAltId) ;
+								//break;
+								//strip off end
+								//check whether resulting alt id exists
+								//if not assign new alt id
+								if (newAltId) {
+									var updResult = aa.cap.updateCapAltID(capId, newAltId);
+									//in case of duplicates...
+									var capCount = 0;
+									var unDupAltID = "";
+									while(!updResult.getSuccess()){
+									//if (!updResult.getSuccess()){
+										logDebug(" **Duplicate Found! - or error: " + newAltId);
+										capCount = capCount + 1;
+										unDupAltID = newAltId + "-" + capCount;
+										updResult = aa.cap.updateCapAltID(capId, unDupAltID);
+										if (capCount>10) break;
+									//} else {
+									//	logDebug("--Update successful!");
+									}
+									
+									if (unDupAltID != "") newAltId = unDupAltID;
+
+									logDebug("-- Final Alt ID is " + newAltId);
+									// update global var
+									//capIDString = newAltId;
 								}
 								
-								if (unDupAltID != "") newAltId = unDupAltID;
-
-								logDebug("-- Final Alt ID is " + newAltId);
-								// update global var
-								//capIDString = newAltId;
+								
+							
+								dataCount++;
 							}
-							
-							
-						
-							dataCount++;
 						}
 					}
 				} else {
