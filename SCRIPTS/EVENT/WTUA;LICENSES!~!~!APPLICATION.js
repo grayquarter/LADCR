@@ -36,6 +36,7 @@ if (wfTask.equals("Pre-Inspection Review") && wfStatus.equals("Inspection Not Pa
 
 //New Branch 21.03.04
 if (wfTask.equals("Pre-Inspection Review") && (wfStatus.equals("Temp License Granted") || wfStatus.equals("Temp License Granted with Issues"))) {
+	include("UPDATE_APP_TO_TEMP");
 	include("SEND_TEMP_APPROVAL_NOTICE");
 }
 
