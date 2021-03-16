@@ -10,10 +10,10 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
         }
 
         if (isASITrue(AInfo["Ownership or Primary Changes"])) {
-
+          // 3.16.meeting copy contacts do not replace.
             // copy over contacts from child
             //  remove all contacts from parent
-            capContactResult = aa.people.getCapContactByCapID(parentCapId);
+           /* capContactResult = aa.people.getCapContactByCapID(parentCapId);
             if (capContactResult.getSuccess()) {
                 var contacts = capContactResult.getOutput();
                 var ownerTypes = ["Chief Executive Officer", "Chief Financial Officer", "Chief Marketing Officer", "Chief Operating Officer", "Chief Technology Officer", "Management Company", "Owner", "Owner - Entity", "President", "Secretary", "Social Equity Owner", "Social Equity Owner - Entity", "Vice President"];
@@ -29,18 +29,18 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                             logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
                         }
                     }
-                }
+                } */
 
                 copyContacts3_0(capId, parentCapId);
 
             }
-        }
+        
 
         if (isASITrue(AInfo["Other Contact Changes"])) {
 
             // copy over contacts from child
             //  remove all contacts from parent
-            capContactResult = aa.people.getCapContactByCapID(parentCapId);
+           /* capContactResult = aa.people.getCapContactByCapID(parentCapId);
             if (capContactResult.getSuccess()) {
                 var contacts = capContactResult.getOutput();
                 var otherTypes = ["Accounting Firm", "Agency for Service of Process", "Agent for Service of Process", "Authorized Agent", "Authorized Agent - Entity", "Consultant", "Consultant - Entity", "Director", "Law Firm", "Manager", "Neighborhood Liaison", "Person-in-Charge", "Security Firm"];
@@ -53,7 +53,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                         logDebug(contacts[i].getPeople().getContactType() + " - Contact Seq Number " + capContactNumber + " removed from parent " + parentCapId);
                     }
                 }
-            }
+            } */
 
             copyContacts3_0(capId, parentCapId);
         }
