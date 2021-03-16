@@ -109,7 +109,7 @@ include('AWAITING_REVIEW');
 // End script to set 'Awaiting Review'.
 
 //Start - License Creation/Update Script
-include("CREATE_LICENSE_RECORD");
+//include("CREATE_LICENSE_RECORD"); //not creating parent tmp record anympore per Jason 3/16/2021
 //End - License Creation/Update Script
 
 //Begin email to all contacts when application is submitted in back office. Email is to let them know the application number and fee amount due, User Story 1625
