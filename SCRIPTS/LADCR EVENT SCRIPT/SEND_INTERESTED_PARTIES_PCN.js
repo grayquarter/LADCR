@@ -4,9 +4,9 @@
 	addParameter(vEParams, "$$ExpirationDate$$", dateAdd(null, 60));
 	addParameter(vEParams, "$$ApplicationID$$", capIDString);
 	
-  addParameter(vEParams, "$$CommunityPlanArea$$, AInfo["Community Plan Area"]);
-  addParameter(vEParams, "$$CouncilFileNo$$, AInfo["Council File Number"]);
-  addParameter(vEParams, "$$CouncilDistrict$$, AInfo["Council District"]);
+  addParameter(vEParams, "$$CommunityPlanArea$$", AInfo["Community Plan Area"]);
+  addParameter(vEParams, "$$CouncilFileNo$$", AInfo["Council File Number"]);
+  addParameter(vEParams, "$$CouncilDistrict$$", AInfo["Council District"]);
 
 	var vRParams = aa.util.newHashtable();
 	addParameter(vRParams, "p1Value", capIDString);
