@@ -47,8 +47,8 @@
 			logDebug( "strCityStateZip= " + strCityStateZip);
 
 			addParameter(vEParams, "$$address1$$", strAddress1);
-			addParameter(vEParams, "$$address2$$", strAddress1);
-			addParameter(vEParams, "$$cityStateZip$$", strAddress1);
+			addParameter(vEParams, "$$address2$$", strAddress2);
+			addParameter(vEParams, "$$cityStateZip$$", strCityStateZip);
 			
 			// Exit loop - assumes only one Business address type
 			break;
