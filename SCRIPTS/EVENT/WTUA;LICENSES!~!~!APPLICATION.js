@@ -7,6 +7,11 @@ include("DO_APPLICATION_SUBMITTED_ACTIONS");
 //include("ACTIVATE_INITIAL_REVIEW"); //no longer applicable 2/8/2021
 // End script to actiave the Initial Review Task
 
+//PCN Branch 21.03.25
+if (wfTask.equals("PCN Review") && wfStatus.equals("PCN Transmit to Council")) {
+	include("SEND_INTERESTED_PARTIES_PCN");
+}
+
 //PCN Branch 21.02.25
 if (wfTask.equals("PCN Waiting for Council") && wfStatus.equals("PCN Approved")) {
 	logDebug("adding Pre-App fee");
