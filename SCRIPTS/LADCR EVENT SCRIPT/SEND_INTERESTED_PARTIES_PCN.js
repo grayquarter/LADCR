@@ -6,6 +6,7 @@
 	addParameter(vEParams, "$$ExpirationDate$$", dateAdd(null, 60));
 	addParameter(vEParams, "$$ApplicationID$$", capIDString);
 	
+	addParameter(vEParams, "$$businessName$$", getAppName(capId));
 	addParameter(vEParams, "$$CommunityPlanArea$$", AInfo["Community Plan Area"]);
 	addParameter(vEParams, "$$CouncilFileNo$$", AInfo["Council File Number"]);
 	addParameter(vEParams, "$$CouncilDistrict$$", AInfo["Council District"]);
