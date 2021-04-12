@@ -98,7 +98,7 @@ function slack(msg) {
 	
 	//body.attachments = [{"fallback": "Full Debug Output"}];
 	//body.attachments[0].text = debug;
-	
+	var SLACKURL = lookup("EMSE_ENVIRONMENT","SLACKURL");
     var apiURL = SLACKURL;  // from globals
 	
 	
