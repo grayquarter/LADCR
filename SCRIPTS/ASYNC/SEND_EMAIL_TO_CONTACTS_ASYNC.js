@@ -1,3 +1,26 @@
+function slack(msg) {
+	
+	var headers=aa.util.newHashMap();
+
+    headers.put("Content-Type","application/json");
+	
+    var body = {};	
+	body.text = aa.getServiceProviderCode() + ":" + ENVIRON + ": " + msg;
+	
+	//body.attachments = [{"fallback": "Full Debug Output"}];
+	//body.attachments[0].text = debug;
+	
+    var apiURL = 'https://hooks.slack.com/services/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';  // from globals
+	
+	
+    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
+    if (!result.getSuccess()) {
+        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
+	} else {	
+		aa.print("Slack Results: " + result.getOutput());
+    }
+}
+
 aa.print("1) Here in sendEmailToContactsASync: " + aa.env.getValue("eventType"));
 
 //Get environmental variables pass into the script
@@ -296,26 +319,3 @@ else {
 /* Begin SDOT work-around to prevent payment notices on auto-approved (paid) ACA submissions */	
 }
 /* End SDOT work-around to prevent payment notices on auto-approved (paid) ACA submissions */
-
-function slack(msg) {
-	
-	var headers=aa.util.newHashMap();
-
-    headers.put("Content-Type","application/json");
-	
-    var body = {};	
-	body.text = aa.getServiceProviderCode() + ":" + ENVIRON + ": " + msg;
-	
-	//body.attachments = [{"fallback": "Full Debug Output"}];
-	//body.attachments[0].text = debug;
-	
-    var apiURL = 'https://hooks.slack.com/services/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';  // from globals
-	
-	
-    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
-    if (!result.getSuccess()) {
-        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
-	} else {	
-		aa.print("Slack Results: " + result.getOutput());
-        }
-  	}
