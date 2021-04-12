@@ -233,7 +233,8 @@ else {
 	}
 
 
-	var useURL = true;
+	slackDebug("1. Testing Debug")
+	var useURL = false;
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
 			vDocumentModel = vDocumentList.get(y);
@@ -243,7 +244,7 @@ else {
 				if(useURL) {
 					getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
 				} else {
-					aa.print("Append doc as email attachment.")
+					slackDebug('2. Testing Debug')
 				}
 				logDebug("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				aa.print("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
