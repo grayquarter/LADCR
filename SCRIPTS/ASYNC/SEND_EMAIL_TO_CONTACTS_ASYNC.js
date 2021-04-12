@@ -49,33 +49,6 @@ var vAdHocNote;
 var vAdHocAssignDept;
 var vEParamsToSend;
 
-//GLOBAL FUNCTIONS
-var useURL = false;
-function slack(msg) {
-	
-	var headers=aa.util.newHashMap();
-
-    headers.put("Content-Type","application/json");
-	
-    var body = {};	
-	body.text = aa.getServiceProviderCode() + ":" + "TEST" + ": " + msg;
-	
-	//body.attachments = [{"fallback": "Full Debug Output"}];
-	//body.attachments[0].text = debug;
-	
-    var apiURL = "https://hooks.slack.com/services/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";  // from globals
-	
-	
-    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
-    if (!result.getSuccess()) {
-        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
-	} else {	
-		aa.print("Slack Results: " + result.getOutput());
-    }
-}
-
-slack("Reached here");
-
 //Start modification to support batch script, if not batch then grab globals, if batch do not.
 if (aa.env.getValue("eventType") != "Batch Process") {
 	/* Begin Code needed to call master script functions ---------------------------------------------------*/
@@ -111,6 +84,33 @@ else {
 	}
 }
 /* End Code needed to call master script functions -----------------------------------------------------*/
+
+//GLOBAL FUNCTIONS
+var useURL = false;
+function slack(msg) {
+	
+	var headers=aa.util.newHashMap();
+
+    headers.put("Content-Type","application/json");
+	
+    var body = {};	
+	body.text = aa.getServiceProviderCode() + ":" + "TEST" + ": " + msg;
+	
+	//body.attachments = [{"fallback": "Full Debug Output"}];
+	//body.attachments[0].text = debug;
+	
+    var apiURL = "https://hooks.slack.com/services/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";  // from globals
+	
+	
+    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
+    if (!result.getSuccess()) {
+        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
+	} else {	
+		aa.print("Slack Results: " + result.getOutput());
+    }
+}
+
+slack("Reached here");
 
 logDebug("1) Here in SEND_EMAIL_TO_CONTACTS_ASYNC: " + aa.env.getValue("eventType"));
 logDebug("2) sendEmailToContactTypes: " + sendEmailToContactTypes);
