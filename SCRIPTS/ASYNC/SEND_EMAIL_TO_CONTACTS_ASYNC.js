@@ -110,6 +110,8 @@ function slack(msg) {
     }
 }
 
+slackDebug("Test")
+
 slack("Reached here");
 
 logDebug("1) Here in SEND_EMAIL_TO_CONTACTS_ASYNC: " + aa.env.getValue("eventType"));
