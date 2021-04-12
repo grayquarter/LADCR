@@ -1,11 +1,11 @@
 function slack(msg) {
-	
+	aa.print("Reaching this function")
 	var headers=aa.util.newHashMap();
 
     headers.put("Content-Type","application/json");
 	
     var body = {};	
-	body.text = aa.getServiceProviderCode() + ":" + ENVIRON + ": " + msg;
+	body.text = aa.getServiceProviderCode() + ":" + 'TEST' + ": " + msg;
 	
 	//body.attachments = [{"fallback": "Full Debug Output"}];
 	//body.attachments[0].text = debug;
