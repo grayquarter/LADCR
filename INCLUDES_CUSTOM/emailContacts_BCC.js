@@ -96,6 +96,7 @@ logDebug("Validated contact types to send to: " + sendEmailToContactTypes);
 	}
 	else {
 		//call sendEmailASync script
+		debugSlack("Testing update here")
 		logDebug("Attempting to run Async: " + vAsyncScript);
 		aa.runAsyncScript(vAsyncScript, envParameters);
 		/*
