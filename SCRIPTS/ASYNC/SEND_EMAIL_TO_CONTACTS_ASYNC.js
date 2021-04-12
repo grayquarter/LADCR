@@ -233,7 +233,7 @@ else {
 	}
 
 
-	slackDebug("1. Testing Debug")
+	aa.slackDebug("1. Testing Debug")
 	var useURL = false;
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
@@ -244,7 +244,7 @@ else {
 				if(useURL) {
 					getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
 				} else {
-					slackDebug('2. Testing Debug')
+					aa.slackDebug('2. Testing Debug')
 				}
 				logDebug("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				aa.print("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
