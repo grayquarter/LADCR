@@ -96,7 +96,7 @@ logDebug("Validated contact types to send to: " + sendEmailToContactTypes);
 	}
 	else {
 		//call sendEmailASync script
-		aa.print("REACHED HERE.")
+		logDebug("REACHED HERE.")
 		logDebug("Attempting to run Async: " + vAsyncScript);
 		aa.runAsyncScript(vAsyncScript, envParameters);
 		/*
