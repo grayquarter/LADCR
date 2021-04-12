@@ -99,7 +99,7 @@ function slack(msg) {
 	//body.attachments = [{"fallback": "Full Debug Output"}];
 	//body.attachments[0].text = debug;
 	
-    var apiURL = "https://hooks.slack.com/services/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";  // from globals
+    var apiURL = SLACKURL;  // from globals
 	
 	
     var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
