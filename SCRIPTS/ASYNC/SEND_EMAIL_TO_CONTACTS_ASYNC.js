@@ -233,7 +233,7 @@ else {
 	}
 
 
-	aa.slackDebug("1. Testing Debug")
+	slack("1. Testing Debug")
 	var useURL = false;
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
@@ -244,7 +244,7 @@ else {
 				if(useURL) {
 					getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
 				} else {
-					aa.slackDebug('2. Testing Debug')
+					slack('2. Testing Debug')
 				}
 				logDebug("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				aa.print("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
@@ -296,3 +296,26 @@ else {
 /* Begin SDOT work-around to prevent payment notices on auto-approved (paid) ACA submissions */	
 }
 /* End SDOT work-around to prevent payment notices on auto-approved (paid) ACA submissions */
+
+function slack(msg) {
+	
+	var headers=aa.util.newHashMap();
+
+    headers.put("Content-Type","application/json");
+	
+    var body = {};	
+	body.text = aa.getServiceProviderCode() + ":" + ENVIRON + ": " + msg;
+	
+	//body.attachments = [{"fallback": "Full Debug Output"}];
+	//body.attachments[0].text = debug;
+	
+    var apiURL = 'https://hooks.slack.com/services/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';  // from globals
+	
+	
+    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
+    if (!result.getSuccess()) {
+        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
+	} else {	
+		aa.print("Slack Results: " + result.getOutput());
+        }
+  	}
