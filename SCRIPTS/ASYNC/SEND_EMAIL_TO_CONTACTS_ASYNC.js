@@ -74,7 +74,7 @@ function slack(msg) {
     }
 }
 
-
+slack("Reached here");
 
 //Start modification to support batch script, if not batch then grab globals, if batch do not.
 if (aa.env.getValue("eventType") != "Batch Process") {
