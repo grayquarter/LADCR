@@ -49,6 +49,33 @@ var vAdHocNote;
 var vAdHocAssignDept;
 var vEParamsToSend;
 
+//GLOBAL FUNCTIONS
+var useURL = false;
+function slack(msg) {
+	
+	var headers=aa.util.newHashMap();
+
+    headers.put("Content-Type","application/json");
+	
+    var body = {};	
+	body.text = aa.getServiceProviderCode() + ":" + "TEST" + ": " + msg;
+	
+	//body.attachments = [{"fallback": "Full Debug Output"}];
+	//body.attachments[0].text = debug;
+	
+    var apiURL = 'https://hooks.slack.com/services/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';  // from globals
+	
+	
+    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
+    if (!result.getSuccess()) {
+        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
+	} else {	
+		aa.print("Slack Results: " + result.getOutput());
+    }
+}
+
+
+
 //Start modification to support batch script, if not batch then grab globals, if batch do not.
 if (aa.env.getValue("eventType") != "Batch Process") {
 	/* Begin Code needed to call master script functions ---------------------------------------------------*/
@@ -232,6 +259,7 @@ else {
 		}
 	}
 
+	slack("Testing here");
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
 			vDocumentModel = vDocumentList.get(y);
