@@ -232,13 +232,19 @@ else {
 		}
 	}
 
+
+	var useURL = true;
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
 			vDocumentModel = vDocumentList.get(y);
 			vDocumentName = vDocumentModel.getFileName();
 			if (vDocumentName == vReportName) {
 				//Add the document url to the email paramaters using the name: $$acaDocDownloadUrl$$
-				getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
+				if(useURL) {
+					getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
+				} else {
+					aa.print("Append doc as email attachment.")
+				}
 				logDebug("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				aa.print("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				break;
