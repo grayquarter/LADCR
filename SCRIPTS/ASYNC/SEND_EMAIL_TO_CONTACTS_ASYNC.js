@@ -232,20 +232,13 @@ else {
 		}
 	}
 
-
-	slack("1. Testing Debug");
-	var useURL = false;
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
 			vDocumentModel = vDocumentList.get(y);
 			vDocumentName = vDocumentModel.getFileName();
 			if (vDocumentName == vReportName) {
 				//Add the document url to the email paramaters using the name: $$acaDocDownloadUrl$$
-				if(useURL) {
-					getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
-				} else {
-					slack('2. Testing Debug');
-				}
+				getACADocDownloadParam4Notification(vEParams, vACAUrl, vDocumentModel);
 				logDebug("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				aa.print("including document url: " + vEParams.get('$$acaDocDownloadUrl$$'));
 				break;
