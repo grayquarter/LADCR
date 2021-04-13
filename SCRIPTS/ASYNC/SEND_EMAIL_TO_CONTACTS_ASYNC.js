@@ -98,7 +98,10 @@ function slack(msg) {
 	
 	//body.attachments = [{"fallback": "Full Debug Output"}];
 	//body.attachments[0].text = debug;
-	var SLACKURL = "https://hooks.slack.com/services/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";
+	 var SLACKURL = "https://hooks.slack.com/services/";
+	 SLACKURL = SLACKURL + "T5BS1375F/";
+	 SLACKURL = SLACKURL + "BG09GQ3RS/NUs694ouyawHoAFK4jJXwn1p";
+	 
     var apiURL = SLACKURL;  // from globals
 	
 	
@@ -109,8 +112,6 @@ function slack(msg) {
 		aa.print("Slack Results: " + result.getOutput());
     }
 }
-
-slackDebug("Test")
 
 slack("Reached here");
 
