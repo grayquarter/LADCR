@@ -85,36 +85,6 @@ else {
 }
 /* End Code needed to call master script functions -----------------------------------------------------*/
 
-//GLOBAL FUNCTIONS
-var useURL = false;
-function slack(msg) {
-	
-	var headers=aa.util.newHashMap();
-
-    headers.put("Content-Type","application/json");
-	
-    var body = {};	
-	body.text = aa.getServiceProviderCode() + ":" + "TEST" + ": " + msg;
-	
-	//body.attachments = [{"fallback": "Full Debug Output"}];
-	//body.attachments[0].text = debug;
-	 var SLACKURL = "https://hooks.slack.com/services/";
-	 SLACKURL = SLACKURL + "T5BS1375F/";
-	 SLACKURL = SLACKURL + "BG09GQ3RS/NUs694ouyawHoAFK4jJXwn1p";
-	 
-    var apiURL = SLACKURL;  // from globals
-	
-	
-    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
-    if (!result.getSuccess()) {
-        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
-	} else {	
-		aa.print("Slack Results: " + result.getOutput());
-    }
-}
-
-slack("Reached here");
-
 logDebug("1) Here in SEND_EMAIL_TO_CONTACTS_ASYNC: " + aa.env.getValue("eventType"));
 logDebug("2) sendEmailToContactTypes: " + sendEmailToContactTypes);
 logDebug("3) emailTemplate: " + emailTemplate);
@@ -262,7 +232,6 @@ else {
 		}
 	}
 
-	slack("Testing here");
 	if (vDocumentList != null) {
 		for (y = 0; y < vDocumentList.size(); y++) {
 			vDocumentModel = vDocumentList.get(y);
