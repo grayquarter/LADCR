@@ -168,7 +168,7 @@ function mainProcess() {
 		addParameter(vRParams, "p1Value", capId.getCustomID());
 		
 		if (reportTemplate.length > 0) {
-			var vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+			var vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams)[0];
 			logDebug(vReportName + " generated for record " + capId.getCustomID());
 		}
 
@@ -426,7 +426,7 @@ function sendEmailToContactsSync(sendEmailToContactTypes,emailTemplate,vEParams,
 		vReportName = false;
 		if (reportTemplate != '' && reportTemplate != null) {
 			//generate and get report file
-			vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+			vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams)[0];
 
 			//update the report name if one was provided. this will be used to update the saved report's name
 			if (vReportName != false && vChangeReportName != null && vChangeReportName != "") {

@@ -26,7 +26,7 @@ function generateReportForEmail_BCC(itemCap, reportName, module, parameters) {
             reportOutput = reportResult.getOutput();
 			vReportName = reportOutput.getName();
 			logDebug("Report " + vReportName + " generated for record " + itemCap.getCustomID() + ". " + parameters);
-            return vReportName;
+            return [vReportName, reportOutput];
         }
     }
     else {
