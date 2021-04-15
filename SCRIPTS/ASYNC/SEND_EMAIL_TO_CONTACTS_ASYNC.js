@@ -220,7 +220,7 @@ else {
 		//generate and get report file
 		reportResultArray = generateReportForEmail_BCC2(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		vReportName = reportResultArray[0];
-		if(attachDocs === 'true') {
+		if(attachDocs == 'true') {
 			report = reportResultArray[1];
 			storedReport = aa.reportManager.storeReportToDisk(report).getOutput();
 			attachedDocumentFiles.push(storedReport)
@@ -274,7 +274,7 @@ else {
 			addParameter(vEParamsToSend, "$$TradeName$$", vConObj.people.getTradeName())
 		}
 		//Send email
-		aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, conEmail, "", emailTemplate, vEParamsToSend, capId4Email, attachDocs === 'true' ? attachedDocumentFiles : null).getSuccess());
+		aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, conEmail, "", emailTemplate, vEParamsToSend, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 		aa.print("     " + capId.getCustomID() + ": Sent Email template " + emailTemplate + " to " + conEmail);
 	}
 

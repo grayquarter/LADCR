@@ -81,7 +81,7 @@ var testing = false;
 									
 					//Send email
 					pMailFrom = "dcrinterestedparty@lacity.org";
-					aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(pMailFrom, attrEmail, "", pEmailTemplate, vEParamsToSend, capId4Email, attachDocs === 'true' ? attachedDocumentFiles : null).getSuccess());
+					aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(pMailFrom, attrEmail, "", pEmailTemplate, vEParamsToSend, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 					logDebug("     " + capId.getCustomID() + ": Sent Email template " + pEmailTemplate + " to " + attrEmail);
 					if (testing) aa.print("     " + capId.getCustomID() + ": Sent Email template " + pEmailTemplate + " to " + attrEmail);
 					
@@ -223,7 +223,7 @@ else {
 		var reportResultArray = generateReportForEmail_BCC2(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		vReportName = reportResultArray[0];
 		//checking if we want documents attached
-		if(attachDocs === 'true') {
+		if(attachDocs == 'true') {
 			//grabbing report off report array
 			var report = reportResultArray[1];
 			//storing report to disk and grabbing path
