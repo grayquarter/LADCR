@@ -24,7 +24,7 @@ emailContacts_BCC
             var envParameters = aa.util.newHashMap();
             var vAddAdHocTask = true;
             var vContactCapId = false;
-            var attachDocs = false;
+            var attachDocsEnv = ''
         
             //Ad-hoc Task Requested
             if (arguments.length > 5) {
@@ -47,7 +47,11 @@ emailContacts_BCC
 
             //Appending Documents to the email
             if(arguments.length > 8) {
-                attachDocs = arguments[8];
+                if(arguments[8] == true) {
+                    attachDocsEnv = "true"
+                } else {
+                    attachDocsEnv = 'false'
+                }
             }
         
         logDebug("Provided contact types to send to: " + sendEmailToContactTypes);
@@ -84,7 +88,7 @@ emailContacts_BCC
             envParameters.put("CapId", capId);
             envParameters.put("vAddAdHocTask", vAddAdHocTask);
             envParameters.put("vContactCapId ", vContactCapId);
-            envParameters.put("attachDocs", attachDocs);
+            envParameters.put("attachDocs", attachDocsEnv);
                 
             //Start modification to support batch script
             var vEvntTyp = aa.env.getValue("eventType");
@@ -98,7 +102,7 @@ emailContacts_BCC
                 aa.env.setValue("CapId", capId);
                 aa.env.setValue("vAddAdHocTask", vAddAdHocTask);		
                 aa.env.setValue("vContactCapId ", vContactCapId);
-                aa.env.setValue("attachDocs", attachDocs)
+                aa.env.setValue("attachDocs", attachDocsEnv)
                 //call sendEmailASync script
                 logDebug("Attempting to run Non-Async: " + vAsyncScript);
                 aa.includeScript(vAsyncScript);

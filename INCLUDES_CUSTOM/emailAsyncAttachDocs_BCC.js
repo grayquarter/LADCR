@@ -17,6 +17,13 @@ Sample: emailAsync_BCC('gephartj@seattle.gov', 'DPD_WAITING_FOR_PAYMENT'); //min
     function emailAsyncAttachDocs_BCC(sendEmailToAddresses, emailTemplate, vEParams, reportTemplate, vRParams, manualNotificationList, changeReportName, attachDocs) {
             var vAsyncScript = "SEND_EMAIL_ASYNC";
 
+            var attachDocsEnv = ''
+            if(attachDocs) {
+                attachDocsEnv = "true"
+            } else {
+                attachDocsEnv = 'false'
+            }
+
             //Start modification to support batch script
             var vEvntTyp = aa.env.getValue("eventType");
             if (vEvntTyp == "Batch Process") {
@@ -28,7 +35,7 @@ Sample: emailAsync_BCC('gephartj@seattle.gov', 'DPD_WAITING_FOR_PAYMENT'); //min
                 aa.env.setValue("vChangeReportName", changeReportName);
                 aa.env.setValue("CapId", capId);
                 aa.env.setValue("adHocTaskContactsList", manualNotificationList);
-                aa.env.setValue("attachDocs", attachDocs);
+                aa.env.setValue("attachDocs", attachDocsEnv);
                 //call sendEmailASync script
                 logDebug("Attempting to run Non-Async: " + vAsyncScript);
                 aa.includeScript(vAsyncScript);
@@ -51,7 +58,7 @@ Sample: emailAsync_BCC('gephartj@seattle.gov', 'DPD_WAITING_FOR_PAYMENT'); //min
                 envParameters.put("vChangeReportName", changeReportName);
                 envParameters.put("CapId", capId);
                 envParameters.put("adHocTaskContactsList", manualNotificationList);
-                envParameters.put("attachDocs", attachDocs);
+                envParameters.put("attachDocs", attachDocsEnv);
                 
                 //call sendEmailASync script
                 logDebug("Attempting to run Async: " + vAsyncScript);
