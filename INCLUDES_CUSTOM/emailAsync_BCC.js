@@ -51,7 +51,6 @@ function emailAsync_BCC(sendEmailToAddresses, emailTemplate, vEParams, reportTem
 		envParameters.put("adHocTaskContactsList", manualNotificationList);
 		
 		//call sendEmailASync script
-		logDebug("REACHED HERE.")
 		logDebug("Attempting to run Async: " + vAsyncScript);
 		aa.runAsyncScript(vAsyncScript, envParameters);
 	}

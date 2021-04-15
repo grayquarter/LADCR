@@ -76,7 +76,7 @@ logDebug("Validated contact types to send to: " + sendEmailToContactTypes);
 	envParameters.put("vChangeReportName", vChangeReportName);
 	envParameters.put("CapId", capId);
 	envParameters.put("vAddAdHocTask", vAddAdHocTask);
-	envParameters.put("vContactCapId ", vContactCapId);
+	envParameters.put("vContactCapId", vContactCapId);
 		
 	//Start modification to support batch script
 	var vEvntTyp = aa.env.getValue("eventType");
@@ -89,14 +89,13 @@ logDebug("Validated contact types to send to: " + sendEmailToContactTypes);
 		aa.env.setValue("vChangeReportName", vChangeReportName);
 		aa.env.setValue("CapId", capId);
 		aa.env.setValue("vAddAdHocTask", vAddAdHocTask);		
-		aa.env.setValue("vContactCapId ", vContactCapId);
+		aa.env.setValue("vContactCapId", vContactCapId);
 		//call sendEmailASync script
 		logDebug("Attempting to run Non-Async: " + vAsyncScript);
 		aa.includeScript(vAsyncScript);
 	}
 	else {
 		//call sendEmailASync script
-		logDebug("REACHED HERE.")
 		logDebug("Attempting to run Async: " + vAsyncScript);
 		aa.runAsyncScript(vAsyncScript, envParameters);
 		/*

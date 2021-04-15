@@ -9,6 +9,7 @@ var vRParams = aa.env.getValue("vRParams");
 var vChangeReportName = aa.env.getValue("vChangeReportName");
 var capId = aa.env.getValue("CapId");
 var vAddAdHocTask = aa.env.getValue("vAddAdHocTask");
+var attachDocs = aa.env.getValue('attachDocs');
 
 aa.print("2) sendEmailToContactTypes: " + sendEmailToContactTypes);
 aa.print("3) emailTemplate: " + emailTemplate);
@@ -48,6 +49,10 @@ var vAdHocTask = "Manual Notification";
 var vAdHocNote;
 var vAdHocAssignDept;
 var vEParamsToSend;
+var attachedDocumentFiles = new Array();
+var reportResultArray;
+var report;
+var storedReport;
 
 //Start modification to support batch script, if not batch then grab globals, if batch do not.
 if (aa.env.getValue("eventType") != "Batch Process") {
@@ -213,8 +218,13 @@ else {
 	vReportName = false;
 	if (reportTemplate != '' && reportTemplate != null) {
 		//generate and get report file
-		vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
-
+		reportResultArray = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+		vReportName = reportResultArray[0];
+		if(attachDocs == 'true') {
+			report = reportResultArray[1];
+			storedReport = aa.reportManager.storeReportToDisk(report).getOutput();
+			attachedDocumentFiles.push(storedReport)
+		}
 		//update the report name if one was provided. this will be used to update the saved report's name
 		if (vReportName != false && vChangeReportName != null && vChangeReportName != "") {
 			logDebug("Renaming generated report document name from " + vReportName + " to " + vChangeReportName);
@@ -264,7 +274,7 @@ else {
 			addParameter(vEParamsToSend, "$$TradeName$$", vConObj.people.getTradeName())
 		}
 		//Send email
-		aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, conEmail, "", emailTemplate, vEParamsToSend, capId4Email, null).getSuccess());
+		aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, conEmail, "", emailTemplate, vEParamsToSend, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 		aa.print("     " + capId.getCustomID() + ": Sent Email template " + emailTemplate + " to " + conEmail);
 	}
 

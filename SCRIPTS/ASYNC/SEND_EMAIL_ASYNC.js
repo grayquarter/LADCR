@@ -7,10 +7,12 @@ var vRParams = aa.env.getValue("vRParams");
 var vChangeReportName = aa.env.getValue("vChangeReportName");
 var capId = aa.env.getValue("CapId");
 var adHocTaskContactsList = aa.env.getValue("adHocTaskContactsList");
+var attachDocs = aa.env.getValue("attachDocs");
 
 //Constant variables used in the script
 var CONST_ADHOC_PROCESS = "ADHOC_WORKFLOW";
 var CONST_ADHOC_TASK = "Manual Notification";
+var attachedDocumentFiles = new Array();
 
 try {
 	//Start modification to support batch script, if not batch then grab globals, if batch do not.
@@ -52,8 +54,19 @@ try {
 		if (vRParams == null) {
 			vRParams = aa.util.newHashtable();
 		}
-		var vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		//logDebug("Generated report " + vReportName);
+		//generated reported comes back as an array with report name and the report obj
+		var reportResultArray = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+		var vReportName = reportResultArray[0];
+		//checking if we want documents attached
+		if(attachDocs == 'true') {
+			//grabbing report off report array
+			var report = reportResultArray[1];
+			//storing report to disk and grabbing path
+			var storedReport = aa.reportManager.storeReportToDisk(report).getOutput();
+			//pushing report path to be attached to email
+			attachedDocumentFiles.push(storedReport)
+		}
 		if (vReportName != null && vReportName != false) {
 			//Update the report name if one was provided.
 			if (vChangeReportName != null && vChangeReportName != "") {
@@ -108,7 +121,7 @@ try {
 				logDebug(capId.getCustomID() + ": Sending " + emailTemplate + " from " + mailFrom + " to " + thisEmail);
 				//**Note we won't have contact specific email parameters like contact name, since we have no contact object, just email address
 				//vEParamsToSend = vConObj.getEmailTemplateParams(vEParams);
-				logDebug("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, thisEmail, "", emailTemplate, vEParams, capId4Email, null).getSuccess());
+				logDebug("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, thisEmail, "", emailTemplate, vEParams, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 				sentTo.push(thisEmail.toUpperCase());
 			}
 		}

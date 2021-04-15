@@ -81,7 +81,7 @@ var testing = false;
 									
 					//Send email
 					pMailFrom = "dcrinterestedparty@lacity.org";
-					aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(pMailFrom, attrEmail, "", pEmailTemplate, vEParamsToSend, capId4Email, null).getSuccess());
+					aa.print("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(pMailFrom, attrEmail, "", pEmailTemplate, vEParamsToSend, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 					logDebug("     " + capId.getCustomID() + ": Sent Email template " + pEmailTemplate + " to " + attrEmail);
 					if (testing) aa.print("     " + capId.getCustomID() + ": Sent Email template " + pEmailTemplate + " to " + attrEmail);
 					
@@ -112,6 +112,7 @@ var reportTemplate = aa.env.getValue("reportTemplate");
 var vRParams = aa.env.getValue("vRParams");
 var vChangeReportName = aa.env.getValue("vChangeReportName");
 var capId = aa.env.getValue("CapId");
+var attachDocs = aa.env.getValue("attachDocs");
 /****************************************************/
 
 /**** for testing *********
@@ -139,6 +140,7 @@ var vEParamsToSend = vEParams;
 var asiFieldName = "";
 var asiFieldValue = "";
 var contactTemplateField = "";
+var attachedDocumentFiles = new Array();
 
 //Start modification to support batch script, if not batch then grab globals, if batch do not.
 if (aa.env.getValue("eventType") != "Batch Process") {
@@ -217,9 +219,18 @@ else {
 	//Generate report and get report name THIS IS DUBIOUS...
 	vReportName = false;
 	if (reportTemplate != '' && reportTemplate != null) {
-		//generate and get report file
-		vReportName = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
-
+		//generated reported comes back as an array with report name and the report obj
+		var reportResultArray = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+		vReportName = reportResultArray[0];
+		//checking if we want documents attached
+		if(attachDocs == 'true') {
+			//grabbing report off report array
+			var report = reportResultArray[1];
+			//storing report to disk and grabbing path
+			var storedReport = aa.reportManager.storeReportToDisk(report).getOutput();
+			//pushing report path to be attached to email
+			attachedDocumentFiles.push(storedReport)
+		}
 		//update the report name if one was provided. this will be used to update the saved report's name
 		if (vReportName != false && vChangeReportName != null && vChangeReportName != "") {
 			logDebug("Renaming generated report document name from " + vReportName + " to " + vChangeReportName);
