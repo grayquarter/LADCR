@@ -59,7 +59,7 @@ try {
 		var reportResultArray = generateReportForEmail_BCC2(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		var vReportName = reportResultArray[0];
 		//checking if we want documents attached
-		if(attachDocs === 'true') {
+		if(attachDocs == 'true') {
 			//grabbing report off report array
 			var report = reportResultArray[1];
 			//storing report to disk and grabbing path
@@ -121,7 +121,7 @@ try {
 				logDebug(capId.getCustomID() + ": Sending " + emailTemplate + " from " + mailFrom + " to " + thisEmail);
 				//**Note we won't have contact specific email parameters like contact name, since we have no contact object, just email address
 				//vEParamsToSend = vConObj.getEmailTemplateParams(vEParams);
-				logDebug("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, thisEmail, "", emailTemplate, vEParams, capId4Email, attachDocs === 'true' ? attachedDocumentFiles : null).getSuccess());
+				logDebug("Email Sent: " + aa.document.sendEmailAndSaveAsDocument(mailFrom, thisEmail, "", emailTemplate, vEParams, capId4Email, attachDocs == 'true' ? attachedDocumentFiles : null).getSuccess());
 				sentTo.push(thisEmail.toUpperCase());
 			}
 		}
