@@ -218,7 +218,7 @@ else {
 	vReportName = false;
 	if (reportTemplate != '' && reportTemplate != null) {
 		//generate and get report file
-		reportResultArray = generateReportForEmail_BCC2(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+		reportResultArray = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		vReportName = reportResultArray[0];
 		if(attachDocs == 'true') {
 			report = reportResultArray[1];

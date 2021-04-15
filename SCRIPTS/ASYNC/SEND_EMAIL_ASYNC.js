@@ -56,7 +56,7 @@ try {
 		}
 		//logDebug("Generated report " + vReportName);
 		//generated reported comes back as an array with report name and the report obj
-		var reportResultArray = generateReportForEmail_BCC2(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
+		var reportResultArray = generateReportForEmail_BCC(capId, reportTemplate, aa.getServiceProviderCode(), vRParams);
 		var vReportName = reportResultArray[0];
 		//checking if we want documents attached
 		if(attachDocs == 'true') {
