@@ -76,10 +76,9 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             //legal busin name
          var cap = aa.env.getValue("CapModel");
          var capId = cap.getCapID();
-         var specialText = cap.getSpecialText();
-              var appName = getSpecialText(capId);
+            var appName = getSpecialText(capId);
             editAppName(appName, parentCapId);
-            logDebug("Name = " + editAppName(capId));
+            logDebug("Name = " + editAppName(parentCapId));
 
         }
 
