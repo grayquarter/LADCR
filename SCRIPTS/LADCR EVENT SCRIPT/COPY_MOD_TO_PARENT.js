@@ -72,7 +72,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
         }
 
-        if (isASITrue(AInfo["Legal Entity Name Change"])) {
+    /*    if (isASITrue(AInfo["Legal Entity Name Change"])) {
 
             //legal busin name
             
@@ -81,7 +81,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             editcapName(AppName, parentCapId);
             logDebug("Name = " + editcapName(capId));
 
-        }
+        } */
 
         if (isASITrue(AInfo["Business Premises Relocation"])) {
             // create new parent record
