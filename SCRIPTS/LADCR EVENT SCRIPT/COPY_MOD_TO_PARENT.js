@@ -75,9 +75,11 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
         if (isASITrue(AInfo["Legal Entity Name Change"])) {
 
             //legal busin name
-            var AppName = getAppName(capId);
-            editAppName(AppName, parentCapId);
-            logDebug("Name = " + editAppName(capId));
+            
+           var capName = cap.getSpecialText(capId);
+            var AppName = getcapName(capId);
+            editcapName(AppName, parentCapId);
+            logDebug("Name = " + editcapName(capId));
 
         }
 
