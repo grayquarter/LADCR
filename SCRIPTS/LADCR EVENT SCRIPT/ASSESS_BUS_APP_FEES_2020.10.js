@@ -16,7 +16,7 @@ if (!isASITrue(AInfo["Is this a Renewal?"]) && (!appMatch("Licenses/Cannabis/App
 	}
 } 
 
-var amendFee = isASITrue(AInfo["Legal Entity Name Change"]) || isASITrue(AInfo["Business Premises Diagram"]) || isASITrue(AInfo["Business Premises Relocation"]) || isASITrue(AInfo["Ownership or Primary Changes"]) || isASITrue(AInfo["Other"]);
+var amendFee = isASITrue(AInfo["New Cannabis Activity"]) || isASITrue(AInfo["Legal Entity Name Change"]) || isASITrue(AInfo["Business Premises Diagram"]) || isASITrue(AInfo["Business Premises Relocation"]) || isASITrue(AInfo["Ownership or Primary Changes"]) || isASITrue(AInfo["Other"]);
 
 if (appMatch("Licenses/Cannabis/Application Amendment/Application") && amendFee) {
 	logDebug("adding amendment fee");
