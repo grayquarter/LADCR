@@ -115,9 +115,10 @@ if (publicUser && appMatch("Licenses/Cannabis/Business/Application")) {
 	 }
  }
  
-if (appMatch("Licenses/Cannabis/Application Amendment/Application") && (getAppSpecific(("Do you have a BTRC Number?"), parentCapId) == "Yes")) {
+if (appMatch("Licenses/Cannabis/Application Amendment/Application") && (getAppSpecific(("Do you have a BTRC Number?"), parentCapId) == "Yes") || getAppSpecific(("Do you have a BTRC Number?"), parentCapId) == "Y") {
 
 editAppSpecific("BTRC Number", (AInfo["BTRC Number"], parentCapId));
 
 }
+
  
