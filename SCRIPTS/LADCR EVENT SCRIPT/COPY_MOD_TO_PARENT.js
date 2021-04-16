@@ -72,16 +72,14 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
         }
 
-    /*    if (isASITrue(AInfo["Legal Entity Name Change"])) {
-
+     if (isASITrue(AInfo["Legal Entity Name Change"])) {
             //legal busin name
-            
-           var capName = cap.getSpecialText(capId);
-            var AppName = getcapName(capId);
-            editcapName(AppName, parentCapId);
-            logDebug("Name = " + editcapName(capId));
+              var appName = getSpecialText(capId);
+            editAppName(appName, parentCapId);
+            logDebug("Name = " + editAppName(capId));
 
-        } */
+        }
+
 
         if (isASITrue(AInfo["Business Premises Relocation"])) {
             // create new parent record
