@@ -48,12 +48,13 @@ emailContacts_BCC
             //Appending Documents to the email
             if(arguments.length > 8) {
                 if(arguments[8] == true) {
-                    attachDocsEnv = "true"
+                    attachDocsEnv = 'true'
                 } else {
                     attachDocsEnv = 'false'
                 }
             }
-        
+         logDebug("Appending document to email: " + attachDocsEnv);
+       
         logDebug("Provided contact types to send to: " + sendEmailToContactTypes);
             
             //Check to see if provided contact type(s) is/are valid
