@@ -9,4 +9,4 @@
 	
 	//emailContacts_BCC("All", "DCR Eligible for Inspection Notice", vEParams, "Notice of Local Complianc as Doc", vRParams);
 	//emailContactsAttachDoc_BCC(sendEmailToContactTypes, emailTemplate, vEParams, reportTemplate, vRParams, vAddHocTask, vChangeReportName, vContactCapId, attachDocs) 
-	emailContactsAttachDoc_BCC("All", "DCR Eligible for Inspection Notice", vEParams, "Notice of Local Complianc as Doc", vRParams, null, null, true); //04/23/2021
+	emailContactsAttachDoc_BCC("All", "DCR Eligible for Inspection Notice", vEParams, "Notice of Local Complianc as Doc", vRParams, "N", null, true); //04/23/2021
