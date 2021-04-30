@@ -1,4 +1,4 @@
-	var checkTask = "";
+		var checkTask = "";
 	var deniedTask = "Not Found";
 
 	// find the last task that denied and return
@@ -36,7 +36,7 @@
 	
 	function checkDenied(pTask) {
 		var checkStatus = taskStatus(pTask);
-		if (matches(checkStatus,"Abandoned","Inspection Timeout - No Activity","Temporary Denied","Void","Withdrawn"))
+		if (matches(checkStatus,"Abandoned","Inspection Timeout - No Activity","Temporary Denied","Tempoary Denied","Void","Withdrawn"))
 			return true;
 		else
 			return false;
