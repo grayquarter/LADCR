@@ -1,4 +1,4 @@
-		var checkTask = "";
+	var checkTask = "";
 	var deniedTask = "Not Found";
 
 	// find the last task that denied and return
