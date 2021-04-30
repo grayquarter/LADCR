@@ -1,29 +1,43 @@
-	//reactivate task after CRC Appeal
-	var checkTask = "Supervisor Temp Review";
-	var checkStatus = taskStatus(checkTask);
+	var checkTask = "";
 	var deniedTask = "Not Found";
 
-	if (matches(checkStatus,"Abandoned","Void","Withdrawn","Temporary Denied")) {
+	// find the last task that denied and return
+	checkTask = "Temp License Issued";
+	if (checkDenied(checkTask)) {
 		deniedTask = checkTask;
 	} else {
-		checkTask = "Initial Review";
-		checkStatus = taskStatus(checkTask);
-		
-		if (matches(checkStatus,"Abandoned","Void","Withdrawn","Temporary Denied")) {
-			deniedTask = checkTask;
-		} else {
-			checkTask = "Pre-Inspection Review";
-			checkStatus = taskStatus(checkTask);
-
-			if (matches(checkStatus,"Inspection Timeout - No Activity")) {
-				deniedTask = checkTask;
-			}
-		}
-	}
+	checkTask = "Pre-Inspection Review";
+	if (checkDenied(checkTask)) {
+		deniedTask = checkTask;
+	} else {
+	checkTask = "Supervisor Temp Review";
+	if (checkDenied(checkTask)) {
+		deniedTask = checkTask;
+	} else {
+	checkTask = "Temp App Review";
+	if (checkDenied(checkTask)) {
+		deniedTask = checkTask;
+	} else {
+	checkTask = "Supervisor Pre-App Document Review";
+	if (checkDenied(checkTask)) {
+		deniedTask = checkTask;
+	} else {
+	checkTask = "Pre-App Document Review";
+	if (checkDenied(checkTask)) {
+		deniedTask = checkTask;
+	}}}}}}
 	
 	if (deniedTask != "Not Found"){
 	  //branch to that task
 	  setTask(wfTask,"N","Y");
 	  activateTask(deniedTask);
 	  updateTask(deniedTask,"Denial Denied","Returned from " + wfTask,"Script ACTIVATE_DENIED_TASK");
+	}
+	
+	function checkDenied(pTask) {
+		var checkStatus = taskStatus(pTask);
+		if (matches(checkStatus,"Abandoned","Inspection Timeout - No Activity","Temporary Denied","Void","Withdrawn"))
+			return true;
+		else
+			return false;
 	}
