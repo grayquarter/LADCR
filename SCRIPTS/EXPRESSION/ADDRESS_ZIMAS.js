@@ -47,7 +47,11 @@ try {
 
 function getZimasDataFromAddress(street, nbr, dir) {
 
-	var addressURL = "http://zimas.lacity.org/zmaWS-DCR/zmaService.svc/GetZIMASAddress?";
+	var addressURL = lookup("Address_Verification_Interface_Settings", "ADDRESS_URL");
+    var apiKey = lookup("Address_Verification_Interface_Settings", "API_KEY");
+	var header = aa.httpClient.initPostParameters();
+	header.put("X-API-Key", apiKey);
+	header.put("Content-Type", "application/json");
 	//		appTypeAlias = vCap.getCapModel().getAppTypeAlias();
 	//		vLicenseObj = new licenseObject(null, capId);
 	var response = {};
@@ -75,7 +79,7 @@ function getZimasDataFromAddress(street, nbr, dir) {
 	var theUrl = encodeURI(addressURL + params.join("&"));
 	response.url = String(theUrl);
 
-	var vOutObj = aa.httpClient.get(theUrl);
+	var vOutObj = aa.httpClient.get(theUrl, header);
 
 	if (vOutObj.getSuccess()) {
 		var vOut = vOutObj.getOutput();
@@ -85,4 +89,19 @@ function getZimasDataFromAddress(street, nbr, dir) {
 
 		return vOutParsed;
 	}
+}
+
+function lookup(stdChoice,stdValue) {
+	var strControl;
+	var bizDomScriptResult = aa.bizDomain.getBizDomainByValue(stdChoice,stdValue);
+
+   	if (bizDomScriptResult.getSuccess()) {
+		var bizDomScriptObj = bizDomScriptResult.getOutput();
+		strControl = "" + bizDomScriptObj.getDescription(); // had to do this or it bombs.  who knows why?
+		aa.print("lookup(" + stdChoice + "," + stdValue + ") = " + strControl);
+	} else {
+		aa.print("lookup(" + stdChoice + "," + stdValue + ") does not exist");
+	}
+
+	return strControl;
 }
