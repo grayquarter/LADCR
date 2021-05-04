@@ -27,7 +27,7 @@
 				//aa.print("getDeptOfUser = " +  iName.getDeptOfUser() + ", getUserID = " + iName.getUserID() + ", getEmail = " + iName.getEmail());
 
 				emailSubject = "Civic Platform Task Needs Review";
-				emailMessage = "Supervisor returned your task '" + reviewTask + "' for further review. Please check the application.";
+				emailMessage = "Supervisor returned your task '" + reviewTask + "' for further review. Please check the application: " + capId.getCustomID();
 				email(iName.getEmail(),"dcrlicensing@lacity.org",emailSubject,emailMessage);
 				
 			}
