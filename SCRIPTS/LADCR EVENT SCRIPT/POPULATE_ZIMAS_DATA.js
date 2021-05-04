@@ -19,8 +19,12 @@ function populateZimasData(theData) {
 function getZimasDataFromAddress() {
 
 	try {
-	var addressURL = "http://zimas.lacity.org/zmaWS-DCR/zmaService.svc/GetZIMASAddress?";
-	var dataURL = "http://zimas.lacity.org/zmaWS-1.0/zmaService.svc/GetZIMASDataByPINAndAPN?";
+	var addressURL = lookup("Address_Verification_Interface_Settings", "ADDRESS_URL");
+	var dataURL = lookup("Address_Verification_Interface_Settings", "DATA_URL");
+	var header = aa.httpClient.initPostParameters();
+	var apiKey = lookup("Address_Verification_Interface_Settings", "API_KEY")
+	header.put("X-API-Key", apiKey);
+	header.put("Content-Type", "application/json");
 	var dataCount = 0;
 	var altId = capId.getCustomID();
 	//		appTypeAlias = vCap.getCapModel().getAppTypeAlias();
@@ -59,7 +63,7 @@ function getZimasDataFromAddress() {
 	var theUrl = encodeURI(addressURL + params.join("&"));
 	response.url = String(theUrl);
 
-	var vOutObj = aa.httpClient.get(theUrl);
+	var vOutObj = aa.httpClient.get(theUrl, header);
 
 	if (vOutObj.getSuccess()) {
 		var vOut = vOutObj.getOutput();
@@ -76,7 +80,7 @@ function getZimasDataFromAddress() {
 		theUrl = encodeURI(dataURL + "PIN=" + String(vOutParsed[0].PIN));
 		response.dataurl = String(theUrl);
 
-		var vOutObj = aa.httpClient.get(theUrl);
+		var vOutObj = aa.httpClient.get(theUrl, header);
 
 		if (vOutObj.getSuccess()) {
 			var vOut = vOutObj.getOutput();
