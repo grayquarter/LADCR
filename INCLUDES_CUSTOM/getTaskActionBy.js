@@ -24,6 +24,7 @@ function getTaskActionBy(wfstr) // optional process name.
 		if ((fTask.getTaskDescription().toUpperCase().equals(wfstr.toUpperCase()) || wfstr == "*") && (!useProcess || fTask.getProcessCode().equals(processName))) {
 			var taskItem = fTask.getTaskItem();
 			var vStaffUser = aa.cap.getStaffByUser(taskItem.getSysUser().getFirstName(),taskItem.getSysUser().getMiddleName(),taskItem.getSysUser().getLastName(),taskItem.getSysUser().toString()).getOutput(); 
+			logDebug("vStaffUser: " + vStaffUser);
 			return vStaffUser.getUserID();
 		}
 	}
