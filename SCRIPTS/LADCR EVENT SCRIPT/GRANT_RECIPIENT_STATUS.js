@@ -1,4 +1,5 @@
-var myCapId = "LA-P-21-000677-Q";
+//var myCapId = "LA-P-21-000677-Q";
+var myCapId = "x";
 var myUserId = "ADMIN";
 var eventName = "test";
 /* CTRCA  */  //var eventName = "ConvertToRealCapAfter";
@@ -28,26 +29,58 @@ logDebug(c.asi["label name"])*/
 try {
     showDebug = true;
 
-    
-    var contactObj = getContactObj(capId, "Social Equity Owner");
-    logDebug("<br> Grant Recipient Status: ")
-    logDebug(contactObj.getAttribute("Grant Recipient Status"))
-    logDebug("<br> Grant Recipient: ")
-    logDebug(contactObj.getAttribute("Grant Recipient"))
-
-    if(contactObj.getAttribute("Grant Recipient Status") || contactObj.getAttribute("Grant Recipient")) {
-        logDebug("Reached")
+    var recieved = false;
+    var refContactNbr = ContactObj.refSeqNumber;
+    if(ContactObj.getAttribute("Grant Recipient Status")) {
+        editAppSpecific("Grant Recipient", "Yes");
+        editAppSpecific("Grant Recipient Reference Contact ID", refContactNbr);
+        var asi1 = getAppSpecific("Grant Recipient", capId);
+        var asi2= getAppSpecific("Grant Recipient Reference Contact ID", capId);
+        recieved = true;
+        logDebug("Set ASI values to 'Yes' and " + refContactNbr + " grant status recieved: " + recieved);
     } else {
-        logDebug("Both null")
-        AInfo["Grant Recipient"] = "Y"
-        AInfo["Grant Recipient Reference Contact ID"] = null;
-        var asi1 = getAppSpecific("Grant Recipient", capId)
-        var asi2= getAppSpecific("Grant Recipient Reference Contact ID", capId)
-        logDebug(asi1)
-        logDebug(asi2)
+        editAppSpecific("Grant Recipient", "No");
+        editAppSpecific("Grant Recipient Reference Contact ID", "");
+        recieved = false;
+        logDebug("Set ASI values to 'No' and '' grant status recieved: " + recieved);
     }
 
+    if (refContactNbr && refContactNbr != "") {
+        refConResult = aa.people.getPeople(refContactNbr);
+        if (refConResult.getSuccess()) {
+                refPeopleModel = refConResult.getOutput();
+                refAttrResult = aa.people.getPeopleAttributeByPeople(refContactNbr, refPeopleModel.getContactType());
+                if (refAttrResult.getSuccess()) {
+                    refAttr = refAttrResult.getOutput();
+                    for (var i in refAttr) {
+                        item = refAttr[i];
+                        if ("GRANT RECIPIENT".equals(item.getAttributeName())) {
+                            if(recieved) {
+                                item.setAttributeValue("Yes");
+                                logDebug("Set contact attribute to Yes");
+                            } else {
+                                item.setAttributeValue("No");
+                                logDebug("Set contact attribute to No");
+                            }
+                            paEditResult = aa.people.editPeopleAttribute(item.getPeopleAttributeModel());
+                            if (!paEditResult.getSuccess()) {
+                                retValue =  "failure - attribute edit failed " + paEditResult.getErrorMessage();
+                            } else {
+                                logDebug("Changed " + refContactNbr);
+                            }
+                        }
+                    }
+                } else { 
+                    retValue =  "failure - failed to get attributes " + refAttrResult.getErrorMessage();
+                }
+        } else { 
+            retValue =  "failure - failed to retrieve contact " + refConResult.getErrorMessage();
+        }
+    } else { 
+        retValue =  "failure - reference contact number not passed";
+    }
 
+    logDebug(retValue);
 
 } catch (err) {
     logDebug("A JavaScript Error occured: " + err.message + " at line " + err.lineNumber + " stack: "+ err.stack);
@@ -55,36 +88,5 @@ try {
 // end user code
 aa.env.setValue("ScriptReturnCode", "0");   aa.env.setValue("ScriptReturnMessage", debug)
 
-function describe(obj) {
-	var ret = "";
-	for (var i in obj)
-		if (typeof(obj[i]) == "function")
-			ret += "method:" + i + "\n";
-		else
-			ret += "property:" + i + " = " + obj[i] + "\n";
-	return ret;
-}
 
-function slack(msg) {
-	
-	var headers=aa.util.newHashMap();
-
-    headers.put("Content-Type","application/json");
-	
-    var body = {};	
-	body.text = aa.getServiceProviderCode() + ":" + "TEST" + ": " + msg;
-
-	 var SLACKURL = "https://hooks.slack.com/services/";
-	 SLACKURL = SLACKURL + "T5BS1375F/";
-	 SLACKURL = SLACKURL + "BG09GQ3RS/NUs694ouyawHoAFK4jJXwn1p";
-	 
-    var apiURL = SLACKURL;  // from globals
-	
-	
-    var result = aa.httpClient.post(apiURL, headers, JSON.stringify(body));
-    if (!result.getSuccess()) {
-        logDebug("Slack get anonymous token error: " + result.getErrorMessage());
-	} else {	
-		aa.print("Slack Results: " + result.getOutput());
-    }
-}
+    
