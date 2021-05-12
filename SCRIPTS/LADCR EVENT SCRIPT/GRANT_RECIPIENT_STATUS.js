@@ -1,12 +1,7 @@
 var recieved = false;
-var refContactNbr = ContactObj.refSeqNumber;
-logDebug(ContactObj)
-for(var i in ContactObj) {
-    var stuff = ContactObj[i]
-    logDebug(stuff)
-}
-
-if(ContactObj.getAttribute("Grant Recipient Status")) {
+var refContactNbr = ContactObj.getRefContactNumber();
+logDebug("refContactNbr: " + refContactNbr);
+if(ContactAttr["GRANT RECIPIENT STATUS"]) {
     editAppSpecific("Grant Recipient", "Yes");
     editAppSpecific("Grant Recipient Reference Contact ID", refContactNbr);
     var asi1 = getAppSpecific("Grant Recipient", capId);
