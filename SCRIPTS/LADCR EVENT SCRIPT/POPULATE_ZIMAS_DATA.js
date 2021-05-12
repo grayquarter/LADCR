@@ -101,6 +101,12 @@ function getZimasDataFromAddress() {
 						}
 						if ("Council District".equals(jurisData.Value[i].Description)) {
 							response.data["Council District"] = String(jurisData.Value[i].Value);
+							var councilDist = String(jurisData.Value[i].Value);
+							if (councilDist.indexOf("-") > 0) {
+								councilDist = councilDist.slice(0,councilDist.indexOf("-")-1)
+								//logDebug("councilDist = '" + councilDist + "'");
+								response.data["Council District"] = councilDist;
+							}
 						}
 						if ("Neighborhood Council".equals(jurisData.Value[i].Description)) {
 							response.data["Neighborhood Council"] = String(jurisData.Value[i].Value);

@@ -36,7 +36,7 @@
 	
 	function checkDenied(pTask) {
 		var checkStatus = taskStatus(pTask);
-		if (matches(checkStatus,"Abandoned","Inspection Timeout - No Activity","Temporary Denied","Tempoary Denied","Void","Withdrawn"))
+		if (matches(checkStatus,"Abandoned","Ineligible","Inspection Timeout - No Activity","Temporary Denied","Tempoary Denied","Void","Withdrawn"))
 			return true;
 		else
 			return false;
