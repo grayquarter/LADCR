@@ -7,7 +7,7 @@ for (xx1 in pa){
     ContactAttr[pa[xx1].attributeName] = pa[xx1].attributeValue;
     logDebug("ContactAttr[\"" + pa[xx1].attributeName + "\"] = " + pa[xx1].attributeValue);
 }
-if(!("".equals(ContactAttr["GRANT RECIPIENT STATUS"]))) {
+if(!(matches(ContactAttr["GRANT RECIPIENT STATUS"]),null,undefined,"")) {
     editAppSpecific("Grant Recipient", "Yes");
     editAppSpecific("Grant Recipient Reference Contact ID", refContactNbr);
     var asi1 = getAppSpecific("Grant Recipient", capId);
