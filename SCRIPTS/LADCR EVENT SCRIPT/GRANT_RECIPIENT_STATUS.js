@@ -1,5 +1,17 @@
 var recieved = false;
 var refContactNbr = ContactObj.getRefContactNumber();
+logDebug("<br>")
+logDebug("ContactAttrObj")
+for(var i in ContactAttrObj) {
+    logDebug(ContactAttrObj[i]);
+}
+logDebug("<br>")
+logDebug("<br>")
+logDebug("ContactObj")
+for (var x in ContactObj) {
+    logDebug(ContactObj[x])
+}
+logDebug("<br>")
 logDebug("refContactNbr: " + refContactNbr);
 if(ContactAttr["GRANT RECIPIENT STATUS"]) {
     editAppSpecific("Grant Recipient", "Yes");
