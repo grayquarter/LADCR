@@ -2,21 +2,22 @@ var recieved = false;
 var refContactNbr = ContactObj.getRefContactNumber();
 var ContactAttr = new Array();
 var pa = ContactObj.getPeople().getAttributes().toArray();
+var retValue = "Finished.";
 for (xx1 in pa){
     ContactAttr[pa[xx1].attributeName] = pa[xx1].attributeValue;
     logDebug("ContactAttr[\"" + pa[xx1].attributeName + "\"] = " + pa[xx1].attributeValue);
 }
-if(ContactAttr["GRANT RECIPIENT STATUS"]) {
+if(!("".equals(ContactAttr["GRANT RECIPIENT STATUS"]))) {
     editAppSpecific("Grant Recipient", "Yes");
     editAppSpecific("Grant Recipient Reference Contact ID", refContactNbr);
     var asi1 = getAppSpecific("Grant Recipient", capId);
     var asi2= getAppSpecific("Grant Recipient Reference Contact ID", capId);
     recieved = true;
-    logDebug("Set ASI values to 'Yes' and " + refContactNbr + " grant status recieved: " + recieved);
+    logDebug("Set ASI values Grant Recipient to 'Yes' and Grant Recipient Reference Contact ID to " + refContactNbr + ", Grant status recieved: " + recieved);
 } else {
     editAppSpecific("Grant Recipient", "No");
     editAppSpecific("Grant Recipient Reference Contact ID", "");
-       recieved = false;
+    recieved = false;
     logDebug("Set ASI values to 'No' and '' grant status recieved: " + recieved);
 }
 
