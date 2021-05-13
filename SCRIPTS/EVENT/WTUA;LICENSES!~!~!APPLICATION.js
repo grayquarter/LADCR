@@ -22,7 +22,9 @@ if (wfTask.equals("PCN Waiting for Council") && wfStatus.equals("PCN Approved"))
 //Pre-App Branch 21.01.12
 if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Eligible for Processing")) {
 	// turn Pre-App into a temp app
+	var capIDStringSave = capIDString;
 	include("UPDATE_PRE-APP_TO_APP");
+	capIDString = capIDStringSave;
 	include("ASSESS_BUS_APP_ACTIVITY_FEES");
 	updateFee("F100", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Fire Inspection Fee
 	include("SEND_PREAPP_APPROVAL_NOTICE");
