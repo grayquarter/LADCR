@@ -1,18 +1,11 @@
 var recieved = false;
 var refContactNbr = ContactObj.getRefContactNumber();
-logDebug("<br>")
-logDebug("ContactAttrObj")
-for(var i in ContactAttrObj) {
-    logDebug(ContactAttrObj[i]);
+var ContactAttr = new Array();
+var pa = ContactObj.getPeople().getAttributes().toArray();
+for (xx1 in pa){
+    ContactAttr[pa[xx1].attributeName] = pa[xx1].attributeValue;
+    logDebug("ContactAttr[\"" + pa[xx1].attributeName + "\"] = " + pa[xx1].attributeValue);
 }
-logDebug("<br>")
-logDebug("<br>")
-logDebug("ContactObj")
-for (var x in ContactObj) {
-    logDebug(ContactObj[x])
-}
-logDebug("<br>")
-logDebug("refContactNbr: " + refContactNbr);
 if(ContactAttr["GRANT RECIPIENT STATUS"]) {
     editAppSpecific("Grant Recipient", "Yes");
     editAppSpecific("Grant Recipient Reference Contact ID", refContactNbr);
