@@ -5,6 +5,8 @@ logDebug("Updated record id to " + newId);
 //Create child activity record
 include("CREATE_ACTIVITY_RECS_FROM_PREAPP");
 
+capIDString = newId;
+
 //Fees – applied to parent (defined)
 
 //Notify applicant – Your application is eligible for…
