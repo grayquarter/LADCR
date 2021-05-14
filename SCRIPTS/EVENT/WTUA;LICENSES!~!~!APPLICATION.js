@@ -25,7 +25,6 @@ if (wfTask.equals("Supervisor Pre-App Document Review") && wfStatus.equals("Elig
 	include("UPDATE_PRE-APP_TO_APP");
 	include("ASSESS_BUS_APP_ACTIVITY_FEES");
 	updateFee("F100", "CAN_BUS_APP", "FINAL", 1, "Y", null,null,capId); //Fire Inspection Fee
-	capIDString = capId.getCustomID();
 	include("SEND_PREAPP_APPROVAL_NOTICE");
 }	
 
