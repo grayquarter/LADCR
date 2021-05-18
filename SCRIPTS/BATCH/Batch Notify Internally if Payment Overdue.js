@@ -160,7 +160,7 @@ try {
 	
 			if (!capResult.getSuccess()) 
 			{
-				logDebug(altId + ": Record is deactivated, skipping");
+				logDebug(capId.getCustomID() + ": Record is deactivated, skipping");
 				continue;
 			} else {
 				var cap = capResult.getOutput();
