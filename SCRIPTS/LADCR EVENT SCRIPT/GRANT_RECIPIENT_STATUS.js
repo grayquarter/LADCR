@@ -1,6 +1,9 @@
 if (matches(contactType, "Social Equity Owner")) {
     var recieved = false;
     var refContactNbr = ContactObj.getRefContactNumber();
+    //Script Test
+    //var refContactNbr = ContactObj.refSeqNumber;
+    //ContactObj = ContactObj.capContact;
     var ContactAttr = new Array();
     var pa = ContactObj.getPeople().getAttributes().toArray();
     var retValue = "Finished.";
@@ -16,10 +19,15 @@ if (matches(contactType, "Social Equity Owner")) {
         recieved = true;
         logDebug("Set ASI values Grant Recipient to 'Yes' and Grant Recipient Reference Contact ID to " + refContactNbr + ", Grant status recieved: " + recieved);
     } else {
-        editAppSpecific("Grant Recipient", "No");
-        editAppSpecific("Grant Recipient Reference Contact ID", "");
-        recieved = false;
-        logDebug("Set ASI values to 'No' and '' grant status recieved: " + recieved);
+        var recievedStatus = getAppSpecific("Grant Recipient", capId);
+        if(!("Yes".equals(recievedStatus))) {
+            editAppSpecific("Grant Recipient", "No");
+            editAppSpecific("Grant Recipient Reference Contact ID", "");
+            recieved = false;
+            logDebug("Set ASI values to 'No' and '' grant status recieved: " + recieved);
+        } else {
+            logDebug("No need to change ASI fields because Grant status has already been set for this record.");
+        }
     }
 
     if (refContactNbr && refContactNbr != "") {
