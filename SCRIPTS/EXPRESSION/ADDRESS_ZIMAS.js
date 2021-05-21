@@ -11,35 +11,54 @@ var vDirection = expression.getValue("ADDR::addressesModel*streetDirection");
 var vZip = expression.getValue("ADDR::addressesModel*zip");
 var vCity = expression.getValue("ADDR::addressesModel*city");
 var vState = expression.getValue("ADDR::addressesModel*state");
+var addrForm = expression.getValue("ADDR::FORM");
 
 var message = "";
 try {
 	if (vStreetNbr.value != "" && vStreetName.value != "") { 
 		
-		var data = getZimasDataFromAddress(vStreetName.value, vStreetNbr.value, vDirection.value);
-
+		var response = getZimasDataFromAddress(vStreetName.value, vStreetNbr.value, vDirection.value);
+		var data = response.addressResults;
+		var communityData = response.data;
+		var checkCPA = null;
+		if(communityData) {
+			var communityPlanningArea = communityData["Community Plan Area"];
+			checkCPA = lookup("UNDUE_CONCENTRATION", communityPlanningArea);
+		}
+		
 		if (data && data.length > 0) {
 			if (data.length > 1) {
 				vStreetName.message = "Address has " + data.length + " matches. Please try adding a street direction";
 			} else {
-				//vStreetName.message = "Zimas Data: " + JSON.stringify(data[0])
-				vStreetName.message = "Address validated";
-				vZip.value = data[0].ZIP;
-				expression.setReturn(vZip);
-				vStreetName.value = vStreetName.value.toUpperCase();
-				vDirection.value = vDirection.value.toUpperCase();
-				expression.setReturn(vDirection);
-				vCity.value = "LOS ANGELES";
-				expression.setReturn(vCity);
-				vState.value = "CA";
-				expression.setReturn(vState);
-				
+				if(!!checkCPA) {
+					logDebug("We found a lookup for this.");
+					addrForm.blockSubmit = true;
+					addrForm.message = "Applicants seeking to engage in Retail, Cultivation and Volatile-Manufacturing Commercial Cannabis Activity in a CPA that is unduly concentrated are required to file a request that the City Council find that approval of the License application would serve a public convenience or necessity (PCN) supported by evidence in the record pursuant to LAMC Section 104.03(a)(4)."
+					expression.setReturn(vStreetName);
+					expression.setReturn(addrForm.message);
+				} else {
+					addrForm.message = "The Community Plan Area (CPA) that you have selected has not reached Undue Concentration under Los Angeles Municipal Code (LAMC) Section 104.01(a)(48). An area is considered unduly concentrated when DCR issues the maximum number of these license types in that CPA.";
+					addrForm.blockSubmit = false;
+					expression.setReturn(addrForm.message);
+					//vStreetName.message = "Zimas Data: " + JSON.stringify(data[0])
+					vStreetName.message = "Address validated";
+					vZip.value = data[0].ZIP;
+					logDebug(data[0].ZIP);
+					expression.setReturn(vZip);
+					vStreetName.value = vStreetName.value.toUpperCase();
+					vDirection.value = vDirection.value.toUpperCase();
+					expression.setReturn(vDirection);
+					vCity.value = "LOS ANGELES";
+					expression.setReturn(vCity);
+					vState.value = "CA";
+					expression.setReturn(vState);
 				}
+			}
 		} else {
 			vStreetName.message = "No matching address found";
 		}
-		expression.setReturn(vStreetName);
-	}
+		expression.setReturn(vStreetName.message);
+    }
 } catch (err) {
 	vStreetName.message = "Zimas Error: " + err.message;
 	expression.setReturn(vStreetName);
@@ -49,6 +68,7 @@ function getZimasDataFromAddress(street, nbr, dir) {
 
 	var addressURL = lookup("Address_Verification_Interface_Settings", "ADDRESS_URL");
     var apiKey = lookup("Address_Verification_Interface_Settings", "API_KEY");
+	var dataURL = lookup("Address_Verification_Interface_Settings", "DATA_URL");
 	var header = aa.httpClient.initPostParameters();
 	header.put("X-API-Key", apiKey);
 	header.put("Content-Type", "application/json");
@@ -56,6 +76,7 @@ function getZimasDataFromAddress(street, nbr, dir) {
 	//		vLicenseObj = new licenseObject(null, capId);
 	var response = {};
 	var params = [];
+	var vOutParsed = null;
 
 	/*
 	1.	HseNum
@@ -85,14 +106,14 @@ function getZimasDataFromAddress(street, nbr, dir) {
 		var vOut = vOutObj.getOutput();
 		//  aa.print(vOut);
 		// not sure if we need this JSON.parse, getOutput might do this already
-		var vOutParsed = JSON.parse(vOut);
+		vOutParsed = JSON.parse(vOut);
 		logDebug("returned " + vOutParsed.length + " results");
-		response.addressResults = String(vOutParsed.length);
+		response.addressResults = vOutParsed;
 		//return vOutParsed;
 	}
 
 	// only get ZIMAS data if we have a known good address
-	if (vOutParsed.length == 1) {
+	if (vOutParsed && vOutParsed.length == 1) {
 
 		theUrl = encodeURI(dataURL + "PIN=" + String(vOutParsed[0].PIN));
 		response.dataurl = String(theUrl);
