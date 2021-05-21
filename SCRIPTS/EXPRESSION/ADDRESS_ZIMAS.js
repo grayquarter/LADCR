@@ -35,11 +35,11 @@ try {
 					addrForm.blockSubmit = true;
 					addrForm.message = "Applicants seeking to engage in Retail, Cultivation and Volatile-Manufacturing Commercial Cannabis Activity in a CPA that is unduly concentrated are required to file a request that the City Council find that approval of the License application would serve a public convenience or necessity (PCN) supported by evidence in the record pursuant to LAMC Section 104.03(a)(4)."
 					expression.setReturn(vStreetName);
-					expression.setReturn(addrForm.message);
+					expression.setReturn(addrForm);
 				} else {
 					addrForm.message = "The Community Plan Area (CPA) that you have selected has not reached Undue Concentration under Los Angeles Municipal Code (LAMC) Section 104.01(a)(48). An area is considered unduly concentrated when DCR issues the maximum number of these license types in that CPA.";
 					addrForm.blockSubmit = false;
-					expression.setReturn(addrForm.message);
+					expression.setReturn(addrForm);
 					//vStreetName.message = "Zimas Data: " + JSON.stringify(data[0])
 					vStreetName.message = "Address validated";
 					vZip.value = data[0].ZIP;
