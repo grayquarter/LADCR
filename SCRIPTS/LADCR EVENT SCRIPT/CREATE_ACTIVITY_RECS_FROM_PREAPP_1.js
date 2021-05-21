@@ -1,5 +1,5 @@
 //Start - CREATE_ACTIVITY_RECS_FROM_PREAPP_1 Script
-//Update: 05/20/2021:05:40 PM
+//Update: 05/21/2021:12:15 PM
 
 var childSuffixArray = [];
 var clearASIArray = [];
@@ -119,7 +119,45 @@ for (var i in childSuffixArray) {
 	}
 	if (alreadyExists) {continue;}
 
-    var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
+    //var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
+	// creates the new application and assigns the capID object
+
+	var itemCap = capId
+	//if (arguments.length > 5) itemCap = arguments[5]; // use cap ID specified in args
+	
+	var grp = rt[0];
+	var typ = rt[1];
+	var stype = rt[2];
+	var cat = rt[3];
+	var desc = "";
+
+	var appCreateResult = aa.cap.createApp(grp,typ,stype,cat,desc);
+	logDebug("creating cap " + grp + "/" + typ + "/" + stype + "/" + cat);
+	if (appCreateResult.getSuccess())
+	{
+		var newId = appCreateResult.getOutput();
+		logDebug("cap " + grp + "/" + typ + "/" + stype + "/" + cat + " created successfully ");
+		
+		// create Detail Record
+		capModel = aa.cap.newCapScriptModel().getOutput();
+		capDetailModel = capModel.getCapModel().getCapDetailModel();
+		capDetailModel.setCapID(newId);
+		aa.cap.createCapDetail(capDetailModel);
+
+		var newObj = aa.cap.getCap(newId).getOutput();	//Cap object
+		var result = aa.cap.createAppHierarchy(itemCap, newId); 
+		if (result.getSuccess())
+			logDebug("Child application successfully linked");
+		else
+			logDebug("Could not link applications");
+
+		childId = newId;
+	}
+	else
+	{
+		logDebug( "**ERROR: adding child App: " + appCreateResult.getErrorMessage());
+	}
+	// end create child
 
     //Copy ASI from child to license
     // TODO: only certain fields?
