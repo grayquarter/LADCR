@@ -31,7 +31,7 @@ try {
 				vStreetName.message = "Address has " + data.length + " matches. Please try adding a street direction";
 			} else {
 				if(!!checkCPA) {
-					logDebug("We found a lookup for this.");
+					//logDebug("We found a lookup for this.");
 					addrForm.blockSubmit = true;
 					addrForm.message = "Applicants seeking to engage in Retail, Cultivation and Volatile-Manufacturing Commercial Cannabis Activity in a CPA that is unduly concentrated are required to file a request that the City Council find that approval of the License application would serve a public convenience or necessity (PCN) supported by evidence in the record pursuant to LAMC Section 104.03(a)(4)."
 					expression.setReturn(vStreetName);
@@ -43,7 +43,7 @@ try {
 					//vStreetName.message = "Zimas Data: " + JSON.stringify(data[0])
 					vStreetName.message = "Address validated";
 					vZip.value = data[0].ZIP;
-					logDebug(data[0].ZIP);
+					//logDebug(data[0].ZIP);
 					expression.setReturn(vZip);
 					vStreetName.value = vStreetName.value.toUpperCase();
 					vDirection.value = vDirection.value.toUpperCase();
@@ -107,7 +107,7 @@ function getZimasDataFromAddress(street, nbr, dir) {
 		//  aa.print(vOut);
 		// not sure if we need this JSON.parse, getOutput might do this already
 		vOutParsed = JSON.parse(vOut);
-		logDebug("returned " + vOutParsed.length + " results");
+		//("returned " + vOutParsed.length + " results");
 		response.addressResults = vOutParsed;
 		//return vOutParsed;
 	}
@@ -125,7 +125,7 @@ function getZimasDataFromAddress(street, nbr, dir) {
 			var vOutParsed = JSON.parse(vOut);
 			if (vOutParsed.length > 0) {
 
-				logDebug("we have data");
+				//logDebug("we have data");
 				response.data = {};
 				//var addrData = vOutParsed[0].Value.ZIMASDataTabs[0];
 				var jurisData = vOutParsed[0].Value.ZIMASDataTabs[1];
