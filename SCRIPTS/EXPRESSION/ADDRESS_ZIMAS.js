@@ -57,7 +57,7 @@ try {
 		} else {
 			vStreetName.message = "No matching address found";
 		}
-		expression.setReturn(vStreetName.message);
+		expression.setReturn(vStreetName);
     }
 } catch (err) {
 	vStreetName.message = "Zimas Error: " + err.message;
