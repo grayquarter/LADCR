@@ -87,15 +87,24 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             if (newId) {
                 logDebug("New Application Record created: " + newId.getCustomID());
                 newCap = aa.cap.getCap(newId).getOutput();
+                
                 logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(), newId).getSuccess());
                 // deprecate old app - is this all we have to do?
+
+                if (parentCapId != appStatus("Temporarily Approved")) {
                 updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
+                }
 
                 holdId = capId;
                 capId = newId;
                 closeTask("Application Acceptance", "NA", "Closed by COPY TO MOD", "");
+                closeTask("Pre-App Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("Supervisor Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
                 logDebug("Closing Workflow Task: " + newId);
                 activateTask("Temp App Review");
+                UPDATE_PRE-APP_TO_APP();
+                COPY_APP_TO_RENEWAL(parentCapId);
                 logDebug("Activating: " + newId);
                 capId = holdId;
                 updateAppStatus("Eligible for Processing", "", newId);
