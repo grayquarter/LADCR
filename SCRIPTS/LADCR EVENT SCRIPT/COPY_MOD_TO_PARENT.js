@@ -91,7 +91,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                 logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(), newId).getSuccess());
                 // deprecate old app - is this all we have to do?
 
-                if (parentCapId != appStatus("Temporarily Approved")) {
+                if (parentCapId != capStatus("Temporarily Approved")) {
                 updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
                 }
 
