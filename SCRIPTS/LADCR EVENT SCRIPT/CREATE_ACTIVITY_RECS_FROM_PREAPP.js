@@ -1,11 +1,11 @@
 //Start - CREATE_ACTIVITY_RECS_FROM_PREAPP Script
-//Update: 01/28/2021:02:50 PM
+//Update: 05/24/2021:09:25 AM
 
 var childSuffixArray = [];
 var clearASIArray = [];
 
 // CREATE CHILD RECORDS HERE
-var rt = ["Licenses", "Cannabis", "Business", "Application"];
+var rt = ["Licenses", "Cannabis", "Business", "Activity"];
 
 var aList = ["Adult-Use Cultivation Medium Indoor",
     "Adult-Use Cultivation Small Indoor",
@@ -59,26 +59,28 @@ if (matches("CHECKED", AInfo["Adult-Use Manufacturer Level 2"], AInfo["Medical M
 } 
 
 // Delivery
-if (matches("CHECKED", AInfo["Delivery Only"])) {
-    childSuffixArray.push("Q");
-    clearASIArray["Q"] = removeElements(aList.slice(), ["Delivery Only"]);
-} else {
+//if (matches("CHECKED", AInfo["Delivery Only"])) {
+//    childSuffixArray.push("Q");
+//    clearASIArray["Q"] = removeElements(aList.slice(), ["Delivery Only"]);
+//} else {
     if (matches("CHECKED", AInfo["Adult-Use Delivery Only"], AInfo["Medical Delivery Only"])) {
         childSuffixArray.push("Q");
         clearASIArray["Q"] = removeElements(aList.slice(), ["Adult-Use Delivery Only", "Medical Delivery Only"]);
+		//logDebug("Clearing Deliveries");
     }
-}
+//}
 
 // Retail
-if (matches("CHECKED", AInfo["Retail"])) {
-    childSuffixArray.push("R");
-    clearASIArray["R"] = removeElements(aList.slice(), ["Retail"]);
-} else {
+//if (matches("CHECKED", AInfo["Retail"])) {
+//    childSuffixArray.push("R");
+//    clearASIArray["R"] = removeElements(aList.slice(), ["Retail"]);
+//} else {
     if (matches("CHECKED", AInfo["Adult-Use Retail"], AInfo["Medical Retail"], AInfo["Adult-Use Microbusiness"], AInfo["Medical Microbusiness"])) {
         childSuffixArray.push("R");
         clearASIArray["R"] = removeElements(aList.slice(), ["Adult-Use Retail", "Medical Retail", "Adult-Use Microbusiness", "Medical Microbusiness"]);
+		//logDebug("Clearing Retails");
     }
-}
+//}
 
 // Misc Y/N selections
 if (matches("Y", String(AInfo["Nursery"]).substr(0,1).toUpperCase())) {
@@ -91,6 +93,7 @@ if (matches("Y", String(AInfo["Testing"]).substr(0,1).toUpperCase())) {
     clearASIArray["T"] = removeElements(aList.slice(), ["Testing"]);
 
 }
+logDebug("childSuffixArray = " + childSuffixArray);
 
 // refresh as alt id has likely changed
 var itemCapId = aa.cap.getCapID(capId.getID1(),capId.getID2(),capId.getID3()).getOutput();
@@ -119,12 +122,51 @@ for (var i in childSuffixArray) {
 	}
 	if (alreadyExists) {continue;}
 
-    var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
+    //var childId = createChild(rt[0], rt[1], rt[2], rt[3], "");
+	// creates the new application and assigns the capID object
+
+	var itemCap = capId
+	//if (arguments.length > 5) itemCap = arguments[5]; // use cap ID specified in args
+	
+	var grp = rt[0];
+	var typ = rt[1];
+	var stype = rt[2];
+	var cat = rt[3];
+	var desc = "";
+
+	var appCreateResult = aa.cap.createApp(grp,typ,stype,cat,desc);
+	logDebug("creating cap " + grp + "/" + typ + "/" + stype + "/" + cat);
+	if (appCreateResult.getSuccess())
+	{
+		var newId = appCreateResult.getOutput();
+		logDebug("cap " + grp + "/" + typ + "/" + stype + "/" + cat + " created successfully ");
+		
+		// create Detail Record
+		capModel = aa.cap.newCapScriptModel().getOutput();
+		capDetailModel = capModel.getCapModel().getCapDetailModel();
+		capDetailModel.setCapID(newId);
+		aa.cap.createCapDetail(capDetailModel);
+
+		var newObj = aa.cap.getCap(newId).getOutput();	//Cap object
+		var result = aa.cap.createAppHierarchy(itemCap, newId); 
+		if (result.getSuccess())
+			logDebug("Child application successfully linked");
+		else
+			logDebug("Could not link applications");
+
+		childId = newId;
+	}
+	else
+	{
+		logDebug( "**ERROR: adding child App: " + appCreateResult.getErrorMessage());
+	}
+	// end create child
 
     //Copy ASI from child to license
     // TODO: only certain fields?
     copyASIInfo(itemCapId, childId);
 
+/*********************************************
     //Copy ASIT from child to license
     copyASITables(itemCapId, childId);
 
@@ -132,6 +174,7 @@ for (var i in childSuffixArray) {
 
     //Copy Contacts from child to license
     copyContacts3_0(itemCapId, childId);
+*********************************************/
 
     //Copy Work Description from child to license
     aa.cap.copyCapWorkDesInfo(itemCapId, childId);
@@ -146,13 +189,15 @@ for (var i in childSuffixArray) {
 	// set child record status
 	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
 
+/************************************************
 	// set workflow task - added per Aaron 1/28/21
 	var capIdSave = capId;
 	capId = childId;
 	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
 	capId = capIdSave;
-	
+***********************************************/
+
     //use the suffix to give it a unique ID
     lacdUpdateAltID(childId, "ACTIVITY", itemCapId.getCustomID(), childSuffixArray[i]);
 
@@ -166,7 +211,6 @@ for (var i in childSuffixArray) {
 
     //End - Activity Record Creation/Update Script
 }
-
 
 function removeElements(array, elem) {
     for (var i in elem) {
