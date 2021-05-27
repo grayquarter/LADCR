@@ -101,11 +101,6 @@ if (wfTask.equals("Application Acceptance") && wfStatus.equals("Application Rece
 	// End Story 5135, 6083
 }
 
-// Interested Parites Notification - test
-//if (wfTask.equals("Initial Review") && wfStatus.equals("Recommend Annual Approved")) {
-//	include("SEND_EMAIL_TO_INTERESTED_PARTIES");
-//}
-
 //Begin script to send email to all owners in the Owner table
 //include("SEND_OWNER_EMAILS");
 //End script to send email to all owners in the Owner table
