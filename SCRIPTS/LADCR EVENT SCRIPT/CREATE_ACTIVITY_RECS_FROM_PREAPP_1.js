@@ -1,5 +1,5 @@
 //Start - CREATE_ACTIVITY_RECS_FROM_PREAPP_1 Script
-//Update: 05/21/2021:12:15 PM
+//Update: 05/24/2021:09:25 AM
 
 var childSuffixArray = [];
 var clearASIArray = [];
@@ -59,26 +59,28 @@ if (matches("CHECKED", AInfo["Adult-Use Manufacturer Level 2"], AInfo["Medical M
 } 
 
 // Delivery
-if (matches("CHECKED", AInfo["Delivery Only"])) {
-    childSuffixArray.push("Q");
-    clearASIArray["Q"] = removeElements(aList.slice(), ["Delivery Only"]);
-} else {
+//if (matches("CHECKED", AInfo["Delivery Only"])) {
+//    childSuffixArray.push("Q");
+//    clearASIArray["Q"] = removeElements(aList.slice(), ["Delivery Only"]);
+//} else {
     if (matches("CHECKED", AInfo["Adult-Use Delivery Only"], AInfo["Medical Delivery Only"])) {
         childSuffixArray.push("Q");
         clearASIArray["Q"] = removeElements(aList.slice(), ["Adult-Use Delivery Only", "Medical Delivery Only"]);
+		//logDebug("Clearing Deliveries");
     }
-}
+//}
 
 // Retail
-if (matches("CHECKED", AInfo["Retail"])) {
-    childSuffixArray.push("R");
-    clearASIArray["R"] = removeElements(aList.slice(), ["Retail"]);
-} else {
+//if (matches("CHECKED", AInfo["Retail"])) {
+//    childSuffixArray.push("R");
+//    clearASIArray["R"] = removeElements(aList.slice(), ["Retail"]);
+//} else {
     if (matches("CHECKED", AInfo["Adult-Use Retail"], AInfo["Medical Retail"], AInfo["Adult-Use Microbusiness"], AInfo["Medical Microbusiness"])) {
         childSuffixArray.push("R");
         clearASIArray["R"] = removeElements(aList.slice(), ["Adult-Use Retail", "Medical Retail", "Adult-Use Microbusiness", "Medical Microbusiness"]);
+		//logDebug("Clearing Retails");
     }
-}
+//}
 
 // Misc Y/N selections
 if (matches("Y", String(AInfo["Nursery"]).substr(0,1).toUpperCase())) {
@@ -91,6 +93,7 @@ if (matches("Y", String(AInfo["Testing"]).substr(0,1).toUpperCase())) {
     clearASIArray["T"] = removeElements(aList.slice(), ["Testing"]);
 
 }
+logDebug("childSuffixArray = " + childSuffixArray);
 
 // refresh as alt id has likely changed
 var itemCapId = aa.cap.getCapID(capId.getID1(),capId.getID2(),capId.getID3()).getOutput();
@@ -208,7 +211,6 @@ for (var i in childSuffixArray) {
 
     //End - Activity Record Creation/Update Script
 }
-
 
 function removeElements(array, elem) {
     for (var i in elem) {
