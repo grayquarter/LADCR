@@ -171,4 +171,23 @@ include("SEND_REVIEWER_NOTICE");
 //Testing...
 if (matches(currentUserID, "GHESS")){
 	logDebug("wfTask = " + wfTask + ", wfStatus = " + wfStatus); 
+	
+	var workflowResult = aa.workflow.getTasks(capId);
+    if (workflowResult.getSuccess()) 
+    {
+        var wfObj = workflowResult.getOutput();
+    } else 
+    {
+        logDebug("**ERROR: Failed to get workflow object: " + workflowResult.getErrorMessage());
+        return false;
+    }
+
+   for (var i in wfObj) 
+    {
+        var fTask = wfObj[i];
+        
+        logDebug("fTask.getTaskDescription() = " + fTask.getTaskDescription());
+        //if (fTask.getTaskDescription().toUpperCase().equals(wfstr.toUpperCase())) 
+    }
+
 }
