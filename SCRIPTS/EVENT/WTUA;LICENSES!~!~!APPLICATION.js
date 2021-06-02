@@ -169,6 +169,6 @@ include("SEND_REVIEWER_NOTICE");
 //End send reviewer notice
 
 //Testing...
-if (matches(currentUserID, “GHESS”)){
+if (matches(currentUserID, "GHESS")){
 	logDebug("wfTask = " + wfTask + ", wfStatus = " + wfStatus); 
 }
