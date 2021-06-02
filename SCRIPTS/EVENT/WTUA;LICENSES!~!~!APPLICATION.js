@@ -179,7 +179,7 @@ if (matches(currentUserID, "GHESS")){
     } else 
     {
         logDebug("**ERROR: Failed to get workflow object: " + workflowResult.getErrorMessage());
-        return false;
+        //return false;
     }
 
    for (var i in wfObj) 
