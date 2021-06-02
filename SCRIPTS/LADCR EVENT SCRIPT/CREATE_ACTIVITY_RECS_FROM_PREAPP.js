@@ -189,14 +189,14 @@ for (var i in childSuffixArray) {
 	// set child record status
 	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
 
-/************************************************
-	// set workflow task - added per Aaron 1/28/21
+/************************************************/
+	// set workflow task - added per Aaron 1/28/21, reset 6/1/21
 	var capIdSave = capId;
 	capId = childId;
 	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
 	capId = capIdSave;
-***********************************************/
+/***********************************************/
 
     //use the suffix to give it a unique ID
     lacdUpdateAltID(childId, "ACTIVITY", itemCapId.getCustomID(), childSuffixArray[i]);
