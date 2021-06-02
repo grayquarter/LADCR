@@ -167,3 +167,8 @@ if (wfTask.equals("Appeal Meeting") && wfStatus.equals("CRC Meeting Scheduled"))
 //Start send reviewer notice if returned from supervisor
 include("SEND_REVIEWER_NOTICE");
 //End send reviewer notice
+
+//Testing...
+if (matches(currentUserID, “GHESS”)){
+	logDebug("wfTask = " + wfTask + ", wfStatus = " + wfStatus); 
+}
