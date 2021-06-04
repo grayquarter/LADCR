@@ -168,9 +168,7 @@ if (wfTask.equals("Appeal Meeting") && wfStatus.equals("CRC Meeting Scheduled"))
 include("SEND_REVIEWER_NOTICE");
 //End send reviewer notice
 
-//Testing...
-if (matches(currentUserID, "GHESS")){
+//Sync Application and Activity records per Aaron and Rocky 5/25/2021
 if (appMatch("Licenses/Cannabis/Business/Application")){
 	include("UPDATE_ACTIVITY_WF_FROM_APPLICATION");
-}
 }
