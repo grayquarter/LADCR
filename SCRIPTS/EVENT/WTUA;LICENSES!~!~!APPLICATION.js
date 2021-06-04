@@ -170,5 +170,7 @@ include("SEND_REVIEWER_NOTICE");
 
 //Testing...
 if (matches(currentUserID, "GHESS")){
+if (appMatch("Licenses/Cannabis/Business/Application")){
 	include("UPDATE_ACTIVITY_WF_FROM_APPLICATION");
+}
 }
