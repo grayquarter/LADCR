@@ -90,9 +90,14 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                 
                 logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(), newId).getSuccess());
                 // deprecate old app - is this all we have to do?
-
-                if (parentCapId != appStatus("Temporarily Approved")) {
-                updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
+                var capObj;
+                pCapId = parentCapId;
+                if (pCapId) {
+                   capObj = aa.cap.getCap(pCapId).getOutput();
+                    PStatus = capObj.getCapStatus();
+                if (PStatus != "Temporarily Approved") {
+                    updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
+                            }
                 }
 
                 holdId = capId;
@@ -101,10 +106,13 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                 closeTask("Pre-App Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Supervisor Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("PCN Acceptance", "NA", "Closed by COPY TO MOD","");
+                closeTask("PCN Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("PCN Waiting for Council", "NA", "Closed by COPY TO MOD", "");
                 logDebug("Closing Workflow Task: " + newId);
                 activateTask("Temp App Review");
-                UPDATE_PRE-APP_TO_APP();
-                COPY_APP_TO_RENEWAL(parentCapId);
+                include("UPDATE_PRE-APP_TO_APP");
+                include("COPY_APP_TO_RENEWAL");
                 logDebug("Activating: " + newId);
                 capId = holdId;
                 updateAppStatus("Eligible for Processing", "", newId);
