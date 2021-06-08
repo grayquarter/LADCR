@@ -102,7 +102,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
                 holdId = capId;
                 capId = newId;
-                closeTask("Application Acceptance", "NA", "Closed by COPY TO MOD", "");
+                closeTask("Application Acceptance", "Application Received", "Closed by COPY TO MOD", "");
                 closeTask("Pre-App Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Supervisor Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
