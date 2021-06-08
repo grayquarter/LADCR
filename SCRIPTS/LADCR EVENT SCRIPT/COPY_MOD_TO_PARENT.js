@@ -102,13 +102,14 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
                 holdId = capId;
                 capId = newId;
+                closeTask("PCN Acceptance", "NA", "Closed by COPY TO MOD","");
+                closeTask("PCN Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("PCN Waiting for Council", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Application Acceptance", "Application Received", "Closed by COPY TO MOD", "");
                 closeTask("Pre-App Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
                 closeTask("Supervisor Pre-App Document Review", "NA", "Closed by COPY TO MOD", "");
-                closeTask("PCN Acceptance", "NA", "Closed by COPY TO MOD","");
-                closeTask("PCN Review", "NA", "Closed by COPY TO MOD", "");
-                closeTask("PCN Waiting for Council", "NA", "Closed by COPY TO MOD", "");
+                         
                 logDebug("Closing Workflow Task: " + newId);
                 activateTask("Temp App Review");
                 include("UPDATE_PRE-APP_TO_APP");
