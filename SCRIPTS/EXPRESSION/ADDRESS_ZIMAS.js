@@ -34,6 +34,7 @@ try {
 					//logDebug("We found a lookup for this.");
 					addrForm.blockSubmit = true;
 					addrForm.message = "Applicants seeking to engage in Retail, Cultivation and Volatile-Manufacturing Commercial Cannabis Activity in a CPA that is unduly concentrated are required to file a request that the City Council find that approval of the License application would serve a public convenience or necessity (PCN) supported by evidence in the record pursuant to LAMC Section 104.03(a)(4)."
+					vStreetName.message = "Address validated but address is located in an area of unduly concentration. Submit form for more information.";
 					expression.setReturn(vStreetName);
 					expression.setReturn(addrForm);
 				} else {
