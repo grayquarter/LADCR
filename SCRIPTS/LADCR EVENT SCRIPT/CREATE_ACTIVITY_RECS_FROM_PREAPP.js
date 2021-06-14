@@ -1,5 +1,5 @@
 //Start - CREATE_ACTIVITY_RECS_FROM_PREAPP Script
-//Update: 05/24/2021:09:25 AM
+//Update: 06/11/2021:12:50 PM
 
 var childSuffixArray = [];
 var clearASIArray = [];
@@ -176,15 +176,16 @@ for (var i in childSuffixArray) {
     copyContacts3_0(itemCapId, childId);
 *********************************************/
 
-    //Copy Work Description from child to license
-    aa.cap.copyCapWorkDesInfo(itemCapId, childId);
+	//Copy Work Description from child to license
+	aa.cap.copyCapWorkDesInfo(itemCapId, childId);
 
-    //Copy application name from child to license
-    editAppName(getAppName(itemCapId), childId);
+	//Copy application name from child to license
+	editAppName(getAppName(itemCapId), childId);
 
-    //Copy remaining application fields
-    updateShortNotes(getShortNotes(itemCapId),childId);
+	//Copy remaining application fields
+	updateShortNotes(getShortNotes(itemCapId),childId);
 	editPriority(getPriority(itemCapId),childId);
+	assignCap(getAssigned(itemCapId),childId);
 
 	// set child record status
 	updateAppStatus("Eligible for Processing","",childId); //updated per Aaron 1/28/21
@@ -193,9 +194,11 @@ for (var i in childSuffixArray) {
 	// set workflow task - added per Aaron 1/28/21, reset 6/1/21
 	var capIdSave = capId;
 	capId = childId;
+	setTask("PCN Acceptance","N","N");
 	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
 	capId = capIdSave;
+
 /***********************************************/
 
     //use the suffix to give it a unique ID
