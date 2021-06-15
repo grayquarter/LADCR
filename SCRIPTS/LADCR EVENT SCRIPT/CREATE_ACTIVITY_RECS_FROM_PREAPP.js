@@ -194,9 +194,11 @@ for (var i in childSuffixArray) {
 	// set workflow task - added per Aaron 1/28/21, reset 6/1/21
 	var capIdSave = capId;
 	capId = childId;
+	setTask("PCN Acceptance","N","N");
 	setTask("Application Acceptance","N","Y");
 	activateTask("Temp App Review");
 	capId = capIdSave;
+
 /***********************************************/
 
     //use the suffix to give it a unique ID
