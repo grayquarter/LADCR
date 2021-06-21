@@ -4,6 +4,7 @@
 |
 | REQUIRED: CORRESPONDENCE SCRIPT PARAMS std choice
 | 08/24/20: added more email template parameters
+| 06/21/21: was not accessing standard choice parameteres, fixed.
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
 | BEGIN Initialize Variables
@@ -128,8 +129,11 @@ var startTime = startDate.getTime();			// Start timer
 
 logDebug("*** Start of Job ***");
 
+
 var emailTemplate = lookup("CORRESPONDENCE SCRIPT PARAMS","emailTemplate");
 var sendEmailToContactTypes = lookup("CORRESPONDENCE SCRIPT PARAMS","sendEmailToContactTypes");
+//var emailTemplate = "DCR GENERIC INVOICE";
+//var sendEmailToContactTypes = "Business,Business Owner,Owner Applicant,Primary Contact Person,Owner,Owner - Entity,Social Equity Owner,Social Equity Owner - Entity,Business Entity,Consultant,Law Firm,Agent of Service";
 
 if (emailTemplate && emailTemplate != "" && sendEmailToContactTypes && sendEmailToContactTypes != "" && SetMemberArray.length > 0) {
 	mainProcess();
@@ -202,4 +206,3 @@ function mainProcess() {
 		}
 	}
 }
-
