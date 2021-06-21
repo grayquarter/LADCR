@@ -199,7 +199,7 @@ try {
 
 
 
-  
+ /* 
    editAppSpecific4ACA("Adult-Use Cultivation Medium Indoor1", getAppSpecific("Adult-Use Cultivation Medium Indoor", parentCapId));
    editAppSpecific4ACA("Adult-Use Cultivation Small Indoor1", getAppSpecific("Adult-Use Cultivation Small Indoor", parentCapId));
    editAppSpecific4ACA("Adult-Use Cultivation Specialty Cottage Indoor1", getAppSpecific("Adult-Use Cultivation Specialty Cottage Indoor", parentCapId));
@@ -223,7 +223,7 @@ logDebug("manu");
    editAppSpecific4ACA("Distributor Transport Only1", getAppSpecific("Distributor Transport Only", parentCapId));
    editAppSpecific4ACA("Testing1", getAppSpecific("Testing", parentCapId));
 logDebug("this is running");
-    editAppSpecific("Nursery1", getAppSpecific("Nursery", parentCapId));
+    editAppSpecific("Nursery1", getAppSpecific("Nursery", parentCapId)); */
 } catch (err) {
 
 	logDebug(err);
