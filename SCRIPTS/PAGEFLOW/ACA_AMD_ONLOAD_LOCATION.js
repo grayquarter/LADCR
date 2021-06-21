@@ -148,7 +148,7 @@ logDebug("balanceDue = " + balanceDue);
 // page flow custom code begin
 
 try {
- showDebug = true; 
+ 
 
 	parentCapIdString = "" + cap.getParentCapID();
 	if (parentCapIdString) {
