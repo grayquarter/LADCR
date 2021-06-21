@@ -200,28 +200,28 @@ try {
 
 
   
-    editAppSpecific("Adult-Use Cultivation Medium Indoor1", getAppSpecific("Adult-Use Cultivation Medium Indoor", parentCapId));
-    editAppSpecific("Adult-Use Cultivation Small Indoor1", getAppSpecific("Adult-Use Cultivation Small Indoor", parentCapId));
-    editAppSpecific("Adult-Use Cultivation Specialty Cottage Indoor1", getAppSpecific("Adult-Use Cultivation Specialty Cottage Indoor", parentCapId));
-    editAppSpecific("Adult-Use Cultivation Specialty Indoor1", getAppSpecific("Adult-Use Cultivation Specialty Indoor", parentCapId));
-    editAppSpecific("Adult-Use Distributor1", getAppSpecific("Adult-Use Distributor", parentCapId));
-    editAppSpecific("Adult-Use Manufacturer Level 11", getAppSpecific("Adult-Use Manufacturer Level 1", parentCapId));
+   editAppSpecific4ACA("Adult-Use Cultivation Medium Indoor1", getAppSpecific("Adult-Use Cultivation Medium Indoor", parentCapId));
+   editAppSpecific4ACA("Adult-Use Cultivation Small Indoor1", getAppSpecific("Adult-Use Cultivation Small Indoor", parentCapId));
+   editAppSpecific4ACA("Adult-Use Cultivation Specialty Cottage Indoor1", getAppSpecific("Adult-Use Cultivation Specialty Cottage Indoor", parentCapId));
+   editAppSpecific4ACA("Adult-Use Cultivation Specialty Indoor1", getAppSpecific("Adult-Use Cultivation Specialty Indoor", parentCapId));
+  editAppSpecific4ACA("Adult-Use Distributor1", getAppSpecific("Adult-Use Distributor", parentCapId));
+  editAppSpecific4ACA("Adult-Use Manufacturer Level 11", getAppSpecific("Adult-Use Manufacturer Level 1", parentCapId));
 logDebug("manu");
-    editAppSpecific("Adult-Use Manufacturer Level 21", getAppSpecific("Adult-Use Manufacturer Level 2", parentCapId));
-    editAppSpecific("Adult-Use Retail1", getAppSpecific("Adult-Use Retail", parentCapId));
-    editAppSpecific("Adult-Use Microbusiness1", getAppSpecific("Adult-Use Microbusiness", parentCapId));
-    editAppSpecific("Adult-Use Delivery Only1", getAppSpecific("Adult-Use Delivery Only", parentCapId));
-    editAppSpecific("Medical Cultivation Medium Indoor1", getAppSpecific("Medical Cultivation Medium Indoor", parentCapId));
-    editAppSpecific("Medical Cultivation Small Indoor1", getAppSpecific("Medical Cultivation Small Indoor", parentCapId));
-    editAppSpecific("Medical Distributor1", getAppSpecific("Medical Distributor", parentCapId));
-    editAppSpecific("Medical Cultivation Specialty Indoor1", getAppSpecific("Medical Cultivation Specialty Indoor", parentCapId));
-    editAppSpecific("Medical Manufacturer Level 11", getAppSpecific("Medical Manufacturer Level 1", parentCapId));
-    editAppSpecific("Medical Manufacturer Level 21", getAppSpecific("Medical Manufacturer Level 2", parentCapId));
-    editAppSpecific("Medical Retail1", getAppSpecific("Medical Retail", parentCapId));
-    editAppSpecific("Medical Microbusiness1", getAppSpecific("Medical Microbusiness", parentCapId));
-    editAppSpecific("Medical Delivery Only1", getAppSpecific("Medical Delivery Only", parentCapId));
-    editAppSpecific("Distributor Transport Only1", getAppSpecific("Distributor Transport Only", parentCapId));
-    editAppSpecific("Testing1", getAppSpecific("Testing", parentCapId));
+   editAppSpecific4ACA("Adult-Use Manufacturer Level 21", getAppSpecific("Adult-Use Manufacturer Level 2", parentCapId));
+   editAppSpecific4ACA("Adult-Use Retail1", getAppSpecific("Adult-Use Retail", parentCapId));
+   editAppSpecific4ACA("Adult-Use Microbusiness1", getAppSpecific("Adult-Use Microbusiness", parentCapId));
+    editAppSpecific4ACA("Adult-Use Delivery Only1", getAppSpecific("Adult-Use Delivery Only", parentCapId));
+   editAppSpecific4ACA("Medical Cultivation Medium Indoor1", getAppSpecific("Medical Cultivation Medium Indoor", parentCapId));
+   editAppSpecific4ACA("Medical Cultivation Small Indoor1", getAppSpecific("Medical Cultivation Small Indoor", parentCapId));
+  editAppSpecific4ACA("Medical Distributor1", getAppSpecific("Medical Distributor", parentCapId));
+    editAppSpecific4ACA("Medical Cultivation Specialty Indoor1", getAppSpecific("Medical Cultivation Specialty Indoor", parentCapId));
+    editAppSpecific4ACA("Medical Manufacturer Level 11", getAppSpecific("Medical Manufacturer Level 1", parentCapId));
+   editAppSpecific4ACA("Medical Manufacturer Level 21", getAppSpecific("Medical Manufacturer Level 2", parentCapId));
+    editAppSpecific4ACA("Medical Retail1", getAppSpecific("Medical Retail", parentCapId));
+    editAppSpecific4ACA("Medical Microbusiness1", getAppSpecific("Medical Microbusiness", parentCapId));
+   editAppSpecific4ACA("Medical Delivery Only1", getAppSpecific("Medical Delivery Only", parentCapId));
+   editAppSpecific4ACA("Distributor Transport Only1", getAppSpecific("Distributor Transport Only", parentCapId));
+   editAppSpecific4ACA("Testing1", getAppSpecific("Testing", parentCapId));
 logDebug("this is running");
     editAppSpecific("Nursery1", getAppSpecific("Nursery", parentCapId));
 } catch (err) {
