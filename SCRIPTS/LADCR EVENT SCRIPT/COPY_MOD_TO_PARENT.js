@@ -99,7 +99,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
                 closeTask("Application Acceptance", "NA", "Closed by COPY TO MOD", "");
                 logDebug("Closing Workflow Task: " + newId);
                 activateTask("Pre-App Review");
-                modcap = capId
+                modcap = capId;
                 modcap = aa.cap.getCapID(AInfo["Modification Request ID"]).getOutput();
                 
                 logDebug("Activating: " + newId);
