@@ -383,7 +383,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
           //      copyContacts3_0(capId, parentCapId);
 
-            }
+         //   }
         
 
        // if (isASITrue(AInfo["Other Contact Changes"])) {
@@ -406,7 +406,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
             } */
 
       //      copyContacts3_0(capId, parentCapId);
-        }
+      //  }
         // copy conditions over from mod request
       //  copyConditions(capId, parentCapId);
       //  logDebug("conditions added everytime");
@@ -419,8 +419,8 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
     //        var bizName = getShortNotes(capId);
      //       updateShortNotes(bizName, parentCapId);
      //       logDebug("Short Notes = " + getShortNotes(capId));
-
-        }
+//
+      //  }
 
    //  if (isASITrue(AInfo["Legal Entity Name Change"])) {
             //legal busin name
@@ -428,7 +428,7 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
    //         editAppName(getAppName(capId),parentCapId);
    //         logDebug("appname updated");
 
-        }
+      //  }
 
 
      //   if (isASITrue(AInfo["Business Premises Relocation"])) {
@@ -447,8 +447,8 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
            //         PStatus = capObj.getCapStatus();
            //     if (PStatus != "Temporarily Approved") {
            //         updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
-                            }
-                }
+                        //    }
+//}
 
             /*    holdId = capId;
                 capId = newId;
