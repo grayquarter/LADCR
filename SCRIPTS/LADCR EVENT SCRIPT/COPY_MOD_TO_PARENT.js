@@ -1,5 +1,3 @@
-
-
 // in prod now 6.22.21
 if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
 
@@ -87,20 +85,26 @@ if (wfTask.equals("Review") && wfStatus.equals("Changes Accepted")) {
         if (isASITrue(AInfo["Business Premises Relocation"])) {
             // create new parent record
             var newId = createCannabisApp("Licenses", "Cannabis", "Business", "Application", "", parentCapId, capId);
+                editAppSpecific("Modification Request ID", capId.getCustomID(), newId);
+                  logDebug("mod ID copied: " + capId.getCustomID());
             if (newId) {
                 logDebug("New Application Record created: " + newId.getCustomID());
                 newCap = aa.cap.getCap(newId).getOutput();
                logDebug("Run ASA event success? " + aa.cap.runEMSEScriptAfterApplicationSubmit(newCap.getCapModel(), newId).getSuccess());
                 // deprecate old app - is this all we have to do?
                 updateAppStatus("Deprecated", "Deprecated by mod request " + capId.getCustomID(), parentCapId);
+              
 
                 holdId = capId;
                 capId = newId;
-                closeTask("Application Acceptance", "NA", "Closed by COPY TO MOD", "");
+                
+                closeTask("PCN Acceptance", "NA", "Closed by COPY TO MOD","");
+                closeTask("PCN Review", "NA", "Closed by COPY TO MOD", "");
+                closeTask("PCN Waiting for Council", "NA", "Closed by COPY TO MOD", "");
+                closeTask("Application Acceptance", "Application Received", "Closed by COPY TO MOD", "");
                 logDebug("Closing Workflow Task: " + newId);
                 activateTask("Pre-App Review");
-                modcap = capId;
-                modcap = aa.cap.getCapID(AInfo["Modification Request ID"]);
+                           
                 
                 logDebug("Activating: " + newId);
                 capId = holdId;
