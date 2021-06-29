@@ -1,5 +1,5 @@
 // Begin script to set 'Awaiting Data Entry' for back office submittals. Runs the WTUA event for Application Acceptance - Awaiting Data Entry
-include("AWAITING_DATA_ENTRY");
+//include("AWAITING_DATA_ENTRY"); //disabled per Aaron 6/29/21
 // End script to set 'Awaiting Data Entry' for back office submittals
 
 // Begin script to move workflow task Issuance to Issued, Temporarily Issued, or Provisionally Issued once payment has been recieved. Runs thr WTUA event for the given type of issuance.
